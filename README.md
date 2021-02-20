@@ -6,6 +6,43 @@
 [Examples](#examples)  
 [Citation](#citation)  
 
+## 主要修改
+
+```
+add /robovat/envs/repeat_grasp_env.py
+add /robovat/envs/policies/repeated_grasp_policy.py
+```
+
+## TODO
+
+添加抓手时延
+
+```python
+				elif phase == 'putdown':
+                    self.robot.move_to_gripper_pose(put_pose, straight_line=True)
+
+                    # Prevent problems caused by unrealistic frictions.
+                    if self.is_simulation:
+                        self.robot.l_finger_tip.set_dynamics(
+                            lateral_friction=100,
+                            rolling_friction=10,
+                            spinning_friction=10)
+                        self.robot.r_finger_tip.set_dynamics(
+                            lateral_friction=100,
+                            rolling_friction=10,
+                            spinning_friction=10)
+                        self.table.set_dynamics(
+                            lateral_friction=1)
+
+                elif phase == 'release':
+                    self.robot.grip(0)
+
+                elif phase == 'finish':
+                    self.robot.move_to_joint_positions(self.config.ARM.OFFSTAGE_POSITIONS)
+```
+
+
+
 ## About
 
 RoboVat is a tookit for fast development of robotic task environments in simulation and the real world. It provides unified APIs for robot control and perception to bridge the reality gap. Its name is derived from [<em>brain in a vat</em>](https://en.wikipedia.org/wiki/Brain_in_a_vat).
