@@ -255,6 +255,7 @@ class RobotEnv(gym.Env):
         if self.config.MAX_STEPS is not None:
             if self.num_steps >= self.config.MAX_STEPS:
                 self._done = True
+        print("num_steps: ", self._num_steps)
 
         logger.info('step: %d, reward: %.3f', self.num_steps, reward)
 
@@ -296,14 +297,11 @@ class RobotEnv(gym.Env):
             termination: The termination flag.
         """
         reward = 0.0
-        termination = False
+        termination = self._num_steps >= self.config.MAX_ACTIONS_PER_EPS
 
         for reward_fn in self.reward_fns:
             reward_value, termination_value = reward_fn.get_reward()
             reward += reward_value
-
-            if termination_value:
-                termination = True
 
         reward = float(reward)
 

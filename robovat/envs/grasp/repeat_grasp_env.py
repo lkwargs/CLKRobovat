@@ -26,7 +26,7 @@ from robovat.utils.yaml_config import YamlConfig
 GRASPABLE_NAME = 'graspable'
 
 
-class Grasp4DofEnv(arm_env.ArmEnv):
+class RepeatGraspEnv(arm_env.ArmEnv):
     """Top-down 4-DoF grasping environment."""
 
     def __init__(self,
@@ -81,7 +81,7 @@ class Grasp4DofEnv(arm_env.ArmEnv):
                 % (self.config.SIM.GRASPABLE.PATHS))
             logger.debug('Found %d graspable objects.', num_graspable_paths)
 
-        super(Grasp4DofEnv, self).__init__(
+        super(RepeatGraspEnv, self).__init__(
             simulator=self.simulator,
             config=self.config,
             debug=self.debug)
@@ -89,7 +89,7 @@ class Grasp4DofEnv(arm_env.ArmEnv):
     @property
     def default_config(self):
         """Load the default configuration file."""
-        config_path = os.path.join('configs', 'envs', 'grasp_4dof_env.yaml')
+        config_path = os.path.join('configs', 'envs', 'repeat_grasp_env.yaml')
         assert os.path.exists(config_path), (
                 'Default configuration file %s does not exist' % (config_path))
         return YamlConfig(config_path).as_easydict()
@@ -168,7 +168,7 @@ class Grasp4DofEnv(arm_env.ArmEnv):
     def _reset_scene(self):
         """Reset the scene in simulation or the real world.
         """
-        super(Grasp4DofEnv, self)._reset_scene()
+        super(RepeatGraspEnv, self)._reset_scene()
 
         # Reload graspable object.
         if self.config.SIM.GRASPABLE.RESAMPLE_N_EPISODES:
@@ -214,7 +214,7 @@ class Grasp4DofEnv(arm_env.ArmEnv):
     def _reset_robot(self):
         """Reset the robot in simulation or the real world.
         """
-        super(Grasp4DofEnv, self)._reset_robot()
+        super(RepeatGraspEnv, self)._reset_robot()
         self.robot.reset(self.config.ARM.OFFSTAGE_POSITIONS)
 
     def _execute_action(self, action):
@@ -229,15 +229,20 @@ class Grasp4DofEnv(arm_env.ArmEnv):
             grasp = Grasp2D.from_vector(action, camera=self.camera)
             x, y, z, angle = grasp.as_4dof()
         elif self.config.ACTION.TYPE == '4DIM':
-            x, y, z, angle = action
+            _grasp, _putdown = action
         else:
             raise ValueError(
                 'Unrecognized action type: %r' % (self.config.ACTION.TYPE))
 
+        x, y, z, angle = _grasp
         start = Pose(
             [[x, y, z + self.config.ARM.FINGER_TIP_OFFSET], [0, np.pi, angle]]
         )
         print([x, y, z, angle])
+        x, y, z, angle = _putdown
+        put_pose = Pose(
+            [[x, y, z + self.config.ARM.FINGER_TIP_OFFSET], [0, np.pi, angle]]
+        )
 
         phase = 'initial'
 
@@ -245,7 +250,7 @@ class Grasp4DofEnv(arm_env.ArmEnv):
         if self.is_simulation:
             num_action_steps = 0
 
-        while(phase != 'done'):
+        while phase != 'done':
 
             if self.is_simulation:
                 self.simulator.step()
@@ -253,13 +258,14 @@ class Grasp4DofEnv(arm_env.ArmEnv):
                     num_action_steps += 1
 
             if self._is_phase_ready(phase, num_action_steps):
+                
                 phase = self._get_next_phase(phase)
                 logger.debug('phase: %s', phase)
 
                 if phase == 'overhead':
+                    print(self.robot.end_effector.pose)
                     self.robot.move_to_joint_positions(
                         self.config.ARM.OVERHEAD_POSITIONS)
-                    # self.robot.grip(0)
 
                 elif phase == 'prestart':
                     prestart = start.copy()
@@ -283,11 +289,11 @@ class Grasp4DofEnv(arm_env.ArmEnv):
                 elif phase == 'end':
                     self.robot.grip(1)
 
-                elif phase == 'postend':
-                    postend = self.robot.end_effector.pose
-                    postend.z = self.config.ARM.GRIPPER_SAFE_HEIGHT
+                elif phase == 'pickup':
+                    pickup = self.robot.end_effector.pose
+                    pickup.z = self.config.ARM.GRIPPER_SAFE_HEIGHT
                     self.robot.move_to_gripper_pose(
-                        postend, straight_line=True)
+                        pickup, straight_line=True)
 
                     # Prevent problems caused by unrealistic frictions.
                     if self.is_simulation:
@@ -301,8 +307,29 @@ class Grasp4DofEnv(arm_env.ArmEnv):
                             spinning_friction=10)
                         self.table.set_dynamics(
                             lateral_friction=1)
-        
-        self.num_actions_per_eps += 1   
+                
+                elif phase == 'putdown':
+                    self.robot.move_to_gripper_pose(put_pose, straight_line=True)
+
+                    # Prevent problems caused by unrealistic frictions.
+                    if self.is_simulation:
+                        self.robot.l_finger_tip.set_dynamics(
+                            lateral_friction=100,
+                            rolling_friction=10,
+                            spinning_friction=10)
+                        self.robot.r_finger_tip.set_dynamics(
+                            lateral_friction=100,
+                            rolling_friction=10,
+                            spinning_friction=10)
+                        self.table.set_dynamics(
+                            lateral_friction=1)
+
+                elif phase == 'release':
+                    self.robot.grip(0)
+
+                elif phase == 'finish':
+                    self.robot.move_to_joint_positions(self.config.ARM.OFFSTAGE_POSITIONS)
+
 
     def _get_next_phase(self, phase):
         """Get the next phase of the current phase.
@@ -318,17 +345,19 @@ class Grasp4DofEnv(arm_env.ArmEnv):
                       'prestart',
                       'start',
                       'end',
-                      'postend',
+                      'pickup',
+                      'putdown',
+                      'release',
+                      'finish',
                       'done']
 
-        if phase in phase_list:
-            i = phase_list.index(phase)
-            if i == len(phase_list):
-                raise ValueError('phase %r does not have a next phase.')
-            else:
-                return phase_list[i + 1]
+        
+        i = phase_list.index(phase)
+        if i == len(phase_list):
+            raise ValueError('phase %r does not have a next phase.')
         else:
-            raise ValueError('Unrecognized phase: %r' % phase)
+            return phase_list[i + 1]
+        raise ValueError('Unrecognized phase: %r' % phase)
 
     def _is_phase_ready(self, phase, num_action_steps):
         """Check if the current phase is ready.

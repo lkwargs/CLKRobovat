@@ -209,7 +209,7 @@ def main():
         hostname = socket.gethostname()
         hostname = hostname.split('.')[0]
         output_dir = os.path.abspath(args.output_dir)
-        output_dir = os.path.join(output_dir, hostname, '%02d' % (args.key))
+        output_dir = os.path.join(output_dir, hostname, '%02d' % (0))
         if not os.path.isdir(output_dir):
             logger.info('Making output directory %s...', output_dir)
             os.makedirs(output_dir)

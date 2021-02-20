@@ -303,7 +303,8 @@ class AntipodalDepthImageGraspSampler(ImageGraspSampler):
         grasps = np.zeros([num_samples, 5], dtype=np.float32)
         num_grasps = 0
 
-        for sample_ind in candidate_pair_indices:
+        for sample_ind in reversed(range(num_pairs)):
+        # for sample_ind in candidate_pair_indices:
             if num_grasps >= num_samples:
                 break
 
@@ -371,5 +372,4 @@ class AntipodalDepthImageGraspSampler(ImageGraspSampler):
 
         if num_grasps == 0:
             raise ValueError('Failed to sample any valid grasp.')
-
         return grasps
