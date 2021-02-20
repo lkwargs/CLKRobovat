@@ -21,18 +21,18 @@ add /robovat/envs/policies/repeated_grasp_policy.py
                     elif phase == 'putdown':
                         self.robot.move_to_gripper_pose(put_pose, straight_line=True)
 
-                    # Prevent problems caused by unrealistic frictions.
-                    if self.is_simulation:
-                        self.robot.l_finger_tip.set_dynamics(
-                            lateral_friction=100,
-                            rolling_friction=10,
-                            spinning_friction=10)
-                        self.robot.r_finger_tip.set_dynamics(
-                            lateral_friction=100,
-                            rolling_friction=10,
-                            spinning_friction=10)
-                        self.table.set_dynamics(
-                            lateral_friction=1)
+                        # Prevent problems caused by unrealistic frictions.
+                        if self.is_simulation:
+                            self.robot.l_finger_tip.set_dynamics(
+                                lateral_friction=100,
+                                rolling_friction=10,
+                                spinning_friction=10)
+                            self.robot.r_finger_tip.set_dynamics(
+                                lateral_friction=100,
+                                rolling_friction=10,
+                                spinning_friction=10)
+                            self.table.set_dynamics(
+                                lateral_friction=1)
 
                 elif phase == 'release':
                     self.robot.grip(0)
