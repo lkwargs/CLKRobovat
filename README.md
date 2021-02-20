@@ -13,6 +13,10 @@ add /robovat/envs/repeat_grasp_env.py
 add /robovat/envs/policies/repeated_grasp_policy.py
 ```
 
+repeated_grasp_policy中调用image_grasp_sampler利用深度图计算大致物体位置, 然后抓取. 该policy产生的action结构为[[x, y, z, angle], [x, y, z, angle]]. 第一组是抓取物体的动作, 第二组是放下物体的动作.
+
+repeat_grasp_env对上述动作完成一个抓取-放下-松开的一连串动作仿真.
+
 ## TODO
 
 添加抓手时延
