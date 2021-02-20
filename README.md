@@ -18,8 +18,8 @@ add /robovat/envs/policies/repeated_grasp_policy.py
 添加抓手时延
 
 ```python
-				elif phase == 'putdown':
-                    self.robot.move_to_gripper_pose(put_pose, straight_line=True)
+                    elif phase == 'putdown':
+                        self.robot.move_to_gripper_pose(put_pose, straight_line=True)
 
                     # Prevent problems caused by unrealistic frictions.
                     if self.is_simulation:
