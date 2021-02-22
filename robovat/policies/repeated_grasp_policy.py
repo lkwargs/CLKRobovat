@@ -14,6 +14,16 @@ from robovat.policies import policy
 from robovat.utils.yaml_config import YamlConfig
 
 
+def is_close(a, b):
+    if abs(a[0] - b[0]) > 0.01:
+        return True
+    elif abs(a[1] - b[1]) > 0.01:
+        return True
+    elif abs(a[3] - b[3]) > 0.01:
+        return True
+    return False
+
+
 class RepeatedRandomGraspPolicy(policy.Policy):
     """Antipodal grasp 4-DoF policy."""
 
@@ -46,6 +56,8 @@ class RepeatedRandomGraspPolicy(policy.Policy):
             depth_sample_window_width=(
                 config.SAMPLER.DEPTH_SAMPLE_WINDOW_WIDTH),
             gripper_width=config.GRIPPER_WIDTH)
+        self.last_action = None
+        self.random_range = 0.2
 
     @property
     def default_config(self):
@@ -68,29 +80,32 @@ class RepeatedRandomGraspPolicy(policy.Policy):
         """
         depth = observation['depth']
         intrinsics = observation['intrinsics']
-        grasps = self.sampler.sample(depth, intrinsics, 1)
-        action = np.squeeze(grasps, axis=0)
-        grasp = grasp_2d.Grasp2D.from_vector(action, camera=self.env.camera)
-        x, y, z, angle = grasp.as_4dof()
-        z = -1
-        up_and_down = [[x, y, z, angle], [0.8, 0, 0, 0]]
-        
-        from matplotlib import pyplot as plt
-        xl, yl, _ = np.shape(depth)
-    
+
+        grasps = self.sampler.sample(depth, intrinsics, 10)
+        grasps = [grasps[np.random.randint(0, 10)]]
+        grasp = np.squeeze(grasps, axis=0)
+        grasp = grasp_2d.Grasp2D.from_vector(grasp, camera=self.env.camera)
+        action = grasp.as_4dof()
+        action[2] = -0.1
+
+        self.last_action = action
+
+        x = np.random.rand() * 0.2 + 0.7
+        y = np.random.rand() * 0.3 - 0.15
+        z = -0.1
+        up_and_down = [self.last_action, [x, y, z, 0]]
+
+        # from matplotlib import pyplot as plt
+        # xl, yl, _ = np.shape(depth)
+        #
         # #作图阶段
         # fig = plt.figure()
-        # #定义画布为1*1个划分，并在第1个位置上进行作图
         # ax = fig.add_subplot(111)
         # #定义横纵坐标的刻度
         # ax.set_yticks(range(yl))
         # ax.set_xticks(range(xl))
-        # #作图并选择热图的颜色填充风格，这里选择hot
         # im = ax.imshow(depth)
-        # #增加右侧的颜色刻度条
         # plt.colorbar(im)
-        # #show
         # plt.show()
-
         
         return up_and_down

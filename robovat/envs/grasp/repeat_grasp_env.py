@@ -263,7 +263,6 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                 logger.debug('phase: %s', phase)
 
                 if phase == 'overhead':
-                    print(self.robot.end_effector.pose)
                     self.robot.move_to_joint_positions(
                         self.config.ARM.OVERHEAD_POSITIONS)
 
@@ -327,8 +326,27 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                 elif phase == 'release':
                     self.robot.grip(0)
 
+                elif phase == 'liftup':
+                    pickup = self.robot.end_effector.pose
+                    pickup.z = self.config.ARM.GRIPPER_SAFE_HEIGHT
+                    self.robot.move_to_gripper_pose(
+                        pickup, straight_line=True)
+
+                    # Prevent problems caused by unrealistic frictions.
+                    if self.is_simulation:
+                        self.robot.l_finger_tip.set_dynamics(
+                            lateral_friction=100,
+                            rolling_friction=10,
+                            spinning_friction=10)
+                        self.robot.r_finger_tip.set_dynamics(
+                            lateral_friction=100,
+                            rolling_friction=10,
+                            spinning_friction=10)
+                        self.table.set_dynamics(
+                            lateral_friction=1)
+
                 elif phase == 'finish':
-                    self.robot.move_to_joint_positions(self.config.ARM.OFFSTAGE_POSITIONS)
+                    self.robot.move_to_joint_positions(self.config.ARM.OFFSTAGE_POSITIONS, speed=0.1)
 
 
     def _get_next_phase(self, phase):
@@ -348,6 +366,7 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                       'pickup',
                       'putdown',
                       'release',
+                      'liftup',
                       'finish',
                       'done']
 
