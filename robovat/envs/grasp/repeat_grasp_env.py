@@ -13,11 +13,12 @@ import gym
 import numpy as np
 
 from robovat.envs import arm_env
+from robovat.envs.saver import Saver
 from robovat.envs.grasp.grasp_2d import Grasp2D
 from robovat.math import Pose
 from robovat.math import get_transform
 from robovat.observations import camera_obs
-from robovat.reward_fns.grasp_reward import GraspReward
+from robovat.reward_fns.repeat_graspable_reward import RepeatGraspReward
 from robovat.robots import sawyer
 from robovat.utils.logging import logger
 from robovat.utils.yaml_config import YamlConfig
@@ -41,8 +42,10 @@ class RepeatGraspEnv(arm_env.ArmEnv):
             debug: True if it is debugging mode, False otherwise.
         """
         self._simulator = simulator
+        self._saver = Saver()
         self._config = config or self.default_config
         self._debug = debug
+        self.success = 0
 
         # Camera.
         self.camera = self._create_camera(
@@ -54,9 +57,10 @@ class RepeatGraspEnv(arm_env.ArmEnv):
 
         # Graspable object.
         if self.is_simulation:
-            self.graspable = None
-            self.graspable_path = None
-            self.graspable_pose = None
+            self.graspables = []
+            self.graspable_poses = []
+            self.graspable_paths = []
+            self.graspable_names = []
             self.all_graspable_paths = []
             self.graspable_index = 0
 
@@ -117,6 +121,23 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                 camera=self.camera)
         ]
 
+    def check_graspable_contact(self, idx):
+        if self.simulator:
+            self.simulator.wait_until_stable(self.graspables[idx])
+            success = self.simulator.check_contact(
+                self.simulator.bodies[sawyer.SawyerSim.ARM_NAME], self.graspables[idx])
+            print(str(idx) + ": " + str(success))
+            return success
+        else:
+            raise NotImplementedError
+
+    def calculate_reward(self):
+        self.success = 0
+        for i in range(len(self.graspables)):
+            if self.check_graspable_contact(i):
+                self.success = 1
+                break
+
     def _create_reward_fns(self):
         """Initialize reward functions.
 
@@ -129,10 +150,10 @@ class RepeatGraspEnv(arm_env.ArmEnv):
             )
 
         return [
-            GraspReward(
-                name='grasp_reward',
+            RepeatGraspReward(
+                name='repeat_grasp_reward',
                 end_effector_name=sawyer.SawyerSim.ARM_NAME,
-                graspable_name=GRASPABLE_NAME)
+                graspable_names=self.graspable_names)
         ]
 
     def _create_action_space(self):
@@ -165,27 +186,7 @@ class RepeatGraspEnv(arm_env.ArmEnv):
         else:
             raise ValueError
 
-    def _reset_scene(self):
-        """Reset the scene in simulation or the real world.
-        """
-        super(RepeatGraspEnv, self)._reset_scene()
-
-        # Reload graspable object.
-        if self.config.SIM.GRASPABLE.RESAMPLE_N_EPISODES:
-            if (self.num_episodes %
-                    self.config.SIM.GRASPABLE.RESAMPLE_N_EPISODES == 0):
-                self.graspable_path = None
-
-        if self.graspable_path is None:
-            if self.config.SIM.GRASPABLE.USE_RANDOM_SAMPLE:
-                self.graspable_path = random.choice(
-                    self.all_graspable_paths)
-            else:
-                self.graspable_index = ((self.graspable_index + 1) %
-                                        len(self.all_graspable_paths))
-                self.graspable_path = (
-                    self.all_graspable_paths[self.graspable_index])
-
+    def _add_graspable(self, idx):
         pose = Pose.uniform(x=self.config.SIM.GRASPABLE.POSE.X,
                             y=self.config.SIM.GRASPABLE.POSE.Y,
                             z=self.config.SIM.GRASPABLE.POSE.Z,
@@ -195,11 +196,37 @@ class RepeatGraspEnv(arm_env.ArmEnv):
         pose = get_transform(source=self.table_pose).transform(pose)
         scale = np.random.uniform(*self.config.SIM.GRASPABLE.SCALE)
         logger.info('Loaded the graspable object from %s with scale %.2f...',
-                    self.graspable_path, scale)
-        self.graspable = self.simulator.add_body(
-            self.graspable_path, pose, scale=scale, name=GRASPABLE_NAME)
+                    self.graspable_paths[idx], scale)
+        self.graspable_names.append(GRASPABLE_NAME + str(idx))
+        self.graspables.append(self.simulator.add_body(
+            self.graspable_paths[idx], pose, scale=scale, name=self.graspable_names[idx]))
         logger.debug('Waiting for graspable objects to be stable...')
-        self.simulator.wait_until_stable(self.graspable)
+        self.simulator.wait_until_stable(self.graspables[idx])
+
+    def _reset_scene(self):
+        """Reset the scene in simulation or the real world.
+        """
+        super(RepeatGraspEnv, self)._reset_scene()
+
+        # Reload graspable object.
+        if self.config.SIM.GRASPABLE.RESAMPLE_N_EPISODES:
+            if (self.num_episodes %
+                    self.config.SIM.GRASPABLE.RESAMPLE_N_EPISODES == 0):
+                self.graspable_paths = []
+
+        if not self.graspable_paths:
+            if self.config.SIM.GRASPABLE.USE_RANDOM_SAMPLE:
+                self.graspable_paths =np.random.choice(
+                    self.all_graspable_paths, self.config.SIM.GRASPABLE.NUM)
+            else:
+                self.graspable_index = ((self.graspable_index + 1) %
+                                        len(self.all_graspable_paths))
+                self.graspable_paths = (
+                    self.all_graspable_paths[self.graspable_index:self.graspable_index + self.config.SIM.GRASPABLE.NUM])
+
+        self.graspables = []
+        for i in range(self.config.SIM.GRASPABLE.NUM):
+            self._add_graspable(i)
 
         # Reset camera.
         self._reset_camera(
@@ -223,12 +250,7 @@ class RepeatGraspEnv(arm_env.ArmEnv):
         Args:
             action: A 4-DoF grasp defined in the image space or the 3D space.
         """
-        if self.config.ACTION.TYPE == 'CUBOID':
-            x, y, z, angle = action
-        elif self.config.ACTION.TYPE == 'IMAGE':
-            grasp = Grasp2D.from_vector(action, camera=self.camera)
-            x, y, z, angle = grasp.as_4dof()
-        elif self.config.ACTION.TYPE == '4DIM':
+        if self.config.ACTION.TYPE == '4DIM':
             _grasp, _putdown = action
         else:
             raise ValueError(
@@ -306,48 +328,36 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                             spinning_friction=10)
                         self.table.set_dynamics(
                             lateral_friction=1)
+
+                elif phase == 'rewarding':
+                    self.calculate_reward()
                 
                 elif phase == 'putdown':
-                    self.robot.move_to_gripper_pose(put_pose, straight_line=True)
+                    # TODO: if gripper has no object, pass put down
+                    if self.success:
+                        self.robot.move_to_gripper_pose(put_pose, straight_line=True)
 
-                    # Prevent problems caused by unrealistic frictions.
-                    if self.is_simulation:
-                        self.robot.l_finger_tip.set_dynamics(
-                            lateral_friction=100,
-                            rolling_friction=10,
-                            spinning_friction=10)
-                        self.robot.r_finger_tip.set_dynamics(
-                            lateral_friction=100,
-                            rolling_friction=10,
-                            spinning_friction=10)
-                        self.table.set_dynamics(
-                            lateral_friction=1)
+                        # Prevent problems caused by unrealistic frictions.
+                        if self.is_simulation:
+                            self.robot.l_finger_tip.set_dynamics(
+                                lateral_friction=100,
+                                rolling_friction=10,
+                                spinning_friction=10)
+                            self.robot.r_finger_tip.set_dynamics(
+                                lateral_friction=100,
+                                rolling_friction=10,
+                                spinning_friction=10)
+                            self.table.set_dynamics(
+                                lateral_friction=1)
+                        obj = self.all_graspable_paths[self.graspable_index].split('/')[-1]
+                        obj_name = obj.split(".")[0]
+                        self._saver.save(self._obs_data['depth'], action, obj_name)
 
                 elif phase == 'release':
                     self.robot.grip(0)
 
-                elif phase == 'liftup':
-                    pickup = self.robot.end_effector.pose
-                    pickup.z = self.config.ARM.GRIPPER_SAFE_HEIGHT
-                    self.robot.move_to_gripper_pose(
-                        pickup, straight_line=True)
-
-                    # Prevent problems caused by unrealistic frictions.
-                    if self.is_simulation:
-                        self.robot.l_finger_tip.set_dynamics(
-                            lateral_friction=100,
-                            rolling_friction=10,
-                            spinning_friction=10)
-                        self.robot.r_finger_tip.set_dynamics(
-                            lateral_friction=100,
-                            rolling_friction=10,
-                            spinning_friction=10)
-                        self.table.set_dynamics(
-                            lateral_friction=1)
-
-                elif phase == 'finish':
-                    self.robot.move_to_joint_positions(self.config.ARM.OFFSTAGE_POSITIONS, speed=0.1)
-
+                elif phase == 'reset':
+                    self.robot.move_to_joint_positions(self.config.ARM.OFFSTAGE_POSITIONS)
 
     def _get_next_phase(self, phase):
         """Get the next phase of the current phase.
@@ -364,10 +374,10 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                       'start',
                       'end',
                       'pickup',
+                      'rewarding',
                       'putdown',
                       'release',
-                      'liftup',
-                      'finish',
+                      'reset',
                       'done']
 
         

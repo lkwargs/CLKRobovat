@@ -4,6 +4,8 @@ Run and generate episodes.
 Copyright (c) 2018 Stanford University.
 Licensed under the MIT License (see LICENSE for details)
 Written by Kuan Fang
+
+Modified work Copyright 2021 Lekai Chen
 """
 
 from __future__ import absolute_import
@@ -40,10 +42,11 @@ def generate_episode(env, policy, num_steps=None, debug=False):
 
     observation = env.reset()
 
-    while(1):
+    while True:
         action = policy.action(observation)
 
         new_observation, reward, done, info = env.step(action)
+
         transition = {
             'state': observation,
             'action': action,
@@ -88,7 +91,7 @@ def generate_episodes(env, policy, num_steps=None, num_episodes=None,
     episode_index = 0
     total_time = 0.0
 
-    while(1):
+    while True:
         try:
             tic = time.time()
 

@@ -80,6 +80,18 @@ class RepeatedRandomGraspPolicy(policy.Policy):
         """
         depth = observation['depth']
         intrinsics = observation['intrinsics']
+        # from matplotlib import pyplot as plt
+        # xl, yl, _ = np.shape(depth)
+        #
+        # # 作图阶段
+        # fig = plt.figure()
+        # ax = fig.add_subplot(111)
+        # # 定义横纵坐标的刻度
+        # ax.set_yticks(range(yl))
+        # ax.set_xticks(range(xl))
+        # im = ax.imshow(depth)
+        # plt.colorbar(im)
+        # plt.show()
 
         grasps = self.sampler.sample(depth, intrinsics, 10)
         grasps = [grasps[np.random.randint(0, 10)]]
@@ -92,20 +104,7 @@ class RepeatedRandomGraspPolicy(policy.Policy):
 
         x = np.random.rand() * 0.2 + 0.7
         y = np.random.rand() * 0.3 - 0.15
-        z = -0.1
+        z = 0
         up_and_down = [self.last_action, [x, y, z, 0]]
 
-        # from matplotlib import pyplot as plt
-        # xl, yl, _ = np.shape(depth)
-        #
-        # #作图阶段
-        # fig = plt.figure()
-        # ax = fig.add_subplot(111)
-        # #定义横纵坐标的刻度
-        # ax.set_yticks(range(yl))
-        # ax.set_xticks(range(xl))
-        # im = ax.imshow(depth)
-        # plt.colorbar(im)
-        # plt.show()
-        
         return up_and_down

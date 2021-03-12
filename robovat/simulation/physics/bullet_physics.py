@@ -178,6 +178,7 @@ class BulletPhysics(physics.Physics):
                 flags=pybullet.URDF_USE_SELF_COLLISION_EXCLUDE_PARENT,
                 )
             pybullet.configureDebugVisualizer(pybullet.COV_ENABLE_RENDERING, 1)
+
         else:
             raise ValueError('Unrecognized extension %s.' % ext)
 
