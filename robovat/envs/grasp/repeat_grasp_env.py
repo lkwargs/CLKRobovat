@@ -42,8 +42,11 @@ class RepeatGraspEnv(arm_env.ArmEnv):
             debug: True if it is debugging mode, False otherwise.
         """
         self._simulator = simulator
-        self._saver = Saver()
         self._config = config or self.default_config
+
+        if self.config.SAVE_SAMPLES:
+            self._saver = Saver()
+
         self._debug = debug
         self.success = 0
 
@@ -349,9 +352,10 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                                 spinning_friction=10)
                             self.table.set_dynamics(
                                 lateral_friction=1)
-                        obj = self.all_graspable_paths[self.graspable_index].split('/')[-1]
-                        obj_name = obj.split(".")[0]
-                        self._saver.save(self._obs_data['depth'], action, obj_name)
+                        if self.config.SAVE_SAMPLES:
+                            obj = self.all_graspable_paths[self.graspable_index].split('/')[-1]
+                            obj_name = obj.split(".")[0]
+                            self._saver.save(self._obs_data['depth'], action, obj_name)
 
                 elif phase == 'release':
                     self.robot.grip(0)

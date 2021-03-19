@@ -80,6 +80,7 @@ class RepeatedRandomGraspPolicy(policy.Policy):
         """
         depth = observation['depth']
         intrinsics = observation['intrinsics']
+
         # from matplotlib import pyplot as plt
         # xl, yl, _ = np.shape(depth)
         #
