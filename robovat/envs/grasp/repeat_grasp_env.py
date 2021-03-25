@@ -109,9 +109,19 @@ class RepeatGraspEnv(arm_env.ArmEnv):
         """
         return [
             camera_obs.CameraObs(
-                name=self.config.OBSERVATION.TYPE,
+                name="depth",
                 camera=self.camera,
-                modality=self.config.OBSERVATION.TYPE,
+                modality="depth",
+                max_visible_distance_m=None),
+            camera_obs.CameraObs(
+                name="rgb",
+                camera=self.camera,
+                modality="rgb",
+                max_visible_distance_m=None),
+            camera_obs.CameraObs(
+                name="segmask",
+                camera=self.camera,
+                modality="segmask",
                 max_visible_distance_m=None),
             camera_obs.CameraIntrinsicsObs(
                 name='intrinsics',
@@ -355,7 +365,7 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                         if self.config.SAVE_SAMPLES:
                             obj = self.all_graspable_paths[self.graspable_index].split('/')[-1]
                             obj_name = obj.split(".")[0]
-                            self._saver.save(self._obs_data['depth'], action, obj_name)
+                            self._saver.save(self._obs_data, action, obj_name)
 
                 elif phase == 'release':
                     self.robot.grip(0)

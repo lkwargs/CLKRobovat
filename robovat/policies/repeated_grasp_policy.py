@@ -11,6 +11,7 @@ import numpy as np
 
 from robovat.envs.grasp import image_grasp_sampler, grasp_2d
 from robovat.policies import policy
+from robovat.observations.obs_handler import ObservationHandler
 from robovat.utils.yaml_config import YamlConfig
 
 
@@ -58,6 +59,7 @@ class RepeatedRandomGraspPolicy(policy.Policy):
             gripper_width=config.GRIPPER_WIDTH)
         self.last_action = None
         self.random_range = 0.2
+        self.plotter = ObservationHandler()
 
     @property
     def default_config(self):
@@ -81,22 +83,18 @@ class RepeatedRandomGraspPolicy(policy.Policy):
         depth = observation['depth']
         intrinsics = observation['intrinsics']
 
-        # from matplotlib import pyplot as plt
-        # xl, yl, _ = np.shape(depth)
-        #
-        # # 作图阶段
-        # fig = plt.figure()
-        # ax = fig.add_subplot(111)
-        # # 定义横纵坐标的刻度
-        # ax.set_yticks(range(yl))
-        # ax.set_xticks(range(xl))
-        # im = ax.imshow(depth)
-        # plt.colorbar(im)
-        # plt.show()
-
         grasps = self.sampler.sample(depth, intrinsics, 10)
         grasps = [grasps[np.random.randint(0, 10)]]
         grasp = np.squeeze(grasps, axis=0)
+
+        if self.config.SHOW_IMAGE:
+            self.plotter.plot([observation['depth'],
+                               observation['rgb'],
+                               observation['segmask']],
+                              [(grasp[0] + grasp[2]) / 2,
+                               (grasp[1] + grasp[3]) / 2])
+            self.plotter.show()
+
         grasp = grasp_2d.Grasp2D.from_vector(grasp, camera=self.env.camera)
         action = grasp.as_4dof()
         action[2] = -0.1

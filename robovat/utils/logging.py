@@ -18,3 +18,4 @@ except Exception:
 
 
 logger = logging.getLogger('root')
+logger.setLevel(logging.DEBUG)

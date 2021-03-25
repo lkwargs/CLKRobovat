@@ -258,6 +258,7 @@ class AntipodalDepthImageGraspSampler(ImageGraspSampler):
             Image.fromarray(image_filtered).resize(new_size, Image.BILINEAR))
         image_threshed = depth_utils.threshold_gradients(
             image_downsampled, self.depth_grad_thresh)
+
         image_zero = np.where(image_threshed == 0)
         image_zero = np.c_[image_zero[0], image_zero[1]]
         edge_pixels = self.downsample_rate * image_zero
@@ -303,8 +304,8 @@ class AntipodalDepthImageGraspSampler(ImageGraspSampler):
         grasps = np.zeros([num_samples, 5], dtype=np.float32)
         num_grasps = 0
 
-        for sample_ind in reversed(range(num_pairs)):
-        # for sample_ind in candidate_pair_indices:
+        # for sample_ind in reversed(range(num_pairs)):
+        for sample_ind in candidate_pair_indices:
             if num_grasps >= num_samples:
                 break
 

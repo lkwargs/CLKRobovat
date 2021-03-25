@@ -18,8 +18,9 @@ class Saver(object):
             self.num_image_saved[obj_name] = 0
         filename = self.save_path + "/" + obj_name + "/" + \
                    str(self.num_image_saved[obj_name]) + ".txt"
+        data = {"depth": image["depth"], "rgb": image["rgb"], "segmask": image["segmask"]}
         with open(filename, "wb") as f:
-            pickle.dump([image, action], f)
+            pickle.dump([data, action], f)
             f.close()
 
         self.num_image_saved[obj_name] += 1
