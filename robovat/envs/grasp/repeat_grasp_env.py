@@ -149,7 +149,8 @@ class RepeatGraspEnv(arm_env.ArmEnv):
         for i in range(len(self.graspables)):
             if self.check_graspable_contact(i):
                 self.success = 1
-                break
+                return i
+        return -1
 
     def _create_reward_fns(self):
         """Initialize reward functions.
@@ -215,6 +216,11 @@ class RepeatGraspEnv(arm_env.ArmEnv):
             self.graspable_paths[idx], pose, scale=scale, name=self.graspable_names[idx]))
         logger.debug('Waiting for graspable objects to be stable...')
         self.simulator.wait_until_stable(self.graspables[idx])
+
+    def _remove_graspable(self, idx):
+        self.simulator.remove_body(self.graspable_names[idx])
+        self.graspables.pop(idx)
+        self.graspable_names.pop(idx)
 
     def _reset_scene(self):
         """Reset the scene in simulation or the real world.
@@ -341,27 +347,28 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                             spinning_friction=10)
                         self.table.set_dynamics(
                             lateral_friction=1)
-
-                elif phase == 'rewarding':
-                    self.calculate_reward()
                 
                 elif phase == 'putdown':
-                    # TODO: if gripper has no object, pass put down
+                    grasped = self.calculate_reward()
                     if self.success:
-                        self.robot.move_to_gripper_pose(put_pose, straight_line=True)
+                        if self.config.SIM.GRASPABLE.REMOVE_AFTER_GRASP:
+                            if grasped != -1:
+                                self._remove_graspable(grasped)
+                        else:
+                            self.robot.move_to_gripper_pose(put_pose, straight_line=True)
 
-                        # Prevent problems caused by unrealistic frictions.
-                        if self.is_simulation:
-                            self.robot.l_finger_tip.set_dynamics(
-                                lateral_friction=100,
-                                rolling_friction=10,
-                                spinning_friction=10)
-                            self.robot.r_finger_tip.set_dynamics(
-                                lateral_friction=100,
-                                rolling_friction=10,
-                                spinning_friction=10)
-                            self.table.set_dynamics(
-                                lateral_friction=1)
+                            # Prevent problems caused by unrealistic frictions.
+                            if self.is_simulation:
+                                self.robot.l_finger_tip.set_dynamics(
+                                    lateral_friction=100,
+                                    rolling_friction=10,
+                                    spinning_friction=10)
+                                self.robot.r_finger_tip.set_dynamics(
+                                    lateral_friction=100,
+                                    rolling_friction=10,
+                                    spinning_friction=10)
+                                self.table.set_dynamics(
+                                    lateral_friction=1)
                         if self.config.SAVE_SAMPLES:
                             obj = self.all_graspable_paths[self.graspable_index].split('/')[-1]
                             obj_name = obj.split(".")[0]
@@ -372,6 +379,10 @@ class RepeatGraspEnv(arm_env.ArmEnv):
 
                 elif phase == 'reset':
                     self.robot.move_to_joint_positions(self.config.ARM.OFFSTAGE_POSITIONS)
+                    # pickup = self.robot.end_effector.pose
+                    # pickup.z = 0.6
+                    # self.robot.move_to_gripper_pose(
+                    #     pickup, straight_line=True)
 
     def _get_next_phase(self, phase):
         """Get the next phase of the current phase.
@@ -388,12 +399,10 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                       'start',
                       'end',
                       'pickup',
-                      'rewarding',
                       'putdown',
                       'release',
                       'reset',
                       'done']
-
         
         i = phase_list.index(phase)
         if i == len(phase_list):

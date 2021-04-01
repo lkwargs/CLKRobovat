@@ -14,12 +14,18 @@ class ObservationHandler(object):
         for img in _images:
             self.plot_helper(img, _action)
 
-    def plot_helper(self, _image, _action=None):
+    def plot_helper(self, _image, grasp=None):
         self.num_plots += 1
         plt.subplot(2, 2, self.num_plots)
         plt.imshow(_image)
-        if _action is not None:
-            plt.plot(_action[0], _action[1], ".", color="r")
+        if grasp is not None:
+            plt.plot(grasp.center[0], grasp.center[1], "o", color="w")
+
+            axis = grasp.axis
+            g1 = grasp.center - float(grasp.width_pixel) * axis
+            g2 = grasp.center + float(grasp.width_pixel) * axis
+
+            plt.plot([g1[0], g2[0]], [g1[1], g2[1]], color='r')
 
     def show(self):
         self.num_plots = 0
