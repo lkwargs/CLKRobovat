@@ -13,7 +13,7 @@ class SegmentationGraspSampler(object):
         self.gripper_width = gripper_width
 
 
-    def sample(self, image, camera, num_samples):
+    def sample(self, image, depth, camera, num_samples):
 
         if not isinstance(camera, Camera):
             intrinsics = camera
@@ -21,30 +21,23 @@ class SegmentationGraspSampler(object):
             camera.set_calibration(intrinsics, np.zeros((3,)), np.zeros((3,)))
 
         image = np.squeeze(image, -1)
-        obj_exists = np.max(image)
-        obj_selected = np.random.randint(2, obj_exists + 1)
+        depth = np.squeeze(depth, -1)
+        objs = np.unique(image)
+        obj_exists = np.delete(objs, np.where(objs == 1))
+        obj_selected = np.random.randint(0, len(obj_exists))
+        print("obj exist: ", obj_exists, "obj select: ", obj_selected)
 
         # Sample grasp point
-        valid_points = np.where(image == obj_selected)
+        valid_points = np.where(image == obj_exists[obj_selected])
         valid_idx = np.random.choice(valid_points[0].shape[0], num_samples)
         center_samples = np.c_[valid_points[1][valid_idx], valid_points[0][valid_idx]]
-        angle_samples = (np.random.random(num_samples) * 2 - 1) * np.pi
-        max_depth = 0.825 + 0.015
-        depth_samples = np.array([max_depth] * num_samples)
 
-        if self.gripper_width > 0:
-            p1 = np.array([0, 0, max_depth])
-            p2 = np.array([self.gripper_width, 0, max_depth])
-            u1 = camera.project_point(p1, is_world_frame=False)
-            u2 = camera.project_point(p2, is_world_frame=False)
-            max_grasp_width_pixel = np.linalg.norm(u1 - u2)
-        else:
-            max_grasp_width_pixel = np.inf
+        depth_samples = np.array([depth[c[0]][c[1]] for c in center_samples]) + 0.1
+        angle_samples = (np.random.random(num_samples) * 2 - 1) * np.pi
+
         width_samples = np.array([0.05] * num_samples)
         actions = np.c_[center_samples,
                         angle_samples,
                         depth_samples,
                         width_samples]
         return actions
-
-

@@ -170,6 +170,26 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                 graspable_names=self.graspable_names)
         ]
 
+    def get_reward(self):
+        """Return the reward.
+
+        Args:
+            reward: The sum of rewards as a float number.
+            termination: The termination flag.
+        """
+        reward = 0.0
+        termination = (self._num_steps >= self.config.MAX_ACTIONS_PER_EPS or
+                       len(self.graspables) <= self.config.SIM.GRASPABLE.NUM // 2)
+
+
+        for reward_fn in self.reward_fns:
+            reward_value, termination_value = reward_fn.get_reward()
+            reward += reward_value
+
+        reward = float(reward)
+
+        return reward, termination
+
     def _create_action_space(self):
         """Create the action space.
 
@@ -222,6 +242,15 @@ class RepeatGraspEnv(arm_env.ArmEnv):
         self.graspables.pop(idx)
         self.graspable_names.pop(idx)
 
+    def _check_graspables(self):
+        obj_out = []
+        for idx in range(len(self.graspables)):
+            if self.graspables[idx].position[2] < -0.1:
+                obj_out.append(idx)
+
+        for idx in reversed(obj_out):
+            self._remove_graspable(idx)
+
     def _reset_scene(self):
         """Reset the scene in simulation or the real world.
         """
@@ -235,7 +264,7 @@ class RepeatGraspEnv(arm_env.ArmEnv):
 
         if not self.graspable_paths:
             if self.config.SIM.GRASPABLE.USE_RANDOM_SAMPLE:
-                self.graspable_paths =np.random.choice(
+                self.graspable_paths = np.random.choice(
                     self.all_graspable_paths, self.config.SIM.GRASPABLE.NUM)
             else:
                 self.graspable_index = ((self.graspable_index + 1) %
@@ -244,6 +273,7 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                     self.all_graspable_paths[self.graspable_index:self.graspable_index + self.config.SIM.GRASPABLE.NUM])
 
         self.graspables = []
+        self.graspable_names = []
         for i in range(self.config.SIM.GRASPABLE.NUM):
             self._add_graspable(i)
 
@@ -313,7 +343,7 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                     self.robot.move_to_gripper_pose(prestart)
 
                 elif phase == 'start':
-                    self.robot.move_to_gripper_pose(start, straight_line=True)
+                    self.robot.move_to_gripper_pose(start, straight_line=True, speed=1)
 
                     # Prevent problems caused by unrealistic frictions.
                     if self.is_simulation:
@@ -333,7 +363,7 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                     pickup = self.robot.end_effector.pose
                     pickup.z = self.config.ARM.GRIPPER_SAFE_HEIGHT
                     self.robot.move_to_gripper_pose(
-                        pickup, straight_line=True)
+                        pickup, straight_line=True, speed=0.5)
 
                     # Prevent problems caused by unrealistic frictions.
                     if self.is_simulation:
@@ -360,15 +390,14 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                             # Prevent problems caused by unrealistic frictions.
                             if self.is_simulation:
                                 self.robot.l_finger_tip.set_dynamics(
-                                    lateral_friction=100,
-                                    rolling_friction=10,
-                                    spinning_friction=10)
+                                    lateral_friction=0.001,
+                                    spinning_friction=0.001)
                                 self.robot.r_finger_tip.set_dynamics(
-                                    lateral_friction=100,
-                                    rolling_friction=10,
-                                    spinning_friction=10)
+                                    lateral_friction=0.001,
+                                    spinning_friction=0.001)
                                 self.table.set_dynamics(
-                                    lateral_friction=1)
+                                    lateral_friction=100)
+
                         if self.config.SAVE_SAMPLES:
                             obj = self.all_graspable_paths[self.graspable_index].split('/')[-1]
                             obj_name = obj.split(".")[0]
@@ -379,6 +408,7 @@ class RepeatGraspEnv(arm_env.ArmEnv):
 
                 elif phase == 'reset':
                     self.robot.move_to_joint_positions(self.config.ARM.OFFSTAGE_POSITIONS)
+                    self._check_graspables()
                     # pickup = self.robot.end_effector.pose
                     # pickup.z = 0.6
                     # self.robot.move_to_gripper_pose(
