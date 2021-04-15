@@ -6,12 +6,21 @@
 [Examples](#examples)  
 [Citation](#citation)  
 
+## Run
+
+--debug参数用于显示图形化仿真界面.
+
+```shell
+python tools/run_env.py --env RepeatGraspEnv --policy RepeatedRandomGraspPolicy --debug 1
+```
+
 ## 主要修改
 
 ```
 add /robovat/envs/repeat_grasp_env.py
 add /robovat/envs/policies/repeated_grasp_policy.py
 add /robovat/envs/saver.py
+add /robovat/envs/segmentation_grasp_sampler.py
 ```
 
 repeated_grasp_policy中调用image_grasp_sampler利用深度图计算大致物体位置, 然后抓取. 该policy产生的action结构为[[x, y, z, angle], [x, y, z, angle]]. 第一组是抓取物体的动作, 第二组是放下物体的动作.
@@ -19,34 +28,6 @@ repeated_grasp_policy中调用image_grasp_sampler利用深度图计算大致物�
 repeat_grasp_env对上述动作完成一个抓取-放下-松开的一连串动作仿真.
 
 添加了saver用以保存每次成功抓取的observation和action
-
-## TODO
-
-添加抓手时延
-
-```python
-                    elif phase == 'putdown':
-                        self.robot.move_to_gripper_pose(put_pose, straight_line=True)
-
-                        # Prevent problems caused by unrealistic frictions.
-                        if self.is_simulation:
-                            self.robot.l_finger_tip.set_dynamics(
-                                lateral_friction=100,
-                                rolling_friction=10,
-                                spinning_friction=10)
-                            self.robot.r_finger_tip.set_dynamics(
-                                lateral_friction=100,
-                                rolling_friction=10,
-                                spinning_friction=10)
-                            self.table.set_dynamics(
-                                lateral_friction=1)
-
-                elif phase == 'release':
-                    self.robot.grip(0)
-
-                elif phase == 'finish':
-                    self.robot.move_to_joint_positions(self.config.ARM.OFFSTAGE_POSITIONS)
-```
 
 
 
