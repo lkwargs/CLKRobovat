@@ -91,7 +91,6 @@ class RepeatedRandomGraspPolicy(policy.Policy):
 
             grasps = self.sampler.sample(depth, intrinsics, self.config.NUM_SAMPLES)
             grasp = np.squeeze(grasps, axis=0)
-            center = [(grasp[0] + grasp[2]) / 2, (grasp[1] + grasp[3]) / 2]
 
             grasp = grasp_2d.Grasp2D.from_vector(grasp, camera=self.env.camera)
             visualize.plot_grasp_on_image(depth, grasp)
@@ -105,7 +104,6 @@ class RepeatedRandomGraspPolicy(policy.Policy):
             grasp = np.squeeze(grasps, axis=0)
             center = [grasp[0], grasp[1]]
             angle = grasp[2]
-
             grasp = grasp_2d.Grasp2D(center, angle, grasp[3], grasp[4], self.env.camera)
 
         if self.config.SHOW_IMAGE:
@@ -116,11 +114,7 @@ class RepeatedRandomGraspPolicy(policy.Policy):
                               )
             self.plotter.show()
 
-        up = grasp.as_4dof()
-        # up[2] = -0.1
+        place = [np.random.rand() * 0.2 + 0.7, np.random.rand() * 0.3 - 0.15, 0, 0]
+        pick_place = [grasp, place]
 
-        down = [np.random.rand() * 0.2 + 0.7, np.random.rand() * 0.3 - 0.15, 0, 0]
-
-        up_and_down = [up, down]
-
-        return up_and_down
+        return pick_place

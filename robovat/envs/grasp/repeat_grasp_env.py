@@ -300,7 +300,8 @@ class RepeatGraspEnv(arm_env.ArmEnv):
             action: A 4-DoF grasp defined in the image space or the 3D space.
         """
         if self.config.ACTION.TYPE == '4DIM':
-            _grasp, _putdown = action
+            _grasp, _place = action
+            _grasp = _grasp.as_4dof()
         else:
             raise ValueError(
                 'Unrecognized action type: %r' % (self.config.ACTION.TYPE))
@@ -310,8 +311,8 @@ class RepeatGraspEnv(arm_env.ArmEnv):
             [[x, y, z + self.config.ARM.FINGER_TIP_OFFSET], [0, np.pi, angle]]
         )
         print([x, y, z, angle])
-        x, y, z, angle = _putdown
-        put_pose = Pose(
+        x, y, z, angle = _place
+        place_pose = Pose(
             [[x, y, z + self.config.ARM.FINGER_TIP_OFFSET], [0, np.pi, angle]]
         )
 
@@ -385,7 +386,7 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                             if grasped != -1:
                                 self._remove_graspable(grasped)
                         else:
-                            self.robot.move_to_gripper_pose(put_pose, straight_line=True)
+                            self.robot.move_to_gripper_pose(place_pose, straight_line=True)
 
                             # Prevent problems caused by unrealistic frictions.
                             if self.is_simulation:
