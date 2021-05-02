@@ -37,21 +37,11 @@ OPEN_GRIPPER_WHEN_RESET: false
 #
 
 # Default maximum time (in seconds) for position control.
-LIMB_TIMEOUT: 3.0
+LIMB_TIMEOUT: 15.0
 
 # Neutral and default initial joint position of the limb.
-#LIMB_NEUTRAL_POSITIONS: [
-#  0,
-#  -1.18,
-#  0.00,
-#  2.18,
-#  0.00,
-#  0.57,
-#  3.3161,
-#  ]
-
 LIMB_NEUTRAL_POSITIONS: [
-  1,
+  0,
   -1.18,
   0.00,
   2.18,

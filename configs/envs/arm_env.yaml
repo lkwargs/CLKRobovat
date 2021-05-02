@@ -3,12 +3,13 @@ MAX_STEPS: null
 
 KINECT2:
   DEPTH:
+#    HEIGHT: 480
     HEIGHT: 424
     WIDTH: 512
-    DISTANCE: 1
+    DISTANCE: 1.0
     INTRINSICS: [372.66, 0., 241.20, 0., 368.62, 214.19, 0., 0., 1.]
-    TRANSLATION: [0, -0.60, 0.75]
-#    TRANSLATION: [0, -0.60, 1.5]
+#    TRANSLATION: [0, -0.5, 0.5]
+    TRANSLATION: [0, -0.6, 0.75]
     ROTATION: [-3.1415, 0, 1.5708]
     INTRINSICS_NOISE: null
     TRANSLATION_NOISE: null
@@ -28,12 +29,10 @@ ARM:
   GRIPPER_SAFE_HEIGHT: 0.4
 
   # The distance from the the end effector to the center of finger tips.
-  #  FINGER_TIP_OFFSET: 0.125
   FINGER_TIP_OFFSET: 0.15
 
   # If move to the overhead position after grasping.
   MOVE_TO_OVERHEAD_AFTER_GRASP: 0
-
 
 TABLE:
   HEIGHT_RANGE: [0.8, 0.8]

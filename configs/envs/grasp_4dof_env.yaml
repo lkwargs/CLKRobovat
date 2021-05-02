@@ -10,8 +10,7 @@ OBSERVATION:
 
 ACTION:
   # Choose between `IMAGE`(in image space) and `CUBOID`(in a 3D cuboid region).
-  # TYPE: 'IMAGE'
-  TYPE: '4DIM'
+  TYPE: 'IMAGE'
 
   # The `CUBOID` defines a cuvoid region for the grasping center.
   CUBOID:
@@ -43,15 +42,13 @@ SIM:
       'sim/mpi_filtered/*/*.urdf',
     ]
     POSE:
-      # X: [-0.15, 0.15]
-      # Y: [-0.15, 0.15]
-      X: [0.1, 0.2]
+      X: [-0.15, 0.15]
       Y: [-0.15, 0.15]
       Z: 0.3
       ROLL: [-3.14, 3.14]
       PITCH: [-1.57, 1.57]
       YAW: [-3.14, 3.14]
-    SCALE: [0.4, 0.8]
+    SCALE: [0.8, 1.2]
     USE_RANDOM_SAMPLE: 1
     RESAMPLE_N_EPISODES: 1
 
