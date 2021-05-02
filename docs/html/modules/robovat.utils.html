@@ -1,0 +1,518 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>robovat.utils package &mdash; RPL-robovat 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="third_party package" href="third_party.html" />
+    <link rel="prev" title="robovat.simulation.physics package" href="robovat.simulation.physics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RPL-robovat
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">RPL_robovat</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="robovat.html">robovat package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="robovat.envs.html">robovat.envs package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.grasp.html">robovat.envs.grasp package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.push.html">robovat.envs.push package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.html#module-robovat.envs.arm_env">robovat.envs.arm_env module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.html#module-robovat.envs.robot_env">robovat.envs.robot_env module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.io.html">robovat.io package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.episode_generation">robovat.io.episode_generation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.hdf5_utils">robovat.io.hdf5_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.pickle_utils">robovat.io.pickle_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.math.html">robovat.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.euler">robovat.math.euler module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.orientation">robovat.math.orientation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.point">robovat.math.point module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.pose">robovat.math.pose module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.quaternion">robovat.math.quaternion module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.observations.html">robovat.observations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.action_obs">robovat.observations.action_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.attribute_obs">robovat.observations.attribute_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.camera_obs">robovat.observations.camera_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.observation">robovat.observations.observation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.pose_obs">robovat.observations.pose_obs module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.perception.html">robovat.perception package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.camera.html">robovat.perception.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.depth_utils">robovat.perception.depth_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.image_utils">robovat.perception.image_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.point_cloud_utils">robovat.perception.point_cloud_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.policies.html">robovat.policies package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.grasp_policy">robovat.policies.grasp_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.policy">robovat.policies.policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.push_policy">robovat.policies.push_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.random_policy">robovat.policies.random_policy module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.reward_fns.html">robovat.reward_fns package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.grasp_reward">robovat.reward_fns.grasp_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.push_reward">robovat.reward_fns.push_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.reward_fn">robovat.reward_fns.reward_fn module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.robots.html">robovat.robots package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.franka_panda.html">robovat.robots.franka_panda package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.sawyer.html">robovat.robots.sawyer package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.html#module-robovat.robots.robot">robovat.robots.robot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.html#module-robovat.robots.robot_command">robovat.robots.robot_command module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.simulation.html">robovat.simulation package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.camera.html">robovat.simulation.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.physics.html">robovat.simulation.physics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.base">robovat.simulation.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.body">robovat.simulation.body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.constraint">robovat.simulation.constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.controllable_body">robovat.simulation.controllable_body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.controllable_constraint">robovat.simulation.controllable_constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.entity">robovat.simulation.entity module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.joint">robovat.simulation.joint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.link">robovat.simulation.link module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.simulator">robovat.simulation.simulator module</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">robovat.utils package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.utils.logging">robovat.utils.logging module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.utils.mesh_utils">robovat.utils.mesh_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#robovat-utils-planning-utils-module">robovat.utils.planning_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.utils.string_utils">robovat.utils.string_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.utils.time_utils">robovat.utils.time_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.utils.yaml_config">robovat.utils.yaml_config module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="third_party.html">third_party package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="third_party.html#module-third_party.transformations">third_party.transformations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="third_party.html#requirements">Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RPL-robovat</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">RPL_robovat</a> &raquo;</li>
+        
+          <li><a href="robovat.html">robovat package</a> &raquo;</li>
+        
+      <li>robovat.utils package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/robovat.utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="robovat-utils-package">
+<h1>robovat.utils package<a class="headerlink" href="#robovat-utils-package" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="module-robovat.utils.logging">
+<span id="robovat-utils-logging-module"></span><h2>robovat.utils.logging module<a class="headerlink" href="#module-robovat.utils.logging" title="Permalink to this headline">¶</a></h2>
+<p>Logging utilites.</p>
+</div>
+<div class="section" id="module-robovat.utils.mesh_utils">
+<span id="robovat-utils-mesh-utils-module"></span><h2>robovat.utils.mesh_utils module<a class="headerlink" href="#module-robovat.utils.mesh_utils" title="Permalink to this headline">¶</a></h2>
+<p>Mesh utilities.</p>
+<dl class="py function">
+<dt id="robovat.utils.mesh_utils.compute_centroid">
+<code class="sig-name descname">compute_centroid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vertices</span></em>, <em class="sig-param"><span class="n">triangles</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/mesh_utils.html#compute_centroid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.mesh_utils.compute_centroid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the centroid of the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertices</strong> – Vertices of the object as an array..</p></li>
+<li><p><strong>triangles</strong> – Triangles of the object as an array..</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The centroid position of the object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="robovat.utils.mesh_utils.compute_surface_area">
+<code class="sig-name descname">compute_surface_area</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vertices</span></em>, <em class="sig-param"><span class="n">triangles</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/mesh_utils.html#compute_surface_area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.mesh_utils.compute_surface_area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the surface area of the meash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertices</strong> – Vertices of the object as an array..</p></li>
+<li><p><strong>triangles</strong> – Triangles of the object as an array..</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The total surface area of the object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="robovat.utils.mesh_utils.compute_volume">
+<code class="sig-name descname">compute_volume</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vertices</span></em>, <em class="sig-param"><span class="n">triangles</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/mesh_utils.html#compute_volume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.mesh_utils.compute_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the volume of the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertices</strong> – Vertices of the object as an array..</p></li>
+<li><p><strong>triangles</strong> – Triangles of the object as an array..</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The total volume of the object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="robovat.utils.mesh_utils.read_from_obj">
+<code class="sig-name descname">read_from_obj</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/mesh_utils.html#read_from_obj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.mesh_utils.read_from_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the mesh from an obj file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – Path to the OBJ file.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Vertices of the object as an array..
+triangles: Triangles of the object as an array..</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>vertices</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="robovat-utils-planning-utils-module">
+<h2>robovat.utils.planning_utils module<a class="headerlink" href="#robovat-utils-planning-utils-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-robovat.utils.string_utils">
+<span id="robovat-utils-string-utils-module"></span><h2>robovat.utils.string_utils module<a class="headerlink" href="#module-robovat.utils.string_utils" title="Permalink to this headline">¶</a></h2>
+<p>Utilities for environments.</p>
+<dl class="py function">
+<dt id="robovat.utils.string_utils.camelcase_to_snakecase">
+<code class="sig-name descname">camelcase_to_snakecase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/string_utils.html#camelcase_to_snakecase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.string_utils.camelcase_to_snakecase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a camelcase string to a snakecase string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – The converted camelcase string (e.g. ‘GraspEnv’).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The input snakecase string (e.g. ‘grasp_env’).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="robovat.utils.string_utils.snakecase_to_camelcase">
+<code class="sig-name descname">snakecase_to_camelcase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/string_utils.html#snakecase_to_camelcase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.string_utils.snakecase_to_camelcase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a snakecase string to a camelcase string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – The input snakecase string (e.g. ‘grasp_env’).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The converted camelcase string (e.g. ‘GraspEnv’).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.utils.time_utils">
+<span id="robovat-utils-time-utils-module"></span><h2>robovat.utils.time_utils module<a class="headerlink" href="#module-robovat.utils.time_utils" title="Permalink to this headline">¶</a></h2>
+<p>Utilities for timing.</p>
+<dl class="py class">
+<dt id="robovat.utils.time_utils.Timeout">
+<em class="property">class </em><code class="sig-name descname">Timeout</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sec</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/time_utils.html#Timeout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.time_utils.Timeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Timeout class using ALARM signal.</p>
+<dl class="py method">
+<dt id="robovat.utils.time_utils.Timeout.raise_timeout_exception">
+<code class="sig-name descname">raise_timeout_exception</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/time_utils.html#Timeout.raise_timeout_exception"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.time_utils.Timeout.raise_timeout_exception" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt id="robovat.utils.time_utils.TimeoutException">
+<em class="property">exception </em><code class="sig-name descname">TimeoutException</code><a class="reference internal" href="../_modules/robovat/utils/time_utils.html#TimeoutException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.time_utils.TimeoutException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception for timeout.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="robovat.utils.time_utils.get_timestamp_as_string">
+<code class="sig-name descname">get_timestamp_as_string</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/time_utils.html#get_timestamp_as_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.time_utils.get_timestamp_as_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current timestamp as a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The timestamp as a string of the format YYYYMMDD_hhmmss_ffffff.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.utils.yaml_config">
+<span id="robovat-utils-yaml-config-module"></span><h2>robovat.utils.yaml_config module<a class="headerlink" href="#module-robovat.utils.yaml_config" title="Permalink to this headline">¶</a></h2>
+<p>YAML Configuration Parser.</p>
+<p>Adapted from Jeff Mahler’s code.</p>
+<dl class="py class">
+<dt id="robovat.utils.yaml_config.YamlConfig">
+<em class="property">class </em><code class="sig-name descname">YamlConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">root_dir</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/yaml_config.html#YamlConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.yaml_config.YamlConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to load a configuration file and parse it into a dictionary.</p>
+<dl class="py method">
+<dt id="robovat.utils.yaml_config.YamlConfig.as_easydict">
+<code class="sig-name descname">as_easydict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/yaml_config.html#YamlConfig.as_easydict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.yaml_config.YamlConfig.as_easydict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the configuration into the easydict format.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.utils.yaml_config.YamlConfig.iteritems">
+<code class="sig-name descname">iteritems</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/yaml_config.html#YamlConfig.iteritems"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.yaml_config.YamlConfig.iteritems" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns iterator over config dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.utils.yaml_config.YamlConfig.keys">
+<code class="sig-name descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/yaml_config.html#YamlConfig.keys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.yaml_config.YamlConfig.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the keys of the config dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of the keys in the config dictionary.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.utils.yaml_config.YamlConfig.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/yaml_config.html#YamlConfig.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.yaml_config.YamlConfig.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a YamlConfig to disk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – The filename of the .yaml file that contains the
+configuration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.utils.yaml_config.YamlConfig.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">d</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/utils/yaml_config.html#YamlConfig.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.utils.yaml_config.YamlConfig.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the config with a dictionary of parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>d</strong> – Dictionary of parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="third_party.html" class="btn btn-neutral float-right" title="third_party package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="robovat.simulation.physics.html" class="btn btn-neutral float-left" title="robovat.simulation.physics package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kuan Fang (original), Yifeng Zhu (modify)
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,690 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>robovat.robots.sawyer package &mdash; RPL-robovat 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="robovat.simulation package" href="robovat.simulation.html" />
+    <link rel="prev" title="robovat.robots.franka_panda package" href="robovat.robots.franka_panda.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RPL-robovat
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">RPL_robovat</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="robovat.html">robovat package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="robovat.envs.html">robovat.envs package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.grasp.html">robovat.envs.grasp package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.push.html">robovat.envs.push package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.html#module-robovat.envs.arm_env">robovat.envs.arm_env module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.html#module-robovat.envs.robot_env">robovat.envs.robot_env module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.io.html">robovat.io package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.episode_generation">robovat.io.episode_generation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.hdf5_utils">robovat.io.hdf5_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.pickle_utils">robovat.io.pickle_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.math.html">robovat.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.euler">robovat.math.euler module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.orientation">robovat.math.orientation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.point">robovat.math.point module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.pose">robovat.math.pose module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.quaternion">robovat.math.quaternion module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.observations.html">robovat.observations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.action_obs">robovat.observations.action_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.attribute_obs">robovat.observations.attribute_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.camera_obs">robovat.observations.camera_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.observation">robovat.observations.observation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.pose_obs">robovat.observations.pose_obs module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.perception.html">robovat.perception package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.camera.html">robovat.perception.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.depth_utils">robovat.perception.depth_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.image_utils">robovat.perception.image_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.point_cloud_utils">robovat.perception.point_cloud_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.policies.html">robovat.policies package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.grasp_policy">robovat.policies.grasp_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.policy">robovat.policies.policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.push_policy">robovat.policies.push_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.random_policy">robovat.policies.random_policy module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.reward_fns.html">robovat.reward_fns package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.grasp_reward">robovat.reward_fns.grasp_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.push_reward">robovat.reward_fns.push_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.reward_fn">robovat.reward_fns.reward_fn module</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="robovat.robots.html">robovat.robots package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.franka_panda.html">robovat.robots.franka_panda package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">robovat.robots.sawyer package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.html#module-robovat.robots.robot">robovat.robots.robot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.html#module-robovat.robots.robot_command">robovat.robots.robot_command module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.simulation.html">robovat.simulation package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.camera.html">robovat.simulation.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.physics.html">robovat.simulation.physics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.base">robovat.simulation.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.body">robovat.simulation.body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.constraint">robovat.simulation.constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.controllable_body">robovat.simulation.controllable_body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.controllable_constraint">robovat.simulation.controllable_constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.entity">robovat.simulation.entity module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.joint">robovat.simulation.joint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.link">robovat.simulation.link module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.simulator">robovat.simulation.simulator module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.utils.html">robovat.utils package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.logging">robovat.utils.logging module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.mesh_utils">robovat.utils.mesh_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.planning_utils">robovat.utils.planning_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.string_utils">robovat.utils.string_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.time_utils">robovat.utils.time_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.yaml_config">robovat.utils.yaml_config module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="third_party.html">third_party package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="third_party.html#module-third_party.transformations">third_party.transformations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="third_party.html#requirements">Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RPL-robovat</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">RPL_robovat</a> &raquo;</li>
+        
+          <li><a href="robovat.html">robovat package</a> &raquo;</li>
+        
+          <li><a href="robovat.robots.html">robovat.robots package</a> &raquo;</li>
+        
+      <li>robovat.robots.sawyer package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/robovat.robots.sawyer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="robovat-robots-sawyer-package">
+<h1>robovat.robots.sawyer package<a class="headerlink" href="#robovat-robots-sawyer-package" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="module-robovat.robots.sawyer.sawyer">
+<span id="robovat-robots-sawyer-sawyer-module"></span><h2>robovat.robots.sawyer.sawyer module<a class="headerlink" href="#module-robovat.robots.sawyer.sawyer" title="Permalink to this headline">¶</a></h2>
+<p>The base class of the Sawyer robot.</p>
+<dl class="py class">
+<dt id="robovat.robots.sawyer.sawyer.Sawyer">
+<em class="property">class </em><code class="sig-name descname">Sawyer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer.html#Sawyer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer.Sawyer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="robovat.robots.html#robovat.robots.robot.Robot" title="robovat.robots.robot.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.robots.robot.Robot</span></code></a></p>
+<p>Sawyer robot.</p>
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer.Sawyer.grip">
+<em class="property">abstract </em><code class="sig-name descname">grip</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer.html#Sawyer.grip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer.Sawyer.grip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control the gripper to grip.</p>
+<p>Caution: This method is asynchronous control.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – The value between 0 and 1 to control the gripper to close.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer.Sawyer.is_gripper_ready">
+<em class="property">abstract </em><code class="sig-name descname">is_gripper_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer.html#Sawyer.is_gripper_ready"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer.Sawyer.is_gripper_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the gripper is ready.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if all control commands are done, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer.Sawyer.is_limb_ready">
+<em class="property">abstract </em><code class="sig-name descname">is_limb_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer.html#Sawyer.is_limb_ready"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer.Sawyer.is_limb_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the limb is ready.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if all control commands are done, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer.Sawyer.move_along_gripper_path">
+<em class="property">abstract </em><code class="sig-name descname">move_along_gripper_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">poses</span></em>, <em class="sig-param"><span class="n">speed</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer.html#Sawyer.move_along_gripper_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer.Sawyer.move_along_gripper_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the arm to follow a path of the gripper.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>poses</strong> – The path of the gripper as a list of Pose instances.</p></li>
+<li><p><strong>speed</strong> – The maximum joint velocity.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer.Sawyer.move_to_gripper_pose">
+<em class="property">abstract </em><code class="sig-name descname">move_to_gripper_pose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pose</span></em>, <em class="sig-param"><span class="n">speed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer.html#Sawyer.move_to_gripper_pose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer.Sawyer.move_to_gripper_pose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the arm to the specified gripper pose.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pose</strong> – The target gripper pose, as a tuple or an instance of Pose.</p></li>
+<li><p><strong>speed</strong> – The maximum joint velocity.</p></li>
+<li><p><strong>timeout</strong> – Seconds to wait for move to finish.</p></li>
+<li><p><strong>threshold</strong> – Position threshold in radians across each joint when
+move is considered successful.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer.Sawyer.move_to_joint_positions">
+<em class="property">abstract </em><code class="sig-name descname">move_to_joint_positions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">positions</span></em>, <em class="sig-param"><span class="n">speed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer.html#Sawyer.move_to_joint_positions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer.Sawyer.move_to_joint_positions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the arm to the specified joint positions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>positions</strong> – The target joint positions, as a dictionary of
+joint_name:joint_position.</p></li>
+<li><p><strong>speed</strong> – The maximum joint velocity.</p></li>
+<li><p><strong>timeout</strong> – Seconds to wait for move to finish.</p></li>
+<li><p><strong>threshold</strong> – Joint position threshold in radians across each joint
+when move is considered successful.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer.Sawyer.reboot">
+<em class="property">abstract </em><code class="sig-name descname">reboot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer.html#Sawyer.reboot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer.Sawyer.reboot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reboot the robot.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer.Sawyer.reset">
+<em class="property">abstract </em><code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">positions</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer.html#Sawyer.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer.Sawyer.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the robot.</p>
+<p>If the positions are not specified, the robot will go to the neutral
+positions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>positions</strong> – The target joint positions, as a list or a dictionary of
+joint_name:joint_position.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.robots.sawyer.sawyer_real">
+<span id="robovat-robots-sawyer-sawyer-real-module"></span><h2>robovat.robots.sawyer.sawyer_real module<a class="headerlink" href="#module-robovat.robots.sawyer.sawyer_real" title="Permalink to this headline">¶</a></h2>
+<p>The class of the real-world Sawyer robot.</p>
+<dl class="py class">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal">
+<em class="property">class </em><code class="sig-name descname">SawyerReal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_real.html#SawyerReal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.robots.sawyer.sawyer.Sawyer" title="robovat.robots.sawyer.sawyer.Sawyer"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.robots.sawyer.sawyer.Sawyer</span></code></a></p>
+<p>Sawyer robot in the real world.</p>
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.arm">
+<em class="property">property </em><code class="sig-name descname">arm</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.arm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.end_effector">
+<em class="property">property </em><code class="sig-name descname">end_effector</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.end_effector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.grip">
+<code class="sig-name descname">grip</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_real.html#SawyerReal.grip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.grip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control the gripper to grip.</p>
+<p>Please refer to:
+<a class="reference external" href="https://rethinkrobotics.github.io/intera_sdk_docs/5.0.4/intera_interface/html/intera_interface.gripper.Gripper-class.html">https://rethinkrobotics.github.io/intera_sdk_docs/5.0.4/intera_interface/html/intera_interface.gripper.Gripper-class.html</a></p>
+<p>See the parent class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.is_gripper_ready">
+<code class="sig-name descname">is_gripper_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_real.html#SawyerReal.is_gripper_ready"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.is_gripper_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the gripper is busy with control commands.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if all control commands are done, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.is_limb_ready">
+<code class="sig-name descname">is_limb_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_real.html#SawyerReal.is_limb_ready"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.is_limb_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the limb is busy with control commands.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if all control commands are done, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.joint_positions">
+<em class="property">property </em><code class="sig-name descname">joint_positions</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.joint_positions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.joint_velocities">
+<em class="property">property </em><code class="sig-name descname">joint_velocities</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.joint_velocities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.move_along_gripper_path">
+<code class="sig-name descname">move_along_gripper_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">poses</span></em>, <em class="sig-param"><span class="n">speed</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_real.html#SawyerReal.move_along_gripper_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.move_along_gripper_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the arm to follow a path of the gripper.</p>
+<p>Please refer to:
+<a class="reference external" href="http://sdk.rethinkrobotics.com/intera/MoveIt_Tutorial">http://sdk.rethinkrobotics.com/intera/MoveIt_Tutorial</a>
+<a class="reference external" href="http://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/pr2_tutorials/planning/scripts/doc/move_group_python_interface_tutorial.html#cartesian-paths">http://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/pr2_tutorials/planning/scripts/doc/move_group_python_interface_tutorial.html#cartesian-paths</a></p>
+<p>See the parent class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.move_to_gripper_pose">
+<code class="sig-name descname">move_to_gripper_pose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pose</span></em>, <em class="sig-param"><span class="n">speed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">straight_line</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_real.html#SawyerReal.move_to_gripper_pose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.move_to_gripper_pose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the arm to the specified joint positions.</p>
+<p>Please refer to:
+<a class="reference external" href="https://rethinkrobotics.github.io/intera_sdk_docs/5.0.4/intera_interface/html/intera_interface.limb.Limb-class.html">https://rethinkrobotics.github.io/intera_sdk_docs/5.0.4/intera_interface/html/intera_interface.limb.Limb-class.html</a></p>
+<p>See the parent class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.move_to_joint_positions">
+<code class="sig-name descname">move_to_joint_positions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">positions</span></em>, <em class="sig-param"><span class="n">speed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_real.html#SawyerReal.move_to_joint_positions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.move_to_joint_positions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the arm to the specified joint positions.</p>
+<p>Please refer to:
+<a class="reference external" href="https://rethinkrobotics.github.io/intera_sdk_docs/5.0.4/intera_interface/html/intera_interface.limb.Limb-class.html">https://rethinkrobotics.github.io/intera_sdk_docs/5.0.4/intera_interface/html/intera_interface.limb.Limb-class.html</a></p>
+<p>See the parent class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.pose">
+<em class="property">property </em><code class="sig-name descname">pose</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.pose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.reboot">
+<code class="sig-name descname">reboot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_real.html#SawyerReal.reboot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.reboot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reboot the robot.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">positions</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_real.html#SawyerReal.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the robot.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_real.SawyerReal.version">
+<em class="property">property </em><code class="sig-name descname">version</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.SawyerReal.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>List current versions of wrapped SDK, gripper, and robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Dictionary of version information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="robovat.robots.sawyer.sawyer_real.convert_pose_for_ros">
+<code class="sig-name descname">convert_pose_for_ros</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pose</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_real.html#convert_pose_for_ros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_real.convert_pose_for_ros" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an instance from robovat.math.Pose into geometry_msgs.msg.Pose.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pose</strong> – An instance of robovat.math.Pose.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An instance of geometry_msgs.msg.Pose.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.robots.sawyer.sawyer_sim">
+<span id="robovat-robots-sawyer-sawyer-sim-module"></span><h2>robovat.robots.sawyer.sawyer_sim module<a class="headerlink" href="#module-robovat.robots.sawyer.sawyer_sim" title="Permalink to this headline">¶</a></h2>
+<p>The class of the Sawyer robot.</p>
+<dl class="py class">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim">
+<em class="property">class </em><code class="sig-name descname">SawyerSim</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">simulator</span></em>, <em class="sig-param"><span class="n">pose</span><span class="o">=</span><span class="default_value">[[0, 0, 0], [0, 0, 0]]</span></em>, <em class="sig-param"><span class="n">joint_positions</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">config</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_sim.html#SawyerSim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.robots.sawyer.sawyer.Sawyer" title="robovat.robots.sawyer.sawyer.Sawyer"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.robots.sawyer.sawyer.Sawyer</span></code></a></p>
+<p>Sawyer wrapper in simulation.</p>
+<dl class="py attribute">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.ARM_NAME">
+<code class="sig-name descname">ARM_NAME</code><em class="property"> = 'sawyer_arm'</em><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.ARM_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.BASE_NAME">
+<code class="sig-name descname">BASE_NAME</code><em class="property"> = 'sawyer_base'</em><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.BASE_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.HEAD_NAME">
+<code class="sig-name descname">HEAD_NAME</code><em class="property"> = 'sawyer_head'</em><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.HEAD_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.arm">
+<em class="property">property </em><code class="sig-name descname">arm</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.arm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.base">
+<em class="property">property </em><code class="sig-name descname">base</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.base" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.end_effector">
+<em class="property">property </em><code class="sig-name descname">end_effector</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.end_effector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.grip">
+<code class="sig-name descname">grip</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_sim.html#SawyerSim.grip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.grip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control the gripper to grip.</p>
+<p>See the parent class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.head">
+<em class="property">property </em><code class="sig-name descname">head</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.head" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.is_gripper_ready">
+<code class="sig-name descname">is_gripper_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_sim.html#SawyerSim.is_gripper_ready"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.is_gripper_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the gripper is busy with control commands.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if all control commands are done, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.is_limb_ready">
+<code class="sig-name descname">is_limb_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_sim.html#SawyerSim.is_limb_ready"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.is_limb_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the limb is busy with control commands.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if all control commands are done, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.joint_positions">
+<em class="property">property </em><code class="sig-name descname">joint_positions</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.joint_positions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.l_finger_tip">
+<em class="property">property </em><code class="sig-name descname">l_finger_tip</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.l_finger_tip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.move_along_gripper_path">
+<code class="sig-name descname">move_along_gripper_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">poses</span></em>, <em class="sig-param"><span class="n">speed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_sim.html#SawyerSim.move_along_gripper_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.move_along_gripper_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the arm to follow a path of the gripper.</p>
+<p>See the parent class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.move_to_gripper_pose">
+<code class="sig-name descname">move_to_gripper_pose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pose</span></em>, <em class="sig-param"><span class="n">speed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">straight_line</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_sim.html#SawyerSim.move_to_gripper_pose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.move_to_gripper_pose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the arm to the specified gripper pose.</p>
+<p>See the parent class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.move_to_joint_positions">
+<code class="sig-name descname">move_to_joint_positions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">positions</span></em>, <em class="sig-param"><span class="n">speed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_sim.html#SawyerSim.move_to_joint_positions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.move_to_joint_positions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the arm to the specified joint positions.</p>
+<p>See the parent class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.pose">
+<em class="property">property </em><code class="sig-name descname">pose</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.pose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.r_finger_tip">
+<em class="property">property </em><code class="sig-name descname">r_finger_tip</code><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.r_finger_tip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.reboot">
+<code class="sig-name descname">reboot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_sim.html#SawyerSim.reboot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.reboot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reboot the robot.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.robots.sawyer.sawyer_sim.SawyerSim.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">positions</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/robots/sawyer/sawyer_sim.html#SawyerSim.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.robots.sawyer.sawyer_sim.SawyerSim.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the robot.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="robovat.simulation.html" class="btn btn-neutral float-right" title="robovat.simulation package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="robovat.robots.franka_panda.html" class="btn btn-neutral float-left" title="robovat.robots.franka_panda package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kuan Fang (original), Yifeng Zhu (modify)
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

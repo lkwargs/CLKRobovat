@@ -1,0 +1,629 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>robovat.math package &mdash; RPL-robovat 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="robovat.observations package" href="robovat.observations.html" />
+    <link rel="prev" title="robovat.io package" href="robovat.io.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RPL-robovat
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">RPL_robovat</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="robovat.html">robovat package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="robovat.envs.html">robovat.envs package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.grasp.html">robovat.envs.grasp package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.push.html">robovat.envs.push package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.html#module-robovat.envs.arm_env">robovat.envs.arm_env module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.html#module-robovat.envs.robot_env">robovat.envs.robot_env module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.io.html">robovat.io package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.episode_generation">robovat.io.episode_generation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.hdf5_utils">robovat.io.hdf5_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.pickle_utils">robovat.io.pickle_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">robovat.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.math.euler">robovat.math.euler module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.math.orientation">robovat.math.orientation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.math.point">robovat.math.point module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.math.pose">robovat.math.pose module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.math.quaternion">robovat.math.quaternion module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.observations.html">robovat.observations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.action_obs">robovat.observations.action_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.attribute_obs">robovat.observations.attribute_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.camera_obs">robovat.observations.camera_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.observation">robovat.observations.observation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.pose_obs">robovat.observations.pose_obs module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.perception.html">robovat.perception package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.camera.html">robovat.perception.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.depth_utils">robovat.perception.depth_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.image_utils">robovat.perception.image_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.point_cloud_utils">robovat.perception.point_cloud_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.policies.html">robovat.policies package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.grasp_policy">robovat.policies.grasp_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.policy">robovat.policies.policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.push_policy">robovat.policies.push_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.random_policy">robovat.policies.random_policy module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.reward_fns.html">robovat.reward_fns package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.grasp_reward">robovat.reward_fns.grasp_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.push_reward">robovat.reward_fns.push_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.reward_fn">robovat.reward_fns.reward_fn module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.robots.html">robovat.robots package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.franka_panda.html">robovat.robots.franka_panda package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.sawyer.html">robovat.robots.sawyer package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.html#module-robovat.robots.robot">robovat.robots.robot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.html#module-robovat.robots.robot_command">robovat.robots.robot_command module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.simulation.html">robovat.simulation package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.camera.html">robovat.simulation.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.physics.html">robovat.simulation.physics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.base">robovat.simulation.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.body">robovat.simulation.body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.constraint">robovat.simulation.constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.controllable_body">robovat.simulation.controllable_body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.controllable_constraint">robovat.simulation.controllable_constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.entity">robovat.simulation.entity module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.joint">robovat.simulation.joint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.link">robovat.simulation.link module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.simulator">robovat.simulation.simulator module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.utils.html">robovat.utils package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.logging">robovat.utils.logging module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.mesh_utils">robovat.utils.mesh_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.planning_utils">robovat.utils.planning_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.string_utils">robovat.utils.string_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.time_utils">robovat.utils.time_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.yaml_config">robovat.utils.yaml_config module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="third_party.html">third_party package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="third_party.html#module-third_party.transformations">third_party.transformations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="third_party.html#requirements">Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RPL-robovat</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">RPL_robovat</a> &raquo;</li>
+        
+          <li><a href="robovat.html">robovat package</a> &raquo;</li>
+        
+      <li>robovat.math package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/robovat.math.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="robovat-math-package">
+<h1>robovat.math package<a class="headerlink" href="#robovat-math-package" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="module-robovat.math.euler">
+<span id="robovat-math-euler-module"></span><h2>robovat.math.euler module<a class="headerlink" href="#module-robovat.math.euler" title="Permalink to this headline">¶</a></h2>
+<p>3D orientation as Euler angles.</p>
+<dl class="py class">
+<dt id="robovat.math.euler.Euler">
+<em class="property">class </em><code class="sig-name descname">Euler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/math/euler.html#Euler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.math.euler.Euler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></p>
+<p>Euler angles.</p>
+<dl class="py method">
+<dt id="robovat.math.euler.Euler.euler">
+<em class="property">property </em><code class="sig-name descname">euler</code><a class="headerlink" href="#robovat.math.euler.Euler.euler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.euler.Euler.matrix3">
+<em class="property">property </em><code class="sig-name descname">matrix3</code><a class="headerlink" href="#robovat.math.euler.Euler.matrix3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.euler.Euler.pitch">
+<em class="property">property </em><code class="sig-name descname">pitch</code><a class="headerlink" href="#robovat.math.euler.Euler.pitch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.euler.Euler.quaternion">
+<em class="property">property </em><code class="sig-name descname">quaternion</code><a class="headerlink" href="#robovat.math.euler.Euler.quaternion" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.euler.Euler.roll">
+<em class="property">property </em><code class="sig-name descname">roll</code><a class="headerlink" href="#robovat.math.euler.Euler.roll" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.euler.Euler.yaw">
+<em class="property">property </em><code class="sig-name descname">yaw</code><a class="headerlink" href="#robovat.math.euler.Euler.yaw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.math.orientation">
+<span id="robovat-math-orientation-module"></span><h2>robovat.math.orientation module<a class="headerlink" href="#module-robovat.math.orientation" title="Permalink to this headline">¶</a></h2>
+<p>Define the class of 3D orientation.</p>
+<dl class="py class">
+<dt id="robovat.math.orientation.Orientation">
+<em class="property">class </em><code class="sig-name descname">Orientation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/math/orientation.html#Orientation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.math.orientation.Orientation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>3D orientation.</p>
+<dl class="py method">
+<dt id="robovat.math.orientation.Orientation.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/math/orientation.html#Orientation.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.math.orientation.Orientation.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy the orientation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A deep copy of the orientation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.orientation.Orientation.euler">
+<em class="property">property </em><code class="sig-name descname">euler</code><a class="headerlink" href="#robovat.math.orientation.Orientation.euler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.orientation.Orientation.matrix3">
+<em class="property">property </em><code class="sig-name descname">matrix3</code><a class="headerlink" href="#robovat.math.orientation.Orientation.matrix3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.orientation.Orientation.quaternion">
+<em class="property">property </em><code class="sig-name descname">quaternion</code><a class="headerlink" href="#robovat.math.orientation.Orientation.quaternion" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.math.point">
+<span id="robovat-math-point-module"></span><h2>robovat.math.point module<a class="headerlink" href="#module-robovat.math.point" title="Permalink to this headline">¶</a></h2>
+<p>The class of 3D point.</p>
+<dl class="py class">
+<dt id="robovat.math.point.Point">
+<em class="property">class </em><code class="sig-name descname">Point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/math/point.html#Point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.math.point.Point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></p>
+<p>3D point.</p>
+<dl class="py method">
+<dt id="robovat.math.point.Point.x">
+<em class="property">property </em><code class="sig-name descname">x</code><a class="headerlink" href="#robovat.math.point.Point.x" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.point.Point.y">
+<em class="property">property </em><code class="sig-name descname">y</code><a class="headerlink" href="#robovat.math.point.Point.y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.point.Point.z">
+<em class="property">property </em><code class="sig-name descname">z</code><a class="headerlink" href="#robovat.math.point.Point.z" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.math.pose">
+<span id="robovat-math-pose-module"></span><h2>robovat.math.pose module<a class="headerlink" href="#module-robovat.math.pose" title="Permalink to this headline">¶</a></h2>
+<p>Define the class of 3D Pose.</p>
+<dl class="py class">
+<dt id="robovat.math.pose.Pose">
+<em class="property">class </em><code class="sig-name descname">Pose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">[[0, 0, 0], [0, 0, 0]]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/math/pose.html#Pose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.math.pose.Pose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>3D Pose.</p>
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/math/pose.html#Pose.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.math.pose.Pose.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy the pose.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A deep copy of the pose.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.euler">
+<em class="property">property </em><code class="sig-name descname">euler</code><a class="headerlink" href="#robovat.math.pose.Pose.euler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.inverse">
+<code class="sig-name descname">inverse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/math/pose.html#Pose.inverse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.math.pose.Pose.inverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the inverse rigid transformation of the pose.</p>
+<p>If the pose is defined in the world frame, then the return value s the
+world origin in the frame of this pose.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An instance of Pose.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.matrix3">
+<em class="property">property </em><code class="sig-name descname">matrix3</code><a class="headerlink" href="#robovat.math.pose.Pose.matrix3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.matrix4">
+<em class="property">property </em><code class="sig-name descname">matrix4</code><a class="headerlink" href="#robovat.math.pose.Pose.matrix4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.orientation">
+<em class="property">property </em><code class="sig-name descname">orientation</code><a class="headerlink" href="#robovat.math.pose.Pose.orientation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.pitch">
+<em class="property">property </em><code class="sig-name descname">pitch</code><a class="headerlink" href="#robovat.math.pose.Pose.pitch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.pose">
+<em class="property">property </em><code class="sig-name descname">pose</code><a class="headerlink" href="#robovat.math.pose.Pose.pose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.position">
+<em class="property">property </em><code class="sig-name descname">position</code><a class="headerlink" href="#robovat.math.pose.Pose.position" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.quaternion">
+<em class="property">property </em><code class="sig-name descname">quaternion</code><a class="headerlink" href="#robovat.math.pose.Pose.quaternion" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.roll">
+<em class="property">property </em><code class="sig-name descname">roll</code><a class="headerlink" href="#robovat.math.pose.Pose.roll" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.to_array">
+<code class="sig-name descname">to_array</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/math/pose.html#Pose.to_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.math.pose.Pose.to_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to numpy array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A numpy array of [2, 3].</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pose</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/math/pose.html#Pose.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.math.pose.Pose.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rigid transformation from one from to another.</p>
+<p>The rigid transformation from the source frame to the target frame is
+defined by self.position and self.orientation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pose</strong> – The pose defined in the source frame</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The corresponding pose defined in the target frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.uniform">
+<em class="property">static </em><code class="sig-name descname">uniform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">z</span></em>, <em class="sig-param"><span class="n">roll</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">pitch</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">yaw</span><span class="o">=</span><span class="default_value">0.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/math/pose.html#Pose.uniform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.math.pose.Pose.uniform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw pose samples from a uniform distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Value/range of the x position.</p></li>
+<li><p><strong>y</strong> – Value/range of the y position.</p></li>
+<li><p><strong>z</strong> – Value/range of the z position.</p></li>
+<li><p><strong>roll</strong> – Value/range of the roll position.</p></li>
+<li><p><strong>pitch</strong> – Value/range of the pitch position.</p></li>
+<li><p><strong>yaw</strong> – Value/range of the yaw position.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A Pose instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.x">
+<em class="property">property </em><code class="sig-name descname">x</code><a class="headerlink" href="#robovat.math.pose.Pose.x" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.y">
+<em class="property">property </em><code class="sig-name descname">y</code><a class="headerlink" href="#robovat.math.pose.Pose.y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.yaw">
+<em class="property">property </em><code class="sig-name descname">yaw</code><a class="headerlink" href="#robovat.math.pose.Pose.yaw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.pose.Pose.z">
+<em class="property">property </em><code class="sig-name descname">z</code><a class="headerlink" href="#robovat.math.pose.Pose.z" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="robovat.math.pose.get_transform">
+<code class="sig-name descname">get_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">target</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/math/pose.html#get_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.math.pose.get_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get rigid transformation from one frame to another.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> – The source frame. Set to None if it is the world frame.</p></li>
+<li><p><strong>target</strong> – The target frame. Set to None if it is the world frame.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An instance of Pose.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.math.quaternion">
+<span id="robovat-math-quaternion-module"></span><h2>robovat.math.quaternion module<a class="headerlink" href="#module-robovat.math.quaternion" title="Permalink to this headline">¶</a></h2>
+<p>3D orientation as quaternions.</p>
+<dl class="py class">
+<dt id="robovat.math.quaternion.Quaternion">
+<em class="property">class </em><code class="sig-name descname">Quaternion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/math/quaternion.html#Quaternion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.math.quaternion.Quaternion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></p>
+<p>Quaternion.</p>
+<dl class="py method">
+<dt id="robovat.math.quaternion.Quaternion.euler">
+<em class="property">property </em><code class="sig-name descname">euler</code><a class="headerlink" href="#robovat.math.quaternion.Quaternion.euler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.quaternion.Quaternion.matrix3">
+<em class="property">property </em><code class="sig-name descname">matrix3</code><a class="headerlink" href="#robovat.math.quaternion.Quaternion.matrix3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.quaternion.Quaternion.quaternion">
+<em class="property">property </em><code class="sig-name descname">quaternion</code><a class="headerlink" href="#robovat.math.quaternion.Quaternion.quaternion" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.quaternion.Quaternion.w">
+<em class="property">property </em><code class="sig-name descname">w</code><a class="headerlink" href="#robovat.math.quaternion.Quaternion.w" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.quaternion.Quaternion.x">
+<em class="property">property </em><code class="sig-name descname">x</code><a class="headerlink" href="#robovat.math.quaternion.Quaternion.x" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.quaternion.Quaternion.y">
+<em class="property">property </em><code class="sig-name descname">y</code><a class="headerlink" href="#robovat.math.quaternion.Quaternion.y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.math.quaternion.Quaternion.z">
+<em class="property">property </em><code class="sig-name descname">z</code><a class="headerlink" href="#robovat.math.quaternion.Quaternion.z" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="robovat.observations.html" class="btn btn-neutral float-right" title="robovat.observations package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="robovat.io.html" class="btn btn-neutral float-left" title="robovat.io package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kuan Fang (original), Yifeng Zhu (modify)
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

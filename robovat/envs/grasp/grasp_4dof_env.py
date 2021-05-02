@@ -1,6 +1,5 @@
 """Top-down 4-DoF grasping environment.
 """
-
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -13,18 +12,15 @@ import gym
 import numpy as np
 
 from robovat.envs import arm_env
-from robovat.envs.grasp.grasp_2d import Grasp2D
+from robovat.utils.grasp_2d import Grasp2D
 from robovat.math import Pose
 from robovat.math import get_transform
 from robovat.observations import camera_obs
 from robovat.reward_fns.grasp_reward import GraspReward
-from robovat.robots import sawyer
 from robovat.utils.logging import logger
 from robovat.utils.yaml_config import YamlConfig
 
-
 GRASPABLE_NAME = 'graspable'
-
 
 class Grasp4DofEnv(arm_env.ArmEnv):
     """Top-down 4-DoF grasping environment."""
@@ -77,8 +73,7 @@ class Grasp4DofEnv(arm_env.ArmEnv):
             self.all_graspable_paths.sort()
             num_graspable_paths = len(self.all_graspable_paths)
             assert num_graspable_paths > 0, (
-                'Found no graspable objects at %s'
-                % (self.config.SIM.GRASPABLE.PATHS))
+                'Found no graspable objects at %s' % (self.config.SIM.GRASPABLE.PATHS))
             logger.debug('Found %d graspable objects.', num_graspable_paths)
 
         super(Grasp4DofEnv, self).__init__(
@@ -131,7 +126,7 @@ class Grasp4DofEnv(arm_env.ArmEnv):
         return [
             GraspReward(
                 name='grasp_reward',
-                end_effector_name=sawyer.SawyerSim.ARM_NAME,
+                end_effector_name=self.config.SIM.ARM.ARM_NAME,
                 graspable_name=GRASPABLE_NAME)
         ]
 
@@ -154,13 +149,6 @@ class Grasp4DofEnv(arm_env.ArmEnv):
             return gym.spaces.Box(
                 low=np.array([0, 0, 0, 0, -(2*24 - 1)]),
                 high=np.array([width, height, width, height, 2*24 - 1]),
-                dtype=np.float32)
-        elif self.config.ACTION.TYPE == '4DIM':
-            height = self.camera.height
-            width = self.camera.width
-            return gym.spaces.Box(
-                low=np.array([-0.5, -0.5, 0, -3.14]),
-                high=np.array([0.5, 0.5, 3, 3.14]),
                 dtype=np.float32)
         else:
             raise ValueError
@@ -223,13 +211,13 @@ class Grasp4DofEnv(arm_env.ArmEnv):
         Args:
             action: A 4-DoF grasp defined in the image space or the 3D space.
         """
+        self.simulator.step()
+        
         if self.config.ACTION.TYPE == 'CUBOID':
             x, y, z, angle = action
         elif self.config.ACTION.TYPE == 'IMAGE':
             grasp = Grasp2D.from_vector(action, camera=self.camera)
             x, y, z, angle = grasp.as_4dof()
-        elif self.config.ACTION.TYPE == '4DIM':
-            x, y, z, angle = action
         else:
             raise ValueError(
                 'Unrecognized action type: %r' % (self.config.ACTION.TYPE))
@@ -237,7 +225,6 @@ class Grasp4DofEnv(arm_env.ArmEnv):
         start = Pose(
             [[x, y, z + self.config.ARM.FINGER_TIP_OFFSET], [0, np.pi, angle]]
         )
-        print([x, y, z, angle])
 
         phase = 'initial'
 
@@ -301,8 +288,6 @@ class Grasp4DofEnv(arm_env.ArmEnv):
                             spinning_friction=10)
                         self.table.set_dynamics(
                             lateral_friction=1)
-        
-        self.num_actions_per_eps += 1   
 
     def _get_next_phase(self, phase):
         """Get the next phase of the current phase.

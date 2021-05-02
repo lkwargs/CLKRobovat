@@ -1,0 +1,669 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>robovat.envs.grasp.image_grasp_sampler &mdash; RPL-robovat 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> RPL-robovat
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/modules.html">RPL_robovat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../modules/robovat.html">robovat package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.envs.html">robovat.envs package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.envs.grasp.html">robovat.envs.grasp package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.envs.push.html">robovat.envs.push package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.envs.html#module-robovat.envs.arm_env">robovat.envs.arm_env module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.envs.html#module-robovat.envs.robot_env">robovat.envs.robot_env module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.io.html">robovat.io package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.io.html#module-robovat.io.episode_generation">robovat.io.episode_generation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.io.html#module-robovat.io.hdf5_utils">robovat.io.hdf5_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.io.html#module-robovat.io.pickle_utils">robovat.io.pickle_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.math.html">robovat.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.math.html#module-robovat.math.euler">robovat.math.euler module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.math.html#module-robovat.math.orientation">robovat.math.orientation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.math.html#module-robovat.math.point">robovat.math.point module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.math.html#module-robovat.math.pose">robovat.math.pose module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.math.html#module-robovat.math.quaternion">robovat.math.quaternion module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.observations.html">robovat.observations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.observations.html#module-robovat.observations.action_obs">robovat.observations.action_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.observations.html#module-robovat.observations.attribute_obs">robovat.observations.attribute_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.observations.html#module-robovat.observations.camera_obs">robovat.observations.camera_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.observations.html#module-robovat.observations.observation">robovat.observations.observation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.observations.html#module-robovat.observations.pose_obs">robovat.observations.pose_obs module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.perception.html">robovat.perception package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.perception.camera.html">robovat.perception.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.perception.html#module-robovat.perception.depth_utils">robovat.perception.depth_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.perception.html#module-robovat.perception.image_utils">robovat.perception.image_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.perception.html#module-robovat.perception.point_cloud_utils">robovat.perception.point_cloud_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.policies.html">robovat.policies package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.policies.html#module-robovat.policies.grasp_policy">robovat.policies.grasp_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.policies.html#module-robovat.policies.policy">robovat.policies.policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.policies.html#module-robovat.policies.push_policy">robovat.policies.push_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.policies.html#module-robovat.policies.random_policy">robovat.policies.random_policy module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.reward_fns.html">robovat.reward_fns package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.reward_fns.html#module-robovat.reward_fns.grasp_reward">robovat.reward_fns.grasp_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.reward_fns.html#module-robovat.reward_fns.push_reward">robovat.reward_fns.push_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.reward_fns.html#module-robovat.reward_fns.reward_fn">robovat.reward_fns.reward_fn module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.robots.html">robovat.robots package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.robots.franka_panda.html">robovat.robots.franka_panda package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.robots.sawyer.html">robovat.robots.sawyer package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.robots.html#module-robovat.robots.robot">robovat.robots.robot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.robots.html#module-robovat.robots.robot_command">robovat.robots.robot_command module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.simulation.html">robovat.simulation package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.camera.html">robovat.simulation.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.physics.html">robovat.simulation.physics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.base">robovat.simulation.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.body">robovat.simulation.body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.constraint">robovat.simulation.constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.controllable_body">robovat.simulation.controllable_body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.controllable_constraint">robovat.simulation.controllable_constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.entity">robovat.simulation.entity module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.joint">robovat.simulation.joint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.link">robovat.simulation.link module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.simulator">robovat.simulation.simulator module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.utils.html">robovat.utils package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.utils.html#module-robovat.utils.logging">robovat.utils.logging module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.utils.html#module-robovat.utils.mesh_utils">robovat.utils.mesh_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.utils.html#robovat-utils-planning-utils-module">robovat.utils.planning_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.utils.html#module-robovat.utils.string_utils">robovat.utils.string_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.utils.html#module-robovat.utils.time_utils">robovat.utils.time_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.utils.html#module-robovat.utils.yaml_config">robovat.utils.yaml_config module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../modules/third_party.html">third_party package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/third_party.html#module-third_party.transformations">third_party.transformations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/third_party.html#requirements">Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">RPL-robovat</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>robovat.envs.grasp.image_grasp_sampler</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for robovat.envs.grasp.image_grasp_sampler</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Image grasp samplers.</span>
+
+<span class="sd">Adapted from Jeff Mahler&#39;s code.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.misc</span>
+<span class="kn">import</span> <span class="nn">scipy.spatial.distance</span>
+<span class="kn">import</span> <span class="nn">scipy.ndimage.filters</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="kn">from</span> <span class="nn">robovat.perception</span> <span class="kn">import</span> <span class="n">depth_utils</span>
+<span class="kn">from</span> <span class="nn">robovat.perception.camera.camera</span> <span class="kn">import</span> <span class="n">Camera</span>
+<span class="kn">from</span> <span class="nn">robovat.utils.logging</span> <span class="kn">import</span> <span class="n">logger</span>
+
+
+<div class="viewcode-block" id="surface_normals"><a class="viewcode-back" href="../../../../modules/robovat.envs.grasp.html#robovat.envs.grasp.image_grasp_sampler.surface_normals">[docs]</a><span class="k">def</span> <span class="nf">surface_normals</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="n">edge_pixels</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return an array of the surface normals at the edge pixels.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        depth: The depth image.</span>
+<span class="sd">        edge_pixels: The edges of pixels of the image.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The array of surface normals.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Compute the gradients.</span>
+    <span class="n">grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">depth</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+
+    <span class="c1"># Compute surface normals.</span>
+    <span class="n">normals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">edge_pixels</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pixel</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">edge_pixels</span><span class="p">):</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">grad</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">pixel</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pixel</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">grad</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">pixel</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pixel</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+        <span class="n">normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dy</span><span class="p">,</span> <span class="n">dx</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">normal</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">normal</span> <span class="o">=</span> <span class="n">normal</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">normal</span><span class="p">)</span>
+        <span class="n">normals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">normal</span>
+
+    <span class="k">return</span> <span class="n">normals</span></div>
+
+
+<div class="viewcode-block" id="force_closure"><a class="viewcode-back" href="../../../../modules/robovat.envs.grasp.html#robovat.envs.grasp.image_grasp_sampler.force_closure">[docs]</a><span class="k">def</span> <span class="nf">force_closure</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check if the point and normal pairs are in force closure.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        p1: The first point.</span>
+<span class="sd">        p2: The second point.</span>
+<span class="sd">        n1: The surface normal of the first point.</span>
+<span class="sd">        n2: The surface normal of the second point.</span>
+<span class="sd">        mu: The friction coefficient.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        True if the force closure condition is satisfied, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Line between the contacts.</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">-</span> <span class="n">p1</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+    <span class="c1"># Compute cone membership.</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+    <span class="n">in_cone_1</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">n1</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">v</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">in_cone_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">n2</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">alpha</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">in_cone_1</span> <span class="ow">and</span> <span class="n">in_cone_2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="image_dist"><a class="viewcode-back" href="../../../../modules/robovat.envs.grasp.html#robovat.envs.grasp.image_grasp_sampler.image_dist">[docs]</a><span class="k">def</span> <span class="nf">image_dist</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the distance between grasps in image space.</span>
+
+<span class="sd">    Euclidean distance with alpha weighting of angles</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        g1: First grasp.</span>
+<span class="sd">        g2: Second grasp.</span>
+<span class="sd">        alpha: Weight of angle distance (rad to meters).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Distance between grasps.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">g1_center</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">g1</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">g1</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">g1_axis</span> <span class="o">=</span> <span class="n">g1</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="n">g1</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">g1_axis</span> <span class="o">=</span> <span class="n">g1_axis</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">g1_axis</span><span class="p">)</span>
+
+    <span class="n">g2_center</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">g2</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">g2</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">g2_axis</span> <span class="o">=</span> <span class="n">g2</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="n">g2</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">g2_axis</span> <span class="o">=</span> <span class="n">g2_axis</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">g2_axis</span><span class="p">)</span>
+
+    <span class="n">point_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">g1_center</span> <span class="o">-</span> <span class="n">g2_center</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">axis_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">g1_axis</span> <span class="o">*</span> <span class="n">g2_axis</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">point_dist</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">axis_dist</span></div>
+
+
+<div class="viewcode-block" id="ImageGraspSampler"><a class="viewcode-back" href="../../../../modules/robovat.envs.grasp.html#robovat.envs.grasp.image_grasp_sampler.ImageGraspSampler">[docs]</a><span class="k">class</span> <span class="nc">ImageGraspSampler</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Image grasp sampler.</span>
+
+<span class="sd">    Wraps image to crane grasp candidate generation for easy deployment of</span>
+<span class="sd">    GQ-CNN.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
+
+<div class="viewcode-block" id="ImageGraspSampler.sample"><a class="viewcode-back" href="../../../../modules/robovat.envs.grasp.html#robovat.envs.grasp.image_grasp_sampler.ImageGraspSampler.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">camera</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Samples a set of 2D grasps from a given RGB-D image.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            depth: Depth image.</span>
+<span class="sd">            camera: The camera model.</span>
+<span class="sd">            num_samples: Number of grasps to sample.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of 2D grasp candidates</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Sample an initial set of grasps (without depth).</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Sampling grasp candidates...&#39;</span><span class="p">)</span>
+        <span class="n">grasps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sample</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="n">camera</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Sampled </span><span class="si">%d</span><span class="s1"> grasp candidates from the image.&#39;</span>
+                     <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grasps</span><span class="p">)))</span>
+
+        <span class="k">return</span> <span class="n">grasps</span></div>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">camera</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sample a set of 2D grasp candidates from a depth image.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            image: Depth image.</span>
+<span class="sd">            camera: The camera model.</span>
+<span class="sd">            num_samples: Number of grasps to sample.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of 2D grasp candidates</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="AntipodalDepthImageGraspSampler"><a class="viewcode-back" href="../../../../modules/robovat.envs.grasp.html#robovat.envs.grasp.image_grasp_sampler.AntipodalDepthImageGraspSampler">[docs]</a><span class="k">class</span> <span class="nc">AntipodalDepthImageGraspSampler</span><span class="p">(</span><span class="n">ImageGraspSampler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Grasp sampler for antipodal point pairs from depth image gradients.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">friction_coef</span><span class="p">,</span>
+                 <span class="n">depth_grad_thresh</span><span class="p">,</span>
+                 <span class="n">depth_grad_gaussian_sigma</span><span class="p">,</span>
+                 <span class="n">downsample_rate</span><span class="p">,</span>
+                 <span class="n">max_rejection_samples</span><span class="p">,</span>
+                 <span class="n">crop</span><span class="p">,</span>
+                 <span class="n">min_dist_from_boundary</span><span class="p">,</span>
+                 <span class="n">min_grasp_dist</span><span class="p">,</span>
+                 <span class="n">angle_dist_weight</span><span class="p">,</span>
+                 <span class="n">depth_samples_per_grasp</span><span class="p">,</span>
+                 <span class="n">min_depth_offset</span><span class="p">,</span>
+                 <span class="n">max_depth_offset</span><span class="p">,</span>
+                 <span class="n">depth_sample_window_height</span><span class="p">,</span>
+                 <span class="n">depth_sample_window_width</span><span class="p">,</span>
+                 <span class="n">gripper_width</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the sampler.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            friction_coef: Friction coefficient for 2D force closure.</span>
+<span class="sd">            depth_grad_thresh: Threshold for depth image gradients to determine</span>
+<span class="sd">                edge points for sampling.</span>
+<span class="sd">            depth_grad_gaussian_sigma: Sigma used for pre-smoothing the depth</span>
+<span class="sd">            image for better gradients.</span>
+<span class="sd">            downsample_rate: Factor to downsample the depth image by before</span>
+<span class="sd">                sampling grasps.</span>
+<span class="sd">            max_rejection_samples: Ceiling on the number of grasps to check in</span>
+<span class="sd">                antipodal grasp rejection sampling.</span>
+<span class="sd">            crop: The rectangular crop of the grasping region on images.</span>
+<span class="sd">            min_dist_from_boundary: Minimum distance from the crop of the</span>
+<span class="sd">                grasping region</span>
+<span class="sd">            min_grasp_dist: Threshold on the grasp distance.</span>
+<span class="sd">            angle_dist_weight: Amount to weight the angle difference in grasp</span>
+<span class="sd">                distance computation.</span>
+<span class="sd">            depth_samples_per_grasp: Number of depth samples to take per grasp.</span>
+<span class="sd">            min_depth_offset: Offset from the minimum depth at the grasp center</span>
+<span class="sd">                pixel to use in depth sampling.</span>
+<span class="sd">            max_depth_offset: Offset from the maximum depth across all edges.</span>
+<span class="sd">            depth_sample_window_height: Height of a window around the grasp</span>
+<span class="sd">                center pixel used to determine min depth.</span>
+<span class="sd">            depth_sample_window_width: Width of a window around the grasp</span>
+<span class="sd">                center pixel used to determine min depth.</span>
+<span class="sd">            gripper_width: Maximum width of the gripper.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Antipodality parameters.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">friction_coef</span> <span class="o">=</span> <span class="n">friction_coef</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">depth_grad_thresh</span> <span class="o">=</span> <span class="n">depth_grad_thresh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">depth_grad_gaussian_sigma</span> <span class="o">=</span> <span class="n">depth_grad_gaussian_sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">downsample_rate</span> <span class="o">=</span> <span class="n">downsample_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_rejection_samples</span> <span class="o">=</span> <span class="n">max_rejection_samples</span>
+
+        <span class="c1"># Distance thresholds for rejection sampling.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crop</span> <span class="o">=</span> <span class="n">crop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_dist_from_boundary</span> <span class="o">=</span> <span class="n">min_dist_from_boundary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_grasp_dist</span> <span class="o">=</span> <span class="n">min_grasp_dist</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">angle_dist_weight</span> <span class="o">=</span> <span class="n">angle_dist_weight</span>
+
+        <span class="c1"># Depth sampling parameters.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">depth_samples_per_grasp</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">depth_samples_per_grasp</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_depth_offset</span> <span class="o">=</span> <span class="n">min_depth_offset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_depth_offset</span> <span class="o">=</span> <span class="n">max_depth_offset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">depth_sample_window_height</span> <span class="o">=</span> <span class="n">depth_sample_window_height</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">depth_sample_window_width</span> <span class="o">=</span> <span class="n">depth_sample_window_width</span>
+
+        <span class="c1"># Gripper width.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gripper_width</span> <span class="o">=</span> <span class="n">gripper_width</span>
+
+    <span class="k">def</span> <span class="nf">_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">camera</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">):</span>  <span class="c1"># NOQA</span>
+        <span class="sd">&quot;&quot;&quot;Sample antipodal grasps.</span>
+
+<span class="sd">        Sample a set of 2D grasp candidates from a depth image by finding depth</span>
+<span class="sd">        edges, then uniformly sampling point pairs and keeping only antipodal</span>
+<span class="sd">        grasps with width less than the maximum allowable.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            depth: Depth image.</span>
+<span class="sd">            camera: The camera model.</span>
+<span class="sd">            num_samples: Number of grasps to sample.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of 2D grasp candidates</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="n">Camera</span><span class="p">):</span>
+            <span class="n">intrinsics</span> <span class="o">=</span> <span class="n">camera</span>
+            <span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">()</span>
+            <span class="n">camera</span><span class="o">.</span><span class="n">set_calibration</span><span class="p">(</span><span class="n">intrinsics</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,)),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,)))</span>
+
+        <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">crop</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">crop</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="n">cropped_image</span> <span class="o">=</span> <span class="n">image</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">crop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crop</span>
+            <span class="n">cropped_image</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">crop</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">crop</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                  <span class="n">crop</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">crop</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
+
+        <span class="c1"># Crope the image.</span>
+        <span class="n">image_filtered</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">ndimage</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span>
+            <span class="n">cropped_image</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">depth_grad_gaussian_sigma</span><span class="p">)</span>
+
+        <span class="c1"># Compute edge pixels.</span>
+        <span class="n">new_size</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">image_filtered</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">downsample_rate</span><span class="p">),</span>
+                    <span class="nb">int</span><span class="p">(</span><span class="n">image_filtered</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">downsample_rate</span><span class="p">))</span>
+        <span class="n">image_downsampled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image_filtered</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">new_size</span><span class="p">,</span> <span class="n">Image</span><span class="o">.</span><span class="n">BILINEAR</span><span class="p">))</span>
+        <span class="n">image_threshed</span> <span class="o">=</span> <span class="n">depth_utils</span><span class="o">.</span><span class="n">threshold_gradients</span><span class="p">(</span>
+            <span class="n">image_downsampled</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_grad_thresh</span><span class="p">)</span>
+        <span class="n">image_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">image_threshed</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">image_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">image_zero</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">image_zero</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">edge_pixels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">downsample_rate</span> <span class="o">*</span> <span class="n">image_zero</span>
+
+        <span class="c1"># Return if no edge pixels</span>
+        <span class="n">num_pixels</span> <span class="o">=</span> <span class="n">edge_pixels</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">num_pixels</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="c1"># Compute surface normals.</span>
+        <span class="n">edge_normals</span> <span class="o">=</span> <span class="n">surface_normals</span><span class="p">(</span><span class="n">image_filtered</span><span class="p">,</span> <span class="n">edge_pixels</span><span class="p">)</span>
+
+        <span class="c1"># Prune surface normals. Form set of valid candidate point pairs.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gripper_width</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">_depth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">image_filtered</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_depth_offset</span>
+            <span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">_depth</span><span class="p">])</span>
+            <span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">gripper_width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">_depth</span><span class="p">])</span>
+            <span class="n">u1</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">project_point</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">is_world_frame</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">u2</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">project_point</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span> <span class="n">is_world_frame</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">max_grasp_width_pixel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">u1</span> <span class="o">-</span> <span class="n">u2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">max_grasp_width_pixel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+        <span class="n">normal_ip</span> <span class="o">=</span> <span class="n">edge_normals</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">edge_normals</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">spatial</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">squareform</span><span class="p">(</span>
+            <span class="n">scipy</span><span class="o">.</span><span class="n">spatial</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">pdist</span><span class="p">(</span><span class="n">edge_pixels</span><span class="p">))</span>
+        <span class="n">valid_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">normal_ip</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">friction_coef</span><span class="p">)))</span> <span class="o">&amp;</span>
+            <span class="p">(</span><span class="n">distances</span> <span class="o">&lt;</span> <span class="n">max_grasp_width_pixel</span><span class="p">)</span> <span class="o">&amp;</span>
+            <span class="p">(</span><span class="n">distances</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">))</span>
+        <span class="n">valid_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">valid_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">valid_indices</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+        <span class="c1"># Return if no antipodal pairs.</span>
+        <span class="n">num_pairs</span> <span class="o">=</span> <span class="n">valid_indices</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">num_pairs</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="n">sample_size</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_rejection_samples</span><span class="p">,</span> <span class="n">num_pairs</span><span class="p">)</span>
+        <span class="n">candidate_pair_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
+            <span class="n">num_pairs</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Iteratively sample grasps.</span>
+        <span class="n">grasps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">num_samples</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">num_grasps</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">sample_ind</span> <span class="ow">in</span> <span class="n">candidate_pair_indices</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">num_grasps</span> <span class="o">&gt;=</span> <span class="n">num_samples</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="c1"># Sample a random pair without replacement.</span>
+            <span class="n">pair_ind</span> <span class="o">=</span> <span class="n">valid_indices</span><span class="p">[</span><span class="n">sample_ind</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">p1</span> <span class="o">=</span> <span class="n">edge_pixels</span><span class="p">[</span><span class="n">pair_ind</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">:]</span>
+            <span class="n">p2</span> <span class="o">=</span> <span class="n">edge_pixels</span><span class="p">[</span><span class="n">pair_ind</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">:]</span>
+            <span class="n">n1</span> <span class="o">=</span> <span class="n">edge_normals</span><span class="p">[</span><span class="n">pair_ind</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">:]</span>
+            <span class="n">n2</span> <span class="o">=</span> <span class="n">edge_normals</span><span class="p">[</span><span class="n">pair_ind</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">:]</span>
+
+            <span class="c1"># Check the force closure.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">force_closure</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">friction_coef</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Convert the coordinates.</span>
+            <span class="n">point1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">crop</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">crop</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+            <span class="n">point2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">crop</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">crop</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+
+            <span class="c1"># Compute grasp parameters.</span>
+            <span class="n">grasp_center</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">point1</span> <span class="o">+</span> <span class="n">point2</span><span class="p">)</span>
+            <span class="n">dist_from_boundary</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">crop</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">grasp_center</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">crop</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">grasp_center</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">grasp_center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">crop</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">grasp_center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">crop</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+
+            <span class="k">if</span> <span class="n">dist_from_boundary</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_dist_from_boundary</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Skip if the grasp is close to any previously sampled grasp.</span>
+            <span class="k">if</span> <span class="n">num_grasps</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">grasp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">grasp_dists</span> <span class="o">=</span> <span class="n">image_dist</span><span class="p">(</span><span class="n">grasp</span><span class="p">,</span> <span class="n">grasps</span><span class="p">[:</span><span class="n">num_grasps</span><span class="p">,</span> <span class="p">:])</span>
+
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">grasp_dists</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_grasp_dist</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+            <span class="c1"># Get depth in the neighborhood of the center pixel.</span>
+            <span class="n">window</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">grasp_center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_sample_window_height</span><span class="p">),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">grasp_center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_sample_window_height</span><span class="p">),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">grasp_center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_sample_window_width</span><span class="p">),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">grasp_center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth_sample_window_width</span><span class="p">)]</span>
+            <span class="n">image_window</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">window</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">window</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">window</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="n">window</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
+            <span class="n">center_depth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">image_window</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">center_depth</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">center_depth</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="n">min_depth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">center_depth</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_depth_offset</span>
+            <span class="n">max_depth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">center_depth</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_depth_offset</span>
+
+            <span class="c1"># Sample depth between the min and max.</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">depth_samples_per_grasp</span><span class="p">):</span>
+                <span class="n">sample_depth</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">min_depth</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_depth</span> <span class="o">-</span> <span class="n">min_depth</span><span class="p">))</span>
+                <span class="n">grasp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">sample_depth</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">num_grasps</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">grasps</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">grasp</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">grasps</span><span class="p">[</span><span class="n">num_grasps</span><span class="p">]</span> <span class="o">=</span> <span class="n">grasp</span>
+
+                <span class="n">num_grasps</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">num_grasps</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Failed to sample any valid grasp.&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">grasps</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kuan Fang (original), Yifeng Zhu (modify)
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

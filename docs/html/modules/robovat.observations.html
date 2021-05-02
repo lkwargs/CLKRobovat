@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>robovat.observations package &mdash; RPL-robovat 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="robovat.perception package" href="robovat.perception.html" />
+    <link rel="prev" title="robovat.math package" href="robovat.math.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RPL-robovat
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">RPL_robovat</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="robovat.html">robovat package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="robovat.envs.html">robovat.envs package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.grasp.html">robovat.envs.grasp package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.push.html">robovat.envs.push package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.html#module-robovat.envs.arm_env">robovat.envs.arm_env module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.html#module-robovat.envs.robot_env">robovat.envs.robot_env module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.io.html">robovat.io package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.episode_generation">robovat.io.episode_generation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.hdf5_utils">robovat.io.hdf5_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.pickle_utils">robovat.io.pickle_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.math.html">robovat.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.euler">robovat.math.euler module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.orientation">robovat.math.orientation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.point">robovat.math.point module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.pose">robovat.math.pose module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.quaternion">robovat.math.quaternion module</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">robovat.observations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.observations.action_obs">robovat.observations.action_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.observations.attribute_obs">robovat.observations.attribute_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.observations.camera_obs">robovat.observations.camera_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.observations.observation">robovat.observations.observation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.observations.pose_obs">robovat.observations.pose_obs module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.perception.html">robovat.perception package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.camera.html">robovat.perception.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.depth_utils">robovat.perception.depth_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.image_utils">robovat.perception.image_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.point_cloud_utils">robovat.perception.point_cloud_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.policies.html">robovat.policies package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.grasp_policy">robovat.policies.grasp_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.policy">robovat.policies.policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.push_policy">robovat.policies.push_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.random_policy">robovat.policies.random_policy module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.reward_fns.html">robovat.reward_fns package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.grasp_reward">robovat.reward_fns.grasp_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.push_reward">robovat.reward_fns.push_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.reward_fn">robovat.reward_fns.reward_fn module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.robots.html">robovat.robots package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.franka_panda.html">robovat.robots.franka_panda package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.sawyer.html">robovat.robots.sawyer package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.html#module-robovat.robots.robot">robovat.robots.robot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.html#module-robovat.robots.robot_command">robovat.robots.robot_command module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.simulation.html">robovat.simulation package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.camera.html">robovat.simulation.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.physics.html">robovat.simulation.physics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.base">robovat.simulation.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.body">robovat.simulation.body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.constraint">robovat.simulation.constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.controllable_body">robovat.simulation.controllable_body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.controllable_constraint">robovat.simulation.controllable_constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.entity">robovat.simulation.entity module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.joint">robovat.simulation.joint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.link">robovat.simulation.link module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.html#module-robovat.simulation.simulator">robovat.simulation.simulator module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.utils.html">robovat.utils package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.logging">robovat.utils.logging module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.mesh_utils">robovat.utils.mesh_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.planning_utils">robovat.utils.planning_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.string_utils">robovat.utils.string_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.time_utils">robovat.utils.time_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.yaml_config">robovat.utils.yaml_config module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="third_party.html">third_party package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="third_party.html#module-third_party.transformations">third_party.transformations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="third_party.html#requirements">Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RPL-robovat</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">RPL_robovat</a> &raquo;</li>
+        
+          <li><a href="robovat.html">robovat package</a> &raquo;</li>
+        
+      <li>robovat.observations package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/robovat.observations.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="robovat-observations-package">
+<h1>robovat.observations package<a class="headerlink" href="#robovat-observations-package" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<div class="section" id="module-robovat.observations.action_obs">
+<span id="robovat-observations-action-obs-module"></span><h2>robovat.observations.action_obs module<a class="headerlink" href="#module-robovat.observations.action_obs" title="Permalink to this headline">¶</a></h2>
+<p>Observations about the action.</p>
+<dl class="py class">
+<dt id="robovat.observations.action_obs.LastActionValidObs">
+<em class="property">class </em><code class="sig-name descname">LastActionValidObs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/action_obs.html#LastActionValidObs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.action_obs.LastActionValidObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.observations.observation.Observation" title="robovat.observations.observation.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.observations.observation.Observation</span></code></a></p>
+<p>Observation which indicates if the action is valid.</p>
+<dl class="py method">
+<dt id="robovat.observations.action_obs.LastActionValidObs.get_gym_space">
+<code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/action_obs.html#LastActionValidObs.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.action_obs.LastActionValidObs.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.action_obs.LastActionValidObs.get_observation">
+<code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/action_obs.html#LastActionValidObs.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.action_obs.LastActionValidObs.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.action_obs.LastActionValidObs.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">env</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/action_obs.html#LastActionValidObs.initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.action_obs.LastActionValidObs.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>env</strong> – Environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="robovat.observations.action_obs.ModeObs">
+<em class="property">class </em><code class="sig-name descname">ModeObs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/action_obs.html#ModeObs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.action_obs.ModeObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.observations.observation.Observation" title="robovat.observations.observation.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.observations.observation.Observation</span></code></a></p>
+<p>Observation of the action mode.</p>
+<dl class="py method">
+<dt id="robovat.observations.action_obs.ModeObs.get_gym_space">
+<code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/action_obs.html#ModeObs.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.action_obs.ModeObs.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.action_obs.ModeObs.get_observation">
+<code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/action_obs.html#ModeObs.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.action_obs.ModeObs.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.action_obs.ModeObs.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">env</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/action_obs.html#ModeObs.initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.action_obs.ModeObs.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>env</strong> – Environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.observations.attribute_obs">
+<span id="robovat-observations-attribute-obs-module"></span><h2>robovat.observations.attribute_obs module<a class="headerlink" href="#module-robovat.observations.attribute_obs" title="Permalink to this headline">¶</a></h2>
+<p>Observations about the action.</p>
+<dl class="py class">
+<dt id="robovat.observations.attribute_obs.ArrayAttributeObs">
+<em class="property">class </em><code class="sig-name descname">ArrayAttributeObs</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">shape</em>, <em class="sig-param">dtype=&lt;class 'numpy.float32'&gt;</em>, <em class="sig-param">name=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#ArrayAttributeObs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.ArrayAttributeObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.observations.observation.Observation" title="robovat.observations.observation.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.observations.observation.Observation</span></code></a></p>
+<p>Observation of an integer attribute.</p>
+<dl class="py method">
+<dt id="robovat.observations.attribute_obs.ArrayAttributeObs.get_gym_space">
+<code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#ArrayAttributeObs.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.ArrayAttributeObs.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.attribute_obs.ArrayAttributeObs.get_observation">
+<code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#ArrayAttributeObs.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.ArrayAttributeObs.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.attribute_obs.ArrayAttributeObs.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">env</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#ArrayAttributeObs.initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.ArrayAttributeObs.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>env</strong> – Environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="robovat.observations.attribute_obs.FlagObs">
+<em class="property">class </em><code class="sig-name descname">FlagObs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#FlagObs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.FlagObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.observations.observation.Observation" title="robovat.observations.observation.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.observations.observation.Observation</span></code></a></p>
+<p>Observation which indicates if the action is valid.</p>
+<dl class="py method">
+<dt id="robovat.observations.attribute_obs.FlagObs.get_gym_space">
+<code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#FlagObs.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.FlagObs.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.attribute_obs.FlagObs.get_observation">
+<code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#FlagObs.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.FlagObs.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.attribute_obs.FlagObs.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">env</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#FlagObs.initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.FlagObs.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>env</strong> – Environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="robovat.observations.attribute_obs.IntegerAttributeObs">
+<em class="property">class </em><code class="sig-name descname">IntegerAttributeObs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">max_value</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#IntegerAttributeObs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.IntegerAttributeObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.observations.observation.Observation" title="robovat.observations.observation.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.observations.observation.Observation</span></code></a></p>
+<p>Observation of an integer attribute.</p>
+<dl class="py method">
+<dt id="robovat.observations.attribute_obs.IntegerAttributeObs.get_gym_space">
+<code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#IntegerAttributeObs.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.IntegerAttributeObs.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.attribute_obs.IntegerAttributeObs.get_observation">
+<code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#IntegerAttributeObs.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.IntegerAttributeObs.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.attribute_obs.IntegerAttributeObs.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">env</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#IntegerAttributeObs.initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.IntegerAttributeObs.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>env</strong> – Environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="robovat.observations.attribute_obs.RandomIndexObs">
+<em class="property">class </em><code class="sig-name descname">RandomIndexObs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#RandomIndexObs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.RandomIndexObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.observations.observation.Observation" title="robovat.observations.observation.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.observations.observation.Observation</span></code></a></p>
+<p>Observation of a random index.</p>
+<dl class="py method">
+<dt id="robovat.observations.attribute_obs.RandomIndexObs.get_gym_space">
+<code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#RandomIndexObs.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.RandomIndexObs.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.attribute_obs.RandomIndexObs.get_observation">
+<code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#RandomIndexObs.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.RandomIndexObs.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.attribute_obs.RandomIndexObs.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">env</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#RandomIndexObs.initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.RandomIndexObs.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>env</strong> – Environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.attribute_obs.RandomIndexObs.on_episode_start">
+<code class="sig-name descname">on_episode_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/attribute_obs.html#RandomIndexObs.on_episode_start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.attribute_obs.RandomIndexObs.on_episode_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called at the start of each episode.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.observations.camera_obs">
+<span id="robovat-observations-camera-obs-module"></span><h2>robovat.observations.camera_obs module<a class="headerlink" href="#module-robovat.observations.camera_obs" title="Permalink to this headline">¶</a></h2>
+<p>Camera observation.</p>
+<dl class="py class">
+<dt id="robovat.observations.camera_obs.CameraIntrinsicsObs">
+<em class="property">class </em><code class="sig-name descname">CameraIntrinsicsObs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">camera</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraIntrinsicsObs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraIntrinsicsObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.observations.observation.Observation" title="robovat.observations.observation.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.observations.observation.Observation</span></code></a></p>
+<p>Camera intrinsics observation.</p>
+<p>Returns the camera instrincs matrix.</p>
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.CameraIntrinsicsObs.get_gym_space">
+<code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraIntrinsicsObs.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraIntrinsicsObs.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.CameraIntrinsicsObs.get_observation">
+<code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraIntrinsicsObs.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraIntrinsicsObs.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="robovat.observations.camera_obs.CameraObs">
+<em class="property">class </em><code class="sig-name descname">CameraObs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">camera</span></em>, <em class="sig-param"><span class="n">modality</span></em>, <em class="sig-param"><span class="n">max_visible_distance_m</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraObs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.observations.observation.Observation" title="robovat.observations.observation.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.observations.observation.Observation</span></code></a></p>
+<p>Camera observation.</p>
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.CameraObs.get_gym_space">
+<code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraObs.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraObs.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.CameraObs.get_observation">
+<code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraObs.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraObs.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.CameraObs.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">env</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraObs.initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraObs.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>env</strong> – Environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.CameraObs.on_episode_start">
+<code class="sig-name descname">on_episode_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraObs.on_episode_start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraObs.on_episode_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called at the start of each episode.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="robovat.observations.camera_obs.CameraRotationObs">
+<em class="property">class </em><code class="sig-name descname">CameraRotationObs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">camera</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraRotationObs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraRotationObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.observations.observation.Observation" title="robovat.observations.observation.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.observations.observation.Observation</span></code></a></p>
+<p>Camera translation observation.</p>
+<p>Returns the translation matrix of the camera extrinsics.</p>
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.CameraRotationObs.get_gym_space">
+<code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraRotationObs.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraRotationObs.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.CameraRotationObs.get_observation">
+<code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraRotationObs.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraRotationObs.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="robovat.observations.camera_obs.CameraTranslationObs">
+<em class="property">class </em><code class="sig-name descname">CameraTranslationObs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">camera</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraTranslationObs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraTranslationObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.observations.observation.Observation" title="robovat.observations.observation.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.observations.observation.Observation</span></code></a></p>
+<p>Camera translation observation.</p>
+<p>Returns the translation matrix of the camera extrinsics.</p>
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.CameraTranslationObs.get_gym_space">
+<code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraTranslationObs.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraTranslationObs.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.CameraTranslationObs.get_observation">
+<code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#CameraTranslationObs.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.CameraTranslationObs.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="robovat.observations.camera_obs.ClickController">
+<em class="property">class </em><code class="sig-name descname">ClickController</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#ClickController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.ClickController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="robovat.observations.camera_obs.PointCloudObs">
+<em class="property">class </em><code class="sig-name descname">PointCloudObs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">camera</span></em>, <em class="sig-param"><span class="n">num_points</span></em>, <em class="sig-param"><span class="n">remove_table</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">max_visible_distance_m</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#PointCloudObs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.PointCloudObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.observations.camera_obs.CameraObs" title="robovat.observations.camera_obs.CameraObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.observations.camera_obs.CameraObs</span></code></a></p>
+<p>Point cloud observation.</p>
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.PointCloudObs.get_gym_space">
+<code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#PointCloudObs.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.PointCloudObs.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.PointCloudObs.get_observation">
+<code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#PointCloudObs.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.PointCloudObs.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="robovat.observations.camera_obs.SegmentedPointCloudObs">
+<em class="property">class </em><code class="sig-name descname">SegmentedPointCloudObs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">camera</span></em>, <em class="sig-param"><span class="n">num_points</span></em>, <em class="sig-param"><span class="n">num_bodies</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">crop_min</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">crop_max</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_visible_distance_m</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">confirm_target</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#SegmentedPointCloudObs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.SegmentedPointCloudObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.observations.camera_obs.CameraObs" title="robovat.observations.camera_obs.CameraObs"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.observations.camera_obs.CameraObs</span></code></a></p>
+<p>Point cloud observation.</p>
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.SegmentedPointCloudObs.get_gym_space">
+<code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#SegmentedPointCloudObs.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.SegmentedPointCloudObs.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.SegmentedPointCloudObs.get_observation">
+<code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#SegmentedPointCloudObs.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.SegmentedPointCloudObs.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.camera_obs.SegmentedPointCloudObs.on_episode_start">
+<code class="sig-name descname">on_episode_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/camera_obs.html#SegmentedPointCloudObs.on_episode_start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.camera_obs.SegmentedPointCloudObs.on_episode_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called at the start of each episode.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.observations.observation">
+<span id="robovat-observations-observation-module"></span><h2>robovat.observations.observation module<a class="headerlink" href="#module-robovat.observations.observation" title="Permalink to this headline">¶</a></h2>
+<p>Observation of the gym environments.</p>
+<dl class="py class">
+<dt id="robovat.observations.observation.Observation">
+<em class="property">class </em><code class="sig-name descname">Observation</code><a class="reference internal" href="../_modules/robovat/observations/observation.html#Observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.observation.Observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Observation of the gym environments.</p>
+<dl class="py method">
+<dt id="robovat.observations.observation.Observation.get_gym_space">
+<em class="property">abstract </em><code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/observation.html#Observation.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.observation.Observation.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.observation.Observation.get_observation">
+<em class="property">abstract </em><code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/observation.html#Observation.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.observation.Observation.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.observation.Observation.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">env</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/observation.html#Observation.initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.observation.Observation.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>env</strong> – Environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.observation.Observation.on_episode_end">
+<code class="sig-name descname">on_episode_end</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/observation.html#Observation.on_episode_end"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.observation.Observation.on_episode_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called at the end of each episode.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.observation.Observation.on_episode_start">
+<code class="sig-name descname">on_episode_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/observation.html#Observation.on_episode_start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.observation.Observation.on_episode_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called at the start of each episode.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.observations.pose_obs">
+<span id="robovat-observations-pose-obs-module"></span><h2>robovat.observations.pose_obs module<a class="headerlink" href="#module-robovat.observations.pose_obs" title="Permalink to this headline">¶</a></h2>
+<p>Observation of object pose.</p>
+<dl class="py class">
+<dt id="robovat.observations.pose_obs.PoseObs">
+<em class="property">class </em><code class="sig-name descname">PoseObs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_bodies</span></em>, <em class="sig-param"><span class="n">modality</span><span class="o">=</span><span class="default_value">'pose'</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/pose_obs.html#PoseObs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.pose_obs.PoseObs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.observations.observation.Observation" title="robovat.observations.observation.Observation"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.observations.observation.Observation</span></code></a></p>
+<p>Pose observation.</p>
+<dl class="py method">
+<dt id="robovat.observations.pose_obs.PoseObs.get_gym_space">
+<code class="sig-name descname">get_gym_space</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/pose_obs.html#PoseObs.get_gym_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.pose_obs.PoseObs.get_gym_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns gym space of this observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.pose_obs.PoseObs.get_observation">
+<code class="sig-name descname">get_observation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/pose_obs.html#PoseObs.get_observation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.pose_obs.PoseObs.get_observation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.pose_obs.PoseObs.get_pose">
+<code class="sig-name descname">get_pose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/pose_obs.html#PoseObs.get_pose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.pose_obs.PoseObs.get_pose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.pose_obs.PoseObs.get_zero_pose">
+<code class="sig-name descname">get_zero_pose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/pose_obs.html#PoseObs.get_zero_pose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.pose_obs.PoseObs.get_zero_pose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the observation data of the current step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.pose_obs.PoseObs.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">env</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/pose_obs.html#PoseObs.initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.pose_obs.PoseObs.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>env</strong> – Environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.observations.pose_obs.PoseObs.on_episode_start">
+<code class="sig-name descname">on_episode_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/observations/pose_obs.html#PoseObs.on_episode_start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.observations.pose_obs.PoseObs.on_episode_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called at the start of each episode.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="robovat.perception.html" class="btn btn-neutral float-right" title="robovat.perception package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="robovat.math.html" class="btn btn-neutral float-left" title="robovat.math package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kuan Fang (original), Yifeng Zhu (modify)
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

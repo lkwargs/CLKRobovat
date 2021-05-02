@@ -78,8 +78,7 @@ class RobotEnv(gym.Env):
         self._action_space = self._create_action_space()
 
         self._observation_space = gym.spaces.Dict([
-            (obs.name, obs.get_gym_space()) for obs in self.observations
-        ])
+            (obs.name, obs.get_gym_space()) for obs in self.observations])
 
         self._obs_data = None
         self._prev_obs_data = None
@@ -239,8 +238,8 @@ class RobotEnv(gym.Env):
 
         See parent class.
         """
-        if self._done:
-            raise ValueError('The environment is done. Forget to reset?')
+        # if self._done:
+        #     raise ValueError('The environment is done. Forget to reset?')
 
         self._execute_action(action)
         self._num_steps += 1
@@ -255,7 +254,6 @@ class RobotEnv(gym.Env):
         if self.config.MAX_STEPS is not None:
             if self.num_steps >= self.config.MAX_STEPS:
                 self._done = True
-        print("num_steps: ", self._num_steps)
 
         logger.info('step: %d, reward: %.3f', self.num_steps, reward)
 
@@ -297,11 +295,14 @@ class RobotEnv(gym.Env):
             termination: The termination flag.
         """
         reward = 0.0
-        termination = self._num_steps >= self.config.MAX_ACTIONS_PER_EPS
+        termination = False
 
         for reward_fn in self.reward_fns:
             reward_value, termination_value = reward_fn.get_reward()
             reward += reward_value
+
+            if termination_value:
+                termination = True
 
         reward = float(reward)
 

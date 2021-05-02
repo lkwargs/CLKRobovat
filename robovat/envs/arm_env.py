@@ -8,7 +8,7 @@ import numpy as np
 
 from robovat.envs import robot_env
 from robovat.math import Pose
-from robovat.robots import sawyer
+from robovat.robots import sawyer, franka_panda
 from robovat.perception.camera import Kinect2
 from robovat.simulation.camera import BulletCamera
 
@@ -24,6 +24,11 @@ class ArmEnv(robot_env.RobotEnv):
 
         See parent class.
         """
+        if not hasattr(config.SIM.ARM, 'ROBOT'):
+            self.robot_type = 'sawyer'
+        else:
+            self.robot_type = config.SIM.ARM.ROBOT
+        
         super(ArmEnv, self).__init__(
             simulator=simulator,
             config=config,
@@ -78,19 +83,23 @@ class ArmEnv(robot_env.RobotEnv):
     def _reset_scene(self):
         """Reset the scene in simulation or the real world."""
         self.table_pose = Pose(self.config.SIM.TABLE.POSE)
-        self.table_pose.position.z += np.random.uniform(
-            *self.config.TABLE.HEIGHT_RANGE)
+        self.table_pose.position.z += np.random.uniform(*self.config.TABLE.HEIGHT_RANGE)
+
+        # self.bin_pose = Pose(self.config.SIM.BIN.POSE)
 
         if self.is_simulation:
             self.ground = self.simulator.add_body(self.config.SIM.GROUND.PATH,
                                                   self.config.SIM.GROUND.POSE,
                                                   is_static=True,
                                                   name='ground')
-
             self.table = self.simulator.add_body(self.config.SIM.TABLE.PATH,
                                                  self.table_pose,
                                                  is_static=True,
                                                  name='table')
+            # self.bin = self.simulator.add_body(self.config.SIM.BIN.PATH,
+            #                                      self.bin_pose,
+            #                                      is_static=True,
+            #                                      name='bin')
 
             if self.config.SIM.WALL.USE:
                 self.wall = self.simulator.add_body(self.config.SIM.WALL.PATH,
@@ -100,7 +109,7 @@ class ArmEnv(robot_env.RobotEnv):
 
     def _reset_robot(self):
         """Reset the robot in simulation or the real world."""
-        self.robot = sawyer.factory(
+        self.robot = eval(self.robot_type).factory(
             simulator=self.simulator,
             config=self.config.SIM.ARM.CONFIG)
         self.robot.move_to_joint_positions(

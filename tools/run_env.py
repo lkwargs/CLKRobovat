@@ -31,54 +31,18 @@ from robovat.utils.yaml_config import YamlConfig
 
 
 def parse_args():
-    """Parse arguments.
-
+    """
+    Parse arguments.
     Returns:
         args: The parsed arguments.
     """
     parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        '--env',
-        dest='env',
-        type=str,
-        help='The environment.',
-        required=True)
-
-    parser.add_argument(
-        '--policy',
-        dest='policy',
-        type=str,
-        help='The policy.',
-        default=None)
-
-    parser.add_argument(
-        '--env_config',
-        dest='env_config',
-        type=str,
-        help='The configuration file for the environment.',
-        default=None)
-
-    parser.add_argument(
-        '--policy_config',
-        dest='policy_config',
-        type=str,
-        help='The configuration file for the policy.',
-        default=None)
-
-    parser.add_argument(
-        '--config_bindings',
-        dest='config_bindings',
-        type=str,
-        help='The configuration bindings.',
-        default=None)
-
-    parser.add_argument(
-        '--use_simulator',
-        dest='use_simulator',
-        type=int,
-        help='Run experiments in the simulation is it is True.',
-        default=1)
+    parser.add_argument('--env', dest='env', type=str, help='The environment.', required=True)
+    parser.add_argument('--policy', dest='policy', type=str, help='The policy.', default=None)
+    parser.add_argument('--env_config', dest='env_config', type=str, help='The configuration file for the environment.', default=None)
+    parser.add_argument('--policy_config', dest='policy_config', type=str, help='The configuration file for the policy.', default=None)
+    parser.add_argument('--config_bindings', dest='config_bindings', type=str, help='The configuration bindings.', default=None)
+    parser.add_argument('--use_simulator', dest='use_simulator', type=int, help='Run experiments in the simulation is it is True.', default=1)
 
     parser.add_argument(
         '--assets',
@@ -209,14 +173,14 @@ def main():
         hostname = socket.gethostname()
         hostname = hostname.split('.')[0]
         output_dir = os.path.abspath(args.output_dir)
-        output_dir = os.path.join(output_dir, hostname, '%02d' % (0))
+        output_dir = os.path.join(output_dir, hostname, '%02d' % (args.key))
         if not os.path.isdir(output_dir):
             logger.info('Making output directory %s...', output_dir)
             os.makedirs(output_dir)
 
     # Generate and write episodes.
     logger.info('Start running...')
-    env.reset()
+    # env.reset()
     num_episodes_this_file = 0
     for episode_index, episode in generate_episodes(
             env,

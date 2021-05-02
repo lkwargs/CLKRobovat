@@ -1,18 +1,15 @@
 """Antipodal grasp 4-DoF policy.
 """
-
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
 import os.path
-
 import numpy as np
 
-from robovat.envs.grasp import image_grasp_sampler
+from robovat.policies import image_grasp_sampler
 from robovat.policies import policy
 from robovat.utils.yaml_config import YamlConfig
-
 
 class AntipodalGrasp4DofPolicy(policy.Policy):
     """Antipodal grasp 4-DoF policy."""
@@ -70,3 +67,51 @@ class AntipodalGrasp4DofPolicy(policy.Policy):
         intrinsics = observation['intrinsics']
         grasps = self._sampler.sample(depth, intrinsics, 1)
         return np.squeeze(grasps, axis=0)
+
+# TODO: initial grasp policy
+class GraspSegPolicy(policy.Policy):
+    """grasp 4-DoF policy from segmentation mask."""
+    def __init__(self,
+                 env,
+                 config=None):
+        """Initialize.
+
+        Args:
+            env: Environment.
+            config: Policy configuration.
+        """
+        super(GraspSegPolicy, self).__init__(env, config)
+        self.config = config
+        self.env = env
+        self.sampler = image_grasp_sampler.SegmentationGraspSampler(gripper_width=0.04)
+        
+
+    @property
+    def default_config(self):
+        """Load the default configuration file."""
+        config_path = os.path.join('configs', 'policies',
+                                   'antipodal_grasp_4dof_policy.yaml')
+        assert os.path.exists(config_path), (
+            'Default configuration file %s does not exist' % (config_path)
+        )
+        return YamlConfig(config_path).as_easydict()
+
+    def _action(self, observation):
+        """Implementation of action.
+        Args:
+            observation: The observation of the current step.
+
+        Returns:
+            action: The action of the current step.
+        """
+        rgb = observation['rgb']
+        depth = observation['depth']
+        camera = self.env.camera()
+        
+        grasps = self.sampler.sample(rgb, depth, camera, 1)
+        print("="*50)
+        print(grasps)
+        print("="*50)
+        
+        return np.squeeze(grasps, axis=0)
+

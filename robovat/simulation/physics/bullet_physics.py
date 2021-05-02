@@ -142,7 +142,8 @@ class BulletPhysics(physics.Physics):
                  filename,
                  pose,
                  scale=1.0,
-                 is_static=False):
+                 is_static=False,
+                 **kwargs):
         """Load a body into the simulation.
 
         Args:
@@ -152,6 +153,7 @@ class BulletPhysics(physics.Physics):
                 a tuple of position and orientation.
             scale: The global scaling factor.
             is_static: If set the pose of the base to be fixed.
+            **kwargs: extra arguments intended for loading obj file
 
         Returns:
             body_uid: The unique ID of the body.
@@ -179,6 +181,45 @@ class BulletPhysics(physics.Physics):
                 )
             pybullet.configureDebugVisualizer(pybullet.COV_ENABLE_RENDERING, 1)
 
+        elif ext == '.obj':
+            collision_kwargs = {'physicsClientId': self.uid}
+            visual_kwargs = {'physicsClientId': self.uid}
+            body_kwargs = {'physicsClientId': self.uid}
+
+            if 'collisionFramePosition' in kwargs:
+                collision_kwargs['collisionFramePosition'] = kwargs['collisionFramePosition']
+            if 'collisionFrameOrientation' in kwargs:
+                collision_kwargs['collisionFrameOrientation'] = kwargs['collisionFrameOrientation']
+
+            collision_shape_id = pybullet.createCollisionShape(pybullet.GEOM_MESH,
+                                                               fileName=filename,
+                                                               meshScale=[scale] * 3,
+                                                               **collision_kwargs)
+            if 'visualFramePosition' in kwargs:
+                visual_kwargs['visualFramePosition'] = kwargs['visualFramePosition']
+            if 'visualFrameOrientation' in kwargs:
+                visual_kwargs['visualFrameOrientation'] = kwargs['visualFrameOrientation']
+                
+            visual_shape_id = pybullet.createVisualShape(pybullet.GEOM_MESH,
+                                                         fileName=filename,
+                                                         meshScale=[scale] * 3,
+                                                         **visual_kwargs)
+            pybullet.configureDebugVisualizer(pybullet.COV_ENABLE_RENDERING, 0)
+
+            if 'baseMass' in kwargs:
+                body_kwargs['baseMass'] = kwargs['baseMass']
+            else:
+                # Default baseMass to be 0.1
+                body_kwargs['baseMass'] = 0.1
+            
+            body_uid = pybullet.createMultiBody(baseCollisionShapeIndex=collision_shape_id,
+                                                baseVisualShapeIndex=visual_shape_id,
+                                                basePosition=position,
+                                                baseOrientation=quaternion,
+                                                **body_kwargs
+            )
+            pybullet.configureDebugVisualizer(pybullet.COV_ENABLE_RENDERING, 1)
+        
         else:
             raise ValueError('Unrecognized extension %s.' % ext)
 
@@ -390,11 +431,19 @@ class BulletPhysics(physics.Physics):
                           mass=None,
                           lateral_friction=None,
                           rolling_friction=None,
-                          spinning_friction=None):
+                          spinning_friction=None,
+                          contact_damping=None,
+                          contact_stiffness=None):
         """Set the dynamics of the body.
 
         Args:
             body_uid: The body Unique ID.
+            mass (float, optional): mass of the body
+            lateral_friction (float, optional): lateral friction coefficient
+            rolling_friction (float, optional): rolling friction coefficient
+            spinning_friction (float, optional): spinning friction coefficient
+            contact_damping (float, optional): damping cofficient for contact
+            contact_stiffness (float, optional): stiffness coefficient for contact
         """
         kwargs = dict()
         kwargs['physicsClientId'] = self.uid
@@ -412,6 +461,12 @@ class BulletPhysics(physics.Physics):
 
         if spinning_friction is not None:
             kwargs['spinningFriction'] = spinning_friction
+
+        if contact_damping is not None:
+            kwargs['contactDamping'] = contact_damping
+
+        if contact_stiffness is not None:
+            kwargs['contactStiffness'] = contact_stiffness
 
         pybullet.changeDynamics(**kwargs)
 
@@ -831,6 +886,15 @@ class BulletPhysics(physics.Physics):
 
         return constraint_uid
 
+    def change_constraint(self, constraint_uid, **kwargs):
+        """Change a constraint parameter
+        
+        Args:
+           constraint_uid: The constraint unique ID
+           kwargs: arguments for changig constraints
+        """
+        pybullet.changeConstraint(constraint_uid, **kwargs)
+    
     def remove_constraint(self, constraint_uid):
         """Remove a constraint.
 
@@ -955,6 +1019,14 @@ class BulletPhysics(physics.Physics):
             maxForce=max_force,
             physicsClientId=self.uid)
 
+    def get_num_constraints(self):
+        """Get number of constraints present in the env.
+
+        Return:
+           num_constraints (int)
+        """
+        return pybullet.getNumConstraints(physicsClientId=self.uid)
+        
     #
     # Motor Control
     #
@@ -1262,6 +1334,22 @@ class BulletPhysics(physics.Physics):
 
     #
     # Contacts
+    # Pybullet function getContactPoints return:
+    # 
+    # 0: contactFlag
+    # 1: bodyUniqueIdA
+    # 2: bodyUniqueIdB
+    # 3: linkIndexA
+    # 4: linkIndexB
+    # 5: positionOnA
+    # 6: positionOnB
+    # 7: contactNormalOnB
+    # 8: contactDistance
+    # 9: normalForce
+    # 10: lateralFriction1
+    # 11: lateralFrictionDir1
+    # 12: lateralFriction2
+    # 13: lateralFrictionDir2
     #
 
     def get_contact_points(self, a_uid, b_uid=None):
@@ -1298,6 +1386,116 @@ class BulletPhysics(physics.Physics):
 
         contact_points = pybullet.getContactPoints(**kwargs)
 
-        contact_points = [cp[-1] for cp in contact_points]
+        return contact_points
+
+    def get_contact_normal_force(self, a_uid, b_uid=None):
+        """get contact normal force
+
+        Args:
+            a_uid: The Unique ID of the fist entity.
+            b_uid: The Unique ID of the second entity.
+
+        Returns:
+            A list of contact force on the contact points
+        """
+        kwargs = dict()
+
+        if isinstance(a_uid, six.integer_types):
+            kwargs['bodyA'] = a_uid
+        elif isinstance(a_uid, (tuple, list)):
+            kwargs['bodyA'] = a_uid[0]
+            kwargs['linkIndexA'] = a_uid[1]
+        else:
+            raise ValueError
+
+        if b_uid is None:
+            pass
+        elif isinstance(b_uid, six.integer_types):
+            kwargs['bodyB'] = b_uid
+        elif isinstance(b_uid, (tuple, list)):
+            kwargs['bodyB'] = b_uid[0]
+            kwargs['linkIndexB'] = b_uid[1]
+        else:
+            raise ValueError
+
+        kwargs['physicsClientId'] = self.uid
+
+        contact_points = pybullet.getContactPoints(**kwargs)
+
+        contact_points = [cp[9] for cp in contact_points]
 
         return contact_points
+
+    def get_contact_body(self, a_uid):
+        """get contact body with object of inquiry
+
+        Args:
+            a_uid: The Unique ID of the fist entity.
+
+        Returns:
+            A list of body uids of contacting with body A
+        """
+        kwargs = dict()
+
+        if isinstance(a_uid, six.integer_types):
+            kwargs['bodyA'] = a_uid
+        elif isinstance(a_uid, (tuple, list)):
+            kwargs['bodyA'] = a_uid[0]
+            kwargs['linkIndexA'] = a_uid[1]
+        else:
+            raise ValueError
+
+        kwargs['physicsClientId'] = self.uid
+
+        contact_points = pybullet.getContactPoints(**kwargs)
+
+        contact_points = [cp[2] for cp in contact_points]
+
+        return contact_points
+
+
+    #
+    # Debug Visualizer
+    #
+
+    def get_debug_visualizer_info(self, info_args):
+        """Return a dictionary of info with keys from info_args
+
+        Args:
+           info_args: A list of strings for debug visualizer information
+        """
+        width, height, view_matrix, projection_matrix, camera_up, camera_forward, horizontal, vertical, yaw, pitch, dist, target = pybullet.getDebugVisualizerCamera(self.uid)
+
+        info = {'width': width,
+                'height': height,
+                'viewMatrix': view_matrix,
+                'projectionMatrix': projection_matrix,
+                'cameraUp': camera_up,
+                'cameraForward': camera_forward,
+                'horizontal': horizontal,
+                'vertical': vertical,
+                'yaw': yaw,
+                'pitch': pitch,
+                'dist': dist,
+                'target': target
+        }
+        
+        visualizer_info = {}
+        for arg in info_args:
+            visualizer_info[arg] = info[arg]
+        return visualizer_info
+    
+    def reset_debug_visualizer(self, camera_distance, camera_yaw, camera_pitch, camera_target_position):
+        """
+
+        Args:
+           camera_distance (float): distance from eye to camera target position
+           camera_yaw (float): camera yaw angle (in degrees) left/right
+           camera_pitch (float): camera pitch angle (in degrees) up/down
+           camera_target_position (list or tuple of 3 floats): the camera focus point
+        """
+        pybullet.resetDebugVisualizerCamera(camera_distance,
+                                            camera_yaw,
+                                            camera_pitch,
+                                            camera_target_position,
+                                            self.uid)

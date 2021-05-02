@@ -108,7 +108,8 @@ class Simulator(object):
                  scale=1.0,
                  is_static=False,
                  is_controllable=False,
-                 name=None):
+                 name=None,
+                 **kwargs):
         """Add a body to the simulation.
 
         Args:
@@ -119,6 +120,7 @@ class Simulator(object):
             is_static: If True, set the base of the body to be static.
             is_controllable: If True, the body can apply motor controls.
             name: Used as a reference of the body in this Simulator instance.
+            kwargs: Extra arguments for loading obj files
 
         Returns:
             An instance of Body.
@@ -147,7 +149,8 @@ class Simulator(object):
                     pose=pose,
                     scale=scale,
                     is_static=is_static,
-                    name=name)
+                    name=name,
+                    **kwargs)
 
         # Add the body to the dictionary.
         self._bodies[body.name] = body
@@ -223,6 +226,16 @@ class Simulator(object):
 
         return constraint
 
+    def remove_constraint(self, constraint):
+        """Remove a constraint
+
+        Args:
+           constraint_uid (int): Constraint unique Id for removal.
+        """
+        self.physics.remove_constraint(constraint.uid)
+        del constraint
+        
+        
     def receive_robot_commands(self,
                                robot_command,
                                component_type='body'):

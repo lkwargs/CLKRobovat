@@ -15,6 +15,8 @@ try:
     import pcl
 except ImportError:
     logger.warning('Failed to import pcl')
+    import pyntcloud
+    import pandas as pd
 
 
 COLOR_MAP = ['r', 'y', 'b', 'g', 'm', 'k']
@@ -169,23 +171,23 @@ def remove_table(point_cloud, thresh=0.015):
             [num_segmented_points, 3].
     """
     # PCL version.
-    num_points = point_cloud.shape[0]
-    cloud = pcl.PointCloud(point_cloud.astype(np.float32))
-    segmenter = cloud.make_segmenter()
-    segmenter.set_model_type(pcl.SACMODEL_PLANE)
-    segmenter.set_method_type(pcl.SAC_RANSAC)
-    segmenter.set_distance_threshold(thresh)
-    indices, model = segmenter.segment()
-    obj_idxs = np.setdiff1d(np.arange(num_points), indices)
-    segmented_cloud = point_cloud[obj_idxs]
+    # num_points = point_cloud.shape[0]
+    # cloud = pcl.PointCloud(point_cloud.astype(np.float32))
+    # segmenter = cloud.make_segmenter()
+    # segmenter.set_model_type(pcl.SACMODEL_PLANE)
+    # segmenter.set_method_type(pcl.SAC_RANSAC)
+    # segmenter.set_distance_threshold(thresh)
+    # indices, model = segmenter.segment()
+    # obj_idxs = np.setdiff1d(np.arange(num_points), indices)
+    # segmented_cloud = point_cloud[obj_idxs]
 
     # PyntCloud version.
-    # cloud = PyntCloud(pd.DataFrame({'x': point_cloud[:, 0],
-    #                                 'y': point_cloud[:, 1],
-    #                                 'z': point_cloud[:, 2]}))
-    # cloud.add_scalar_field("plane_fit", max_dist=thresh)
-    # point_cloud = cloud.points.values
-    # segmented_cloud = point_cloud[point_cloud[:, -1] == 0][:, :3]
+    cloud = pyntcloud.PyntCloud(pd.DataFrame({'x': point_cloud[:, 0],
+                                    'y': point_cloud[:, 1],
+                                    'z': point_cloud[:, 2]}))
+    cloud.add_scalar_field("plane_fit", max_dist=thresh)
+    point_cloud = cloud.points.values
+    segmented_cloud = point_cloud[point_cloud[:, -1] == 0][:, :3]
 
     return segmented_cloud
 

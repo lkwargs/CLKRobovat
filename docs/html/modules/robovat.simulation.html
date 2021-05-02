@@ -1,0 +1,1429 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>robovat.simulation package &mdash; RPL-robovat 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="robovat.simulation.camera package" href="robovat.simulation.camera.html" />
+    <link rel="prev" title="robovat.robots.sawyer package" href="robovat.robots.sawyer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> RPL-robovat
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">RPL_robovat</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="robovat.html">robovat package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="robovat.envs.html">robovat.envs package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.grasp.html">robovat.envs.grasp package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.push.html">robovat.envs.push package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.html#module-robovat.envs.arm_env">robovat.envs.arm_env module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.envs.html#module-robovat.envs.robot_env">robovat.envs.robot_env module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.io.html">robovat.io package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.episode_generation">robovat.io.episode_generation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.hdf5_utils">robovat.io.hdf5_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.io.html#module-robovat.io.pickle_utils">robovat.io.pickle_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.math.html">robovat.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.euler">robovat.math.euler module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.orientation">robovat.math.orientation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.point">robovat.math.point module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.pose">robovat.math.pose module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.math.html#module-robovat.math.quaternion">robovat.math.quaternion module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.observations.html">robovat.observations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.action_obs">robovat.observations.action_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.attribute_obs">robovat.observations.attribute_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.camera_obs">robovat.observations.camera_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.observation">robovat.observations.observation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.observations.html#module-robovat.observations.pose_obs">robovat.observations.pose_obs module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.perception.html">robovat.perception package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.camera.html">robovat.perception.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.depth_utils">robovat.perception.depth_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.image_utils">robovat.perception.image_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.perception.html#module-robovat.perception.point_cloud_utils">robovat.perception.point_cloud_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.policies.html">robovat.policies package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.grasp_policy">robovat.policies.grasp_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.policy">robovat.policies.policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.push_policy">robovat.policies.push_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.policies.html#module-robovat.policies.random_policy">robovat.policies.random_policy module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.reward_fns.html">robovat.reward_fns package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.grasp_reward">robovat.reward_fns.grasp_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.push_reward">robovat.reward_fns.push_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.reward_fns.html#module-robovat.reward_fns.reward_fn">robovat.reward_fns.reward_fn module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.robots.html">robovat.robots package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.franka_panda.html">robovat.robots.franka_panda package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.sawyer.html">robovat.robots.sawyer package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.html#module-robovat.robots.robot">robovat.robots.robot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.robots.html#module-robovat.robots.robot_command">robovat.robots.robot_command module</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">robovat.simulation package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.camera.html">robovat.simulation.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.simulation.physics.html">robovat.simulation.physics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.simulation.base">robovat.simulation.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.simulation.body">robovat.simulation.body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.simulation.constraint">robovat.simulation.constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.simulation.controllable_body">robovat.simulation.controllable_body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.simulation.controllable_constraint">robovat.simulation.controllable_constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.simulation.entity">robovat.simulation.entity module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.simulation.joint">robovat.simulation.joint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.simulation.link">robovat.simulation.link module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-robovat.simulation.simulator">robovat.simulation.simulator module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="robovat.utils.html">robovat.utils package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.logging">robovat.utils.logging module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.mesh_utils">robovat.utils.mesh_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#robovat-utils-planning-utils-module">robovat.utils.planning_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.string_utils">robovat.utils.string_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.time_utils">robovat.utils.time_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="robovat.utils.html#module-robovat.utils.yaml_config">robovat.utils.yaml_config module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="third_party.html">third_party package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="third_party.html#module-third_party.transformations">third_party.transformations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="third_party.html#requirements">Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RPL-robovat</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">RPL_robovat</a> &raquo;</li>
+        
+          <li><a href="robovat.html">robovat package</a> &raquo;</li>
+        
+      <li>robovat.simulation package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/robovat.simulation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="robovat-simulation-package">
+<h1>robovat.simulation package<a class="headerlink" href="#robovat-simulation-package" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="robovat.simulation.camera.html">robovat.simulation.camera package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robovat.simulation.physics.html">robovat.simulation.physics package</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="module-robovat.simulation.base">
+<span id="robovat-simulation-base-module"></span><h2>robovat.simulation.base module<a class="headerlink" href="#module-robovat.simulation.base" title="Permalink to this headline">¶</a></h2>
+<p>The Base class.</p>
+<dl class="py class">
+<dt id="robovat.simulation.base.Base">
+<em class="property">class </em><code class="sig-name descname">Base</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">simulator</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/base.html#Base"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.base.Base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The base class for simulatables.</p>
+<dl class="py method">
+<dt id="robovat.simulation.base.Base.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#robovat.simulation.base.Base.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.base.Base.physics">
+<em class="property">property </em><code class="sig-name descname">physics</code><a class="headerlink" href="#robovat.simulation.base.Base.physics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.base.Base.scoped_name">
+<em class="property">property </em><code class="sig-name descname">scoped_name</code><a class="headerlink" href="#robovat.simulation.base.Base.scoped_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.base.Base.simulator">
+<em class="property">property </em><code class="sig-name descname">simulator</code><a class="headerlink" href="#robovat.simulation.base.Base.simulator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.base.Base.uid">
+<em class="property">property </em><code class="sig-name descname">uid</code><a class="headerlink" href="#robovat.simulation.base.Base.uid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.simulation.body">
+<span id="robovat-simulation-body-module"></span><h2>robovat.simulation.body module<a class="headerlink" href="#module-robovat.simulation.body" title="Permalink to this headline">¶</a></h2>
+<p>The body class.</p>
+<dl class="py class">
+<dt id="robovat.simulation.body.Body">
+<em class="property">class </em><code class="sig-name descname">Body</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">simulator</span></em>, <em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">pose</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">is_static</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/body.html#Body"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.body.Body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.simulation.entity.Entity" title="robovat.simulation.entity.Entity"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.simulation.entity.Entity</span></code></a></p>
+<p>Body.</p>
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.angular_velocity">
+<em class="property">property </em><code class="sig-name descname">angular_velocity</code><a class="headerlink" href="#robovat.simulation.body.Body.angular_velocity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.contacts">
+<em class="property">property </em><code class="sig-name descname">contacts</code><a class="headerlink" href="#robovat.simulation.body.Body.contacts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.dynamics">
+<em class="property">property </em><code class="sig-name descname">dynamics</code><a class="headerlink" href="#robovat.simulation.body.Body.dynamics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.get_joint_by_name">
+<code class="sig-name descname">get_joint_by_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/body.html#Body.get_joint_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.body.Body.get_joint_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the joint by the joint name.,</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> – The joint name.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An instance of Joint. Return None if the joint is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.get_link_by_name">
+<code class="sig-name descname">get_link_by_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/body.html#Body.get_link_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.body.Body.get_link_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the link by the link name.,</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> – The link name.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An instance of Link. Return None if the link is not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.is_static">
+<em class="property">property </em><code class="sig-name descname">is_static</code><a class="headerlink" href="#robovat.simulation.body.Body.is_static" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.joint_dampings">
+<em class="property">property </em><code class="sig-name descname">joint_dampings</code><a class="headerlink" href="#robovat.simulation.body.Body.joint_dampings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.joint_frictions">
+<em class="property">property </em><code class="sig-name descname">joint_frictions</code><a class="headerlink" href="#robovat.simulation.body.Body.joint_frictions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.joint_lower_limits">
+<em class="property">property </em><code class="sig-name descname">joint_lower_limits</code><a class="headerlink" href="#robovat.simulation.body.Body.joint_lower_limits" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.joint_max_efforts">
+<em class="property">property </em><code class="sig-name descname">joint_max_efforts</code><a class="headerlink" href="#robovat.simulation.body.Body.joint_max_efforts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.joint_max_velocities">
+<em class="property">property </em><code class="sig-name descname">joint_max_velocities</code><a class="headerlink" href="#robovat.simulation.body.Body.joint_max_velocities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.joint_positions">
+<em class="property">property </em><code class="sig-name descname">joint_positions</code><a class="headerlink" href="#robovat.simulation.body.Body.joint_positions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.joint_ranges">
+<em class="property">property </em><code class="sig-name descname">joint_ranges</code><a class="headerlink" href="#robovat.simulation.body.Body.joint_ranges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.joint_upper_limits">
+<em class="property">property </em><code class="sig-name descname">joint_upper_limits</code><a class="headerlink" href="#robovat.simulation.body.Body.joint_upper_limits" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.joint_velocities">
+<em class="property">property </em><code class="sig-name descname">joint_velocities</code><a class="headerlink" href="#robovat.simulation.body.Body.joint_velocities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.joints">
+<em class="property">property </em><code class="sig-name descname">joints</code><a class="headerlink" href="#robovat.simulation.body.Body.joints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.linear_velocity">
+<em class="property">property </em><code class="sig-name descname">linear_velocity</code><a class="headerlink" href="#robovat.simulation.body.Body.linear_velocity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.links">
+<em class="property">property </em><code class="sig-name descname">links</code><a class="headerlink" href="#robovat.simulation.body.Body.links" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.mass">
+<em class="property">property </em><code class="sig-name descname">mass</code><a class="headerlink" href="#robovat.simulation.body.Body.mass" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.orientation">
+<em class="property">property </em><code class="sig-name descname">orientation</code><a class="headerlink" href="#robovat.simulation.body.Body.orientation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.pose">
+<em class="property">property </em><code class="sig-name descname">pose</code><a class="headerlink" href="#robovat.simulation.body.Body.pose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.position">
+<em class="property">property </em><code class="sig-name descname">position</code><a class="headerlink" href="#robovat.simulation.body.Body.position" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.set_color">
+<code class="sig-name descname">set_color</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rgba</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">specular</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/body.html#Body.set_color"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.body.Body.set_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rgba</strong> – The color in RGBA.</p></li>
+<li><p><strong>specular</strong> – The specular of the object.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.set_dynamics">
+<code class="sig-name descname">set_dynamics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mass</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">lateral_friction</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rolling_friction</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">spinning_friction</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">contact_damping</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">contact_stiffness</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/body.html#Body.set_dynamics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.body.Body.set_dynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set dynmamics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mass</strong> – The mass of the body.</p></li>
+<li><p><strong>lateral_friction</strong> – The lateral friction coefficient.</p></li>
+<li><p><strong>rolling_friction</strong> – The rolling friction coefficient.</p></li>
+<li><p><strong>spinning_friction</strong> – The spinning friction coefficient.</p></li>
+<li><p><strong>contact_damping</strong> – The contact damping coefficient.</p></li>
+<li><p><strong>contact_stiffness</strong> – The contact stiffness coefficient</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.uid">
+<em class="property">property </em><code class="sig-name descname">uid</code><a class="headerlink" href="#robovat.simulation.body.Body.uid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.body.Body.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/body.html#Body.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.body.Body.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update disturbances.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.simulation.constraint">
+<span id="robovat-simulation-constraint-module"></span><h2>robovat.simulation.constraint module<a class="headerlink" href="#module-robovat.simulation.constraint" title="Permalink to this headline">¶</a></h2>
+<p>The Constraint class.</p>
+<dl class="py class">
+<dt id="robovat.simulation.constraint.Constraint">
+<em class="property">class </em><code class="sig-name descname">Constraint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent</span></em>, <em class="sig-param"><span class="n">child</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">joint_type</span><span class="o">=</span><span class="default_value">'fixed'</span></em>, <em class="sig-param"><span class="n">joint_axis</span><span class="o">=</span><span class="default_value">[0, 0, 0]</span></em>, <em class="sig-param"><span class="n">parent_frame_pose</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">child_frame_pose</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_force</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/constraint.html#Constraint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.constraint.Constraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.simulation.base.Base" title="robovat.simulation.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.simulation.base.Base</span></code></a></p>
+<p>The constraint between two entities.</p>
+<dl class="py method">
+<dt id="robovat.simulation.constraint.Constraint.child">
+<em class="property">property </em><code class="sig-name descname">child</code><a class="headerlink" href="#robovat.simulation.constraint.Constraint.child" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.constraint.Constraint.joint_type">
+<em class="property">property </em><code class="sig-name descname">joint_type</code><a class="headerlink" href="#robovat.simulation.constraint.Constraint.joint_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.constraint.Constraint.max_force">
+<em class="property">property </em><code class="sig-name descname">max_force</code><a class="headerlink" href="#robovat.simulation.constraint.Constraint.max_force" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.constraint.Constraint.orientation">
+<em class="property">property </em><code class="sig-name descname">orientation</code><a class="headerlink" href="#robovat.simulation.constraint.Constraint.orientation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.constraint.Constraint.parent">
+<em class="property">property </em><code class="sig-name descname">parent</code><a class="headerlink" href="#robovat.simulation.constraint.Constraint.parent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.constraint.Constraint.pose">
+<em class="property">property </em><code class="sig-name descname">pose</code><a class="headerlink" href="#robovat.simulation.constraint.Constraint.pose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.constraint.Constraint.position">
+<em class="property">property </em><code class="sig-name descname">position</code><a class="headerlink" href="#robovat.simulation.constraint.Constraint.position" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.constraint.Constraint.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/constraint.html#Constraint.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.constraint.Constraint.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update disturbances.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.simulation.controllable_body">
+<span id="robovat-simulation-controllable-body-module"></span><h2>robovat.simulation.controllable_body module<a class="headerlink" href="#module-robovat.simulation.controllable_body" title="Permalink to this headline">¶</a></h2>
+<p>The body class.</p>
+<dl class="py class">
+<dt id="robovat.simulation.controllable_body.ControllableBody">
+<em class="property">class </em><code class="sig-name descname">ControllableBody</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">simulator</span></em>, <em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">pose</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">is_static</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#ControllableBody"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.ControllableBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.simulation.body.Body" title="robovat.simulation.body.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.simulation.body.Body</span></code></a></p>
+<p>Body.</p>
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.ControllableBody.check_joints_reached">
+<code class="sig-name descname">check_joints_reached</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#ControllableBody.check_joints_reached"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.ControllableBody.check_joints_reached" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the specified joint positions are reached.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>True is all specified joint positions are reached and corresponding</dt><dd><p>joint velocities are close to zero, False otherwise.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.ControllableBody.check_joints_safe">
+<code class="sig-name descname">check_joints_safe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#ControllableBody.check_joints_safe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.ControllableBody.check_joints_safe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the joint is safe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True for safe, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.ControllableBody.is_ready">
+<code class="sig-name descname">is_ready</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">joint_inds</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#ControllableBody.is_ready"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.ControllableBody.is_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the body is ready.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>joint_inds</strong> – The joints to be checked.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if all control commands are done, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.ControllableBody.reset_targets">
+<code class="sig-name descname">reset_targets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#ControllableBody.reset_targets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.ControllableBody.reset_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the joint and link targets.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.ControllableBody.set_max_joint_velocities">
+<code class="sig-name descname">set_max_joint_velocities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">joint_velocities</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#ControllableBody.set_max_joint_velocities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.ControllableBody.set_max_joint_velocities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the maximal joint velocities for position control.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>joint_velocities</strong> – The maximal joint velocities.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.ControllableBody.set_max_reaction_force">
+<code class="sig-name descname">set_max_reaction_force</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">joint_ind</span></em>, <em class="sig-param"><span class="n">force</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#ControllableBody.set_max_reaction_force"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.ControllableBody.set_max_reaction_force" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the maximum reaction force for a joint.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.ControllableBody.set_neutral_joint_positions">
+<code class="sig-name descname">set_neutral_joint_positions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">joint_positions</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#ControllableBody.set_neutral_joint_positions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.ControllableBody.set_neutral_joint_positions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the neutral joint positions.</p>
+<p>This is used for computing the IK solution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>joint_positions</strong> – A list of joint positions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.ControllableBody.set_target_joint_positions">
+<code class="sig-name descname">set_target_joint_positions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">joint_positions</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">15.0</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">0.00872664</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#ControllableBody.set_target_joint_positions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.ControllableBody.set_target_joint_positions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set target joint positions for position control.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>joint_positions</strong> – The joint positions for each specified joint.</p></li>
+<li><p><strong>timeout</strong> – Seconds to wait for move to finish.</p></li>
+<li><p><strong>threshold</strong> – Joint position threshold in radians across each joint
+when move is considered successful.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.ControllableBody.set_target_link_pose">
+<code class="sig-name descname">set_target_link_pose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">link_ind</span></em>, <em class="sig-param"><span class="n">link_pose</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">15.0</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">0.00872664</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#ControllableBody.set_target_link_pose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.ControllableBody.set_target_link_pose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the target pose of the link for position control.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>link_ind</strong> – The index of the end effector link.</p></li>
+<li><p><strong>link_pose</strong> – The pose of the end effector link.</p></li>
+<li><p><strong>timeout</strong> – Seconds to wait for move to finish.</p></li>
+<li><p><strong>threshold</strong> – Joint position threshold in radians across each joint
+when move is considered successful.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.ControllableBody.set_target_link_poses">
+<code class="sig-name descname">set_target_link_poses</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">link_ind</span></em>, <em class="sig-param"><span class="n">link_poses</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">15.0</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">0.00872664</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#ControllableBody.set_target_link_poses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.ControllableBody.set_target_link_poses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the target poses of the link for position control.</p>
+<p>The list of poses should be reached sequentially.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>link_ind</strong> – The index of the end effector link.</p></li>
+<li><p><strong>link_pose</strong> – The pose of the end effector link.</p></li>
+<li><p><strong>timeout</strong> – Seconds to wait for move to finish.</p></li>
+<li><p><strong>threshold</strong> – Joint position threshold in radians across each joint
+when move is considered successful.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.ControllableBody.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#ControllableBody.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.ControllableBody.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update control and disturbances.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="robovat.simulation.controllable_body.JointTarget">
+<em class="property">class </em><code class="sig-name descname">JointTarget</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#JointTarget"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.JointTarget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Specify the target in terms of joint positions and velocities.</p>
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.JointTarget.indices">
+<em class="property">property </em><code class="sig-name descname">indices</code><a class="headerlink" href="#robovat.simulation.controllable_body.JointTarget.indices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.JointTarget.is_ready">
+<code class="sig-name descname">is_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#JointTarget.is_ready"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.JointTarget.is_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the target has been reached.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if the target has been reached, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.JointTarget.position_gains">
+<em class="property">property </em><code class="sig-name descname">position_gains</code><a class="headerlink" href="#robovat.simulation.controllable_body.JointTarget.position_gains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.JointTarget.position_threshold">
+<em class="property">property </em><code class="sig-name descname">position_threshold</code><a class="headerlink" href="#robovat.simulation.controllable_body.JointTarget.position_threshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.JointTarget.positions">
+<em class="property">property </em><code class="sig-name descname">positions</code><a class="headerlink" href="#robovat.simulation.controllable_body.JointTarget.positions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.JointTarget.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#JointTarget.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.JointTarget.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the target.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.JointTarget.set">
+<code class="sig-name descname">set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">indices</span></em>, <em class="sig-param"><span class="n">positions</span></em>, <em class="sig-param"><span class="n">velocities</span></em>, <em class="sig-param"><span class="n">start_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">stop_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">position_gains</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">velocity_gains</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">position_threshold</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">velocity_threshold</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">15.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#JointTarget.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.JointTarget.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the target.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>indices</strong> – Joint indices.</p></li>
+<li><p><strong>positions</strong> – Target joint positions.</p></li>
+<li><p><strong>velocities</strong> – Target joint velocities.</p></li>
+<li><p><strong>start_time</strong> – Starting time of the target.</p></li>
+<li><p><strong>stop_time</strong> – Stopping time of the target.</p></li>
+<li><p><strong>position_gains</strong> – Position gain of position control.</p></li>
+<li><p><strong>velocity_gains</strong> – Velocity gain of position control.</p></li>
+<li><p><strong>position_threshold</strong> – Threshold of reaching the target positions.</p></li>
+<li><p><strong>velocity_threshold</strong> – Threshold of reaching the target velocities.</p></li>
+<li><p><strong>timeout</strong> – Maximum execution time in seconds.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.JointTarget.start_time">
+<em class="property">property </em><code class="sig-name descname">start_time</code><a class="headerlink" href="#robovat.simulation.controllable_body.JointTarget.start_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.JointTarget.stop_time">
+<em class="property">property </em><code class="sig-name descname">stop_time</code><a class="headerlink" href="#robovat.simulation.controllable_body.JointTarget.stop_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.JointTarget.velocities">
+<em class="property">property </em><code class="sig-name descname">velocities</code><a class="headerlink" href="#robovat.simulation.controllable_body.JointTarget.velocities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.JointTarget.velocity_gains">
+<em class="property">property </em><code class="sig-name descname">velocity_gains</code><a class="headerlink" href="#robovat.simulation.controllable_body.JointTarget.velocity_gains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.JointTarget.velocity_threshold">
+<em class="property">property </em><code class="sig-name descname">velocity_threshold</code><a class="headerlink" href="#robovat.simulation.controllable_body.JointTarget.velocity_threshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="robovat.simulation.controllable_body.LinkTarget">
+<em class="property">class </em><code class="sig-name descname">LinkTarget</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#LinkTarget"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.LinkTarget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Specify the target in terms of pose of a link.</p>
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.LinkTarget.index">
+<em class="property">property </em><code class="sig-name descname">index</code><a class="headerlink" href="#robovat.simulation.controllable_body.LinkTarget.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.LinkTarget.is_ready">
+<code class="sig-name descname">is_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#LinkTarget.is_ready"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.LinkTarget.is_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the target has been reached.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if the target has been reached, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.LinkTarget.link">
+<em class="property">property </em><code class="sig-name descname">link</code><a class="headerlink" href="#robovat.simulation.controllable_body.LinkTarget.link" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.LinkTarget.pop">
+<code class="sig-name descname">pop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#LinkTarget.pop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.LinkTarget.pop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.LinkTarget.pose">
+<em class="property">property </em><code class="sig-name descname">pose</code><a class="headerlink" href="#robovat.simulation.controllable_body.LinkTarget.pose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.LinkTarget.pose_queue">
+<em class="property">property </em><code class="sig-name descname">pose_queue</code><a class="headerlink" href="#robovat.simulation.controllable_body.LinkTarget.pose_queue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.LinkTarget.position_threshold">
+<em class="property">property </em><code class="sig-name descname">position_threshold</code><a class="headerlink" href="#robovat.simulation.controllable_body.LinkTarget.position_threshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.LinkTarget.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#LinkTarget.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.LinkTarget.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the target.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.LinkTarget.set">
+<code class="sig-name descname">set</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em>, <em class="sig-param"><span class="n">pose</span></em>, <em class="sig-param"><span class="n">start_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">stop_time</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">position_threshold</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">velocity_threshold</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">15.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_body.html#LinkTarget.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_body.LinkTarget.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the target.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> – Link index.</p></li>
+<li><p><strong>pose</strong> – Target link pose.</p></li>
+<li><p><strong>start_time</strong> – Starting time of the target.</p></li>
+<li><p><strong>stop_time</strong> – Stopping time of the target.</p></li>
+<li><p><strong>position_threshold</strong> – Threshold of reaching the target positions.</p></li>
+<li><p><strong>velocity_threshold</strong> – Threshold of reaching the target velocities.</p></li>
+<li><p><strong>timeout</strong> – Maximum execution time in seconds.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.LinkTarget.start_time">
+<em class="property">property </em><code class="sig-name descname">start_time</code><a class="headerlink" href="#robovat.simulation.controllable_body.LinkTarget.start_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.LinkTarget.stop_time">
+<em class="property">property </em><code class="sig-name descname">stop_time</code><a class="headerlink" href="#robovat.simulation.controllable_body.LinkTarget.stop_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_body.LinkTarget.velocity_threshold">
+<em class="property">property </em><code class="sig-name descname">velocity_threshold</code><a class="headerlink" href="#robovat.simulation.controllable_body.LinkTarget.velocity_threshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.simulation.controllable_constraint">
+<span id="robovat-simulation-controllable-constraint-module"></span><h2>robovat.simulation.controllable_constraint module<a class="headerlink" href="#module-robovat.simulation.controllable_constraint" title="Permalink to this headline">¶</a></h2>
+<p>The controllable constraint class.</p>
+<dl class="py class">
+<dt id="robovat.simulation.controllable_constraint.ControllableConstraint">
+<em class="property">class </em><code class="sig-name descname">ControllableConstraint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent</span></em>, <em class="sig-param"><span class="n">child</span></em>, <em class="sig-param"><span class="n">joint_type</span><span class="o">=</span><span class="default_value">'fixed'</span></em>, <em class="sig-param"><span class="n">joint_axis</span><span class="o">=</span><span class="default_value">[0, 0, 0]</span></em>, <em class="sig-param"><span class="n">parent_frame_pose</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">child_frame_pose</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_linear_velocity</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_angular_velocity</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_force</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_constraint.html#ControllableConstraint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_constraint.ControllableConstraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.simulation.constraint.Constraint" title="robovat.simulation.constraint.Constraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.simulation.constraint.Constraint</span></code></a></p>
+<p>Controllable constraint.</p>
+<dl class="py method">
+<dt id="robovat.simulation.controllable_constraint.ControllableConstraint.check_reached">
+<code class="sig-name descname">check_reached</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_constraint.html#ControllableConstraint.check_reached"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_constraint.ControllableConstraint.check_reached" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the specified joint positions are reached.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if the target has been reached, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_constraint.ControllableConstraint.check_timeout">
+<code class="sig-name descname">check_timeout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_constraint.html#ControllableConstraint.check_timeout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_constraint.ControllableConstraint.check_timeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the joint is timeout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if it is timeout, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_constraint.ControllableConstraint.is_ready">
+<code class="sig-name descname">is_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_constraint.html#ControllableConstraint.is_ready"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_constraint.ControllableConstraint.is_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the constraint is ready.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if all control commands are done, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_constraint.ControllableConstraint.reset_targets">
+<code class="sig-name descname">reset_targets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_constraint.html#ControllableConstraint.reset_targets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_constraint.ControllableConstraint.reset_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the control variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_constraint.ControllableConstraint.set_target_pose">
+<code class="sig-name descname">set_target_pose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pose</span></em>, <em class="sig-param"><span class="n">linear_velocity</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">angular_velocity</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_constraint.html#ControllableConstraint.set_target_pose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_constraint.ControllableConstraint.set_target_pose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set target pose.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.controllable_constraint.ControllableConstraint.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/controllable_constraint.html#ControllableConstraint.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.controllable_constraint.ControllableConstraint.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update control and disturbances.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.simulation.entity">
+<span id="robovat-simulation-entity-module"></span><h2>robovat.simulation.entity module<a class="headerlink" href="#module-robovat.simulation.entity" title="Permalink to this headline">¶</a></h2>
+<p>The Entity class.</p>
+<dl class="py class">
+<dt id="robovat.simulation.entity.Entity">
+<em class="property">class </em><code class="sig-name descname">Entity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">simulator</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/entity.html#Entity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.entity.Entity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.simulation.base.Base" title="robovat.simulation.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.simulation.base.Base</span></code></a></p>
+<p>Entity.</p>
+<dl class="py method">
+<dt id="robovat.simulation.entity.Entity.euler">
+<em class="property">property </em><code class="sig-name descname">euler</code><a class="headerlink" href="#robovat.simulation.entity.Entity.euler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.entity.Entity.mass">
+<em class="property">property </em><code class="sig-name descname">mass</code><a class="headerlink" href="#robovat.simulation.entity.Entity.mass" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.entity.Entity.matrix3">
+<em class="property">property </em><code class="sig-name descname">matrix3</code><a class="headerlink" href="#robovat.simulation.entity.Entity.matrix3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.entity.Entity.orientation">
+<em class="property">property </em><code class="sig-name descname">orientation</code><a class="headerlink" href="#robovat.simulation.entity.Entity.orientation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.entity.Entity.pose">
+<em class="property">property </em><code class="sig-name descname">pose</code><a class="headerlink" href="#robovat.simulation.entity.Entity.pose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.entity.Entity.position">
+<em class="property">property </em><code class="sig-name descname">position</code><a class="headerlink" href="#robovat.simulation.entity.Entity.position" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.entity.Entity.quaternion">
+<em class="property">property </em><code class="sig-name descname">quaternion</code><a class="headerlink" href="#robovat.simulation.entity.Entity.quaternion" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.simulation.joint">
+<span id="robovat-simulation-joint-module"></span><h2>robovat.simulation.joint module<a class="headerlink" href="#module-robovat.simulation.joint" title="Permalink to this headline">¶</a></h2>
+<p>The Joint class.</p>
+<dl class="py class">
+<dt id="robovat.simulation.joint.Joint">
+<em class="property">class </em><code class="sig-name descname">Joint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em>, <em class="sig-param"><span class="n">joint_ind</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/joint.html#Joint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.joint.Joint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.simulation.base.Base" title="robovat.simulation.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.simulation.base.Base</span></code></a></p>
+<p>Joint of the body.</p>
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.damping">
+<em class="property">property </em><code class="sig-name descname">damping</code><a class="headerlink" href="#robovat.simulation.joint.Joint.damping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.dynamics">
+<em class="property">property </em><code class="sig-name descname">dynamics</code><a class="headerlink" href="#robovat.simulation.joint.Joint.dynamics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.enable_sensor">
+<code class="sig-name descname">enable_sensor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/joint.html#Joint.enable_sensor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.joint.Joint.enable_sensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the force/torque sensor of this joint.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.friction">
+<em class="property">property </em><code class="sig-name descname">friction</code><a class="headerlink" href="#robovat.simulation.joint.Joint.friction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.index">
+<em class="property">property </em><code class="sig-name descname">index</code><a class="headerlink" href="#robovat.simulation.joint.Joint.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.limit">
+<em class="property">property </em><code class="sig-name descname">limit</code><a class="headerlink" href="#robovat.simulation.joint.Joint.limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.lower_limit">
+<em class="property">property </em><code class="sig-name descname">lower_limit</code><a class="headerlink" href="#robovat.simulation.joint.Joint.lower_limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.max_effort">
+<em class="property">property </em><code class="sig-name descname">max_effort</code><a class="headerlink" href="#robovat.simulation.joint.Joint.max_effort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.max_velocity">
+<em class="property">property </em><code class="sig-name descname">max_velocity</code><a class="headerlink" href="#robovat.simulation.joint.Joint.max_velocity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.parent">
+<em class="property">property </em><code class="sig-name descname">parent</code><a class="headerlink" href="#robovat.simulation.joint.Joint.parent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.position">
+<em class="property">property </em><code class="sig-name descname">position</code><a class="headerlink" href="#robovat.simulation.joint.Joint.position" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.position_control">
+<code class="sig-name descname">position_control</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">position</span></em>, <em class="sig-param"><span class="n">velocity</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_force</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">position_gain</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">velocity_gain</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/joint.html#Joint.position_control"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.joint.Joint.position_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Position control.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.range">
+<em class="property">property </em><code class="sig-name descname">range</code><a class="headerlink" href="#robovat.simulation.joint.Joint.range" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.reaction_force">
+<em class="property">property </em><code class="sig-name descname">reaction_force</code><a class="headerlink" href="#robovat.simulation.joint.Joint.reaction_force" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.torque_control">
+<code class="sig-name descname">torque_control</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">torque</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/joint.html#Joint.torque_control"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.joint.Joint.torque_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Torque control.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.upper_limit">
+<em class="property">property </em><code class="sig-name descname">upper_limit</code><a class="headerlink" href="#robovat.simulation.joint.Joint.upper_limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.velocity">
+<em class="property">property </em><code class="sig-name descname">velocity</code><a class="headerlink" href="#robovat.simulation.joint.Joint.velocity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.joint.Joint.velocity_control">
+<code class="sig-name descname">velocity_control</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">velocity</span></em>, <em class="sig-param"><span class="n">max_force</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">position_gain</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">velocity_gain</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/joint.html#Joint.velocity_control"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.joint.Joint.velocity_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Velocity control.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.simulation.link">
+<span id="robovat-simulation-link-module"></span><h2>robovat.simulation.link module<a class="headerlink" href="#module-robovat.simulation.link" title="Permalink to this headline">¶</a></h2>
+<p>Link Class.</p>
+<dl class="py class">
+<dt id="robovat.simulation.link.Link">
+<em class="property">class </em><code class="sig-name descname">Link</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em>, <em class="sig-param"><span class="n">link_ind</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/link.html#Link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.link.Link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#robovat.simulation.entity.Entity" title="robovat.simulation.entity.Entity"><code class="xref py py-class docutils literal notranslate"><span class="pre">robovat.simulation.entity.Entity</span></code></a></p>
+<p>Link of the body.</p>
+<dl class="py method">
+<dt id="robovat.simulation.link.Link.center_of_mass">
+<em class="property">property </em><code class="sig-name descname">center_of_mass</code><a class="headerlink" href="#robovat.simulation.link.Link.center_of_mass" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.link.Link.dynamics">
+<em class="property">property </em><code class="sig-name descname">dynamics</code><a class="headerlink" href="#robovat.simulation.link.Link.dynamics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.link.Link.index">
+<em class="property">property </em><code class="sig-name descname">index</code><a class="headerlink" href="#robovat.simulation.link.Link.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.link.Link.mass">
+<em class="property">property </em><code class="sig-name descname">mass</code><a class="headerlink" href="#robovat.simulation.link.Link.mass" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.link.Link.parent">
+<em class="property">property </em><code class="sig-name descname">parent</code><a class="headerlink" href="#robovat.simulation.link.Link.parent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.link.Link.pose">
+<em class="property">property </em><code class="sig-name descname">pose</code><a class="headerlink" href="#robovat.simulation.link.Link.pose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.link.Link.set_dynamics">
+<code class="sig-name descname">set_dynamics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mass</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">lateral_friction</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rolling_friction</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">spinning_friction</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/link.html#Link.set_dynamics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.link.Link.set_dynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set dynmamics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mass</strong> – The mass of the body.</p></li>
+<li><p><strong>lateral_friction</strong> – The lateral friction coefficient.</p></li>
+<li><p><strong>rolling_friction</strong> – The rolling friction coefficient.</p></li>
+<li><p><strong>spinning_friction</strong> – The spinning friction coefficient.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-robovat.simulation.simulator">
+<span id="robovat-simulation-simulator-module"></span><h2>robovat.simulation.simulator module<a class="headerlink" href="#module-robovat.simulation.simulator" title="Permalink to this headline">¶</a></h2>
+<p>The Simulator class.</p>
+<dl class="py class">
+<dt id="robovat.simulation.simulator.Simulator">
+<em class="property">class </em><code class="sig-name descname">Simulator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">assets_dir</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">physics_backend</span><span class="o">=</span><span class="default_value">'BulletPhysics'</span></em>, <em class="sig-param"><span class="n">time_step</span><span class="o">=</span><span class="default_value">0.001</span></em>, <em class="sig-param"><span class="n">gravity</span><span class="o">=</span><span class="default_value">[0, 0, - 9.8]</span></em>, <em class="sig-param"><span class="n">worker_id</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_visualizer</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The Simulator class.</p>
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.add_body">
+<code class="sig-name descname">add_body</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">pose</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">is_static</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">is_controllable</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.add_body"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.add_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a body to the simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – The path to the URDF file to be loaded. If the path is
+not absolute path, it will be joined with the assets directory.</p></li>
+<li><p><strong>pose</strong> – The initial pose as an instance of Pose.</p></li>
+<li><p><strong>scale</strong> – The scaling factor of the body.</p></li>
+<li><p><strong>is_static</strong> – If True, set the base of the body to be static.</p></li>
+<li><p><strong>is_controllable</strong> – If True, the body can apply motor controls.</p></li>
+<li><p><strong>name</strong> – Used as a reference of the body in this Simulator instance.</p></li>
+<li><p><strong>kwargs</strong> – Extra arguments for loading obj files</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An instance of Body.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.add_constraint">
+<code class="sig-name descname">add_constraint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent</span></em>, <em class="sig-param"><span class="n">child</span></em>, <em class="sig-param"><span class="n">joint_type</span><span class="o">=</span><span class="default_value">'fixed'</span></em>, <em class="sig-param"><span class="n">joint_axis</span><span class="o">=</span><span class="default_value">[0, 0, 0]</span></em>, <em class="sig-param"><span class="n">parent_frame_pose</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">child_frame_pose</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_force</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_linear_velocity</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_angular_velocity</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">is_controllable</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.add_constraint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.add_constraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a constraint to the simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> – The parent entity as an instance of Entity.</p></li>
+<li><p><strong>child</strong> – The child entity as an instance of Entity.</p></li>
+<li><p><strong>joint_type</strong> – The type of the joint.</p></li>
+<li><p><strong>joint_axis</strong> – The axis of the joint.</p></li>
+<li><p><strong>parent_frame_pose</strong> – The pose of the joint in the parent frame.</p></li>
+<li><p><strong>child_frame_pose</strong> – The pose of the joint in the child frame.</p></li>
+<li><p><strong>max_force</strong> – Max force the constraint can apply.</p></li>
+<li><p><strong>max_linear_velocity</strong> – Maximum linear velocity.</p></li>
+<li><p><strong>max_angular_velocity</strong> – Max angular velocity.</p></li>
+<li><p><strong>is_controllable</strong> – If True, the constraint can apply motor controls.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An instance of Constraint.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.assets_dir">
+<em class="property">property </em><code class="sig-name descname">assets_dir</code><a class="headerlink" href="#robovat.simulation.simulator.Simulator.assets_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.bodies">
+<em class="property">property </em><code class="sig-name descname">bodies</code><a class="headerlink" href="#robovat.simulation.simulator.Simulator.bodies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.check_contact">
+<code class="sig-name descname">check_contact</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">entity_a</span></em>, <em class="sig-param"><span class="n">entity_b</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.check_contact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.check_contact" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the loaded object is stable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entity_a</strong> – The first entity.</p></li>
+<li><p><strong>entity_b</strong> – The second entity, None for any entities.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if they have contacts, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.check_stable">
+<code class="sig-name descname">check_stable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em>, <em class="sig-param"><span class="n">linear_velocity_threshold</span></em>, <em class="sig-param"><span class="n">angular_velocity_threshold</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.check_stable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.check_stable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the loaded object is stable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>body</strong> – An instance of body or a list of bodies.</p></li>
+<li><p><strong>linear_velocity_threshold</strong> – Linear velocity threshold of being
+stable.</p></li>
+<li><p><strong>angular_velocity_threshold</strong> – Angular velocity threshold of being
+stable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>True if the linear velocity and the angular velocity are</dt><dd><p>almost zero; False otherwise.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>is_stable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.clear_visualization">
+<code class="sig-name descname">clear_visualization</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.clear_visualization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.clear_visualization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear all visualization items.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.constraints">
+<em class="property">property </em><code class="sig-name descname">constraints</code><a class="headerlink" href="#robovat.simulation.simulator.Simulator.constraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.num_steps">
+<em class="property">property </em><code class="sig-name descname">num_steps</code><a class="headerlink" href="#robovat.simulation.simulator.Simulator.num_steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.physics">
+<em class="property">property </em><code class="sig-name descname">physics</code><a class="headerlink" href="#robovat.simulation.simulator.Simulator.physics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.plot_line">
+<code class="sig-name descname">plot_line</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">end</span></em>, <em class="sig-param"><span class="n">line_color</span><span class="o">=</span><span class="default_value">[0, 0, 0]</span></em>, <em class="sig-param"><span class="n">line_width</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.plot_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.plot_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a pose or a frame in the debugging visualizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> – Starting point of the line.</p></li>
+<li><p><strong>end</strong> – Ending point of the line.</p></li>
+<li><p><strong>line_color</strong> – Color of the line.</p></li>
+<li><p><strong>line_width</strong> – Width of the line.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.plot_pose">
+<code class="sig-name descname">plot_pose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pose</span></em>, <em class="sig-param"><span class="n">axis_length</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">text</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">text_size</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">text_color</span><span class="o">=</span><span class="default_value">[0, 0, 0]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.plot_pose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.plot_pose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a 6-DoF pose or a frame in the debugging visualizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pose</strong> – The pose to be plot.</p></li>
+<li><p><strong>axis_length</strong> – The length of the axes.</p></li>
+<li><p><strong>text</strong> – Text showing up next to the frame.</p></li>
+<li><p><strong>text_size</strong> – Size of the text.</p></li>
+<li><p><strong>text_color</strong> – Color of the text.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.receive_robot_commands">
+<code class="sig-name descname">receive_robot_commands</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">robot_command</span></em>, <em class="sig-param"><span class="n">component_type</span><span class="o">=</span><span class="default_value">'body'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.receive_robot_commands"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.receive_robot_commands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive a robot command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_command</strong> – An instance of RobotCommand.</p></li>
+<li><p><strong>component_type</strong> – Either ‘body’ or ‘constraint’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.remove_body">
+<code class="sig-name descname">remove_body</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.remove_body"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.remove_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the body.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>body</strong> – An instance of Body.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.remove_constraint">
+<code class="sig-name descname">remove_constraint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">constraint</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.remove_constraint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.remove_constraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a constraint</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>constraint_uid</strong> (<em>int</em>) – Constraint unique Id for removal.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the simulation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.start">
+<code class="sig-name descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start the simulation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take a simulation step.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.time_step">
+<em class="property">property </em><code class="sig-name descname">time_step</code><a class="headerlink" href="#robovat.simulation.simulator.Simulator.time_step" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="robovat.simulation.simulator.Simulator.wait_until_stable">
+<code class="sig-name descname">wait_until_stable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em>, <em class="sig-param"><span class="n">linear_velocity_threshold</span><span class="o">=</span><span class="default_value">0.005</span></em>, <em class="sig-param"><span class="n">angular_velocity_threshold</span><span class="o">=</span><span class="default_value">0.005</span></em>, <em class="sig-param"><span class="n">check_after_steps</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">min_stable_steps</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">max_steps</span><span class="o">=</span><span class="default_value">2000</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/robovat/simulation/simulator.html#Simulator.wait_until_stable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#robovat.simulation.simulator.Simulator.wait_until_stable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait until the objects are stable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>body</strong> – An instance of body or a list of bodies.</p></li>
+<li><p><strong>linear_velocity_threshold</strong> – Linear velocity threshold of being
+stable.</p></li>
+<li><p><strong>angular_velocity_threshold</strong> – Angular velocity threshold of being
+stable.</p></li>
+<li><p><strong>check_after_steps</strong> – Number of steps before checking.</p></li>
+<li><p><strong>min_stable_steps</strong> – Minimum number of steps required to be stable.</p></li>
+<li><p><strong>max_steps</strong> – Maximum steps to wait for objects being stable.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="robovat.simulation.camera.html" class="btn btn-neutral float-right" title="robovat.simulation.camera package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="robovat.robots.sawyer.html" class="btn btn-neutral float-left" title="robovat.robots.sawyer package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kuan Fang (original), Yifeng Zhu (modify)
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

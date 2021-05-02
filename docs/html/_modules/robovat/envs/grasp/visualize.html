@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>robovat.envs.grasp.visualize &mdash; RPL-robovat 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> RPL-robovat
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/modules.html">RPL_robovat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../modules/robovat.html">robovat package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.envs.html">robovat.envs package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.envs.grasp.html">robovat.envs.grasp package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.envs.push.html">robovat.envs.push package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.envs.html#module-robovat.envs.arm_env">robovat.envs.arm_env module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.envs.html#module-robovat.envs.robot_env">robovat.envs.robot_env module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.io.html">robovat.io package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.io.html#module-robovat.io.episode_generation">robovat.io.episode_generation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.io.html#module-robovat.io.hdf5_utils">robovat.io.hdf5_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.io.html#module-robovat.io.pickle_utils">robovat.io.pickle_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.math.html">robovat.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.math.html#module-robovat.math.euler">robovat.math.euler module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.math.html#module-robovat.math.orientation">robovat.math.orientation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.math.html#module-robovat.math.point">robovat.math.point module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.math.html#module-robovat.math.pose">robovat.math.pose module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.math.html#module-robovat.math.quaternion">robovat.math.quaternion module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.observations.html">robovat.observations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.observations.html#module-robovat.observations.action_obs">robovat.observations.action_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.observations.html#module-robovat.observations.attribute_obs">robovat.observations.attribute_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.observations.html#module-robovat.observations.camera_obs">robovat.observations.camera_obs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.observations.html#module-robovat.observations.observation">robovat.observations.observation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.observations.html#module-robovat.observations.pose_obs">robovat.observations.pose_obs module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.perception.html">robovat.perception package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.perception.camera.html">robovat.perception.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.perception.html#module-robovat.perception.depth_utils">robovat.perception.depth_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.perception.html#module-robovat.perception.image_utils">robovat.perception.image_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.perception.html#module-robovat.perception.point_cloud_utils">robovat.perception.point_cloud_utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.policies.html">robovat.policies package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.policies.html#module-robovat.policies.grasp_policy">robovat.policies.grasp_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.policies.html#module-robovat.policies.policy">robovat.policies.policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.policies.html#module-robovat.policies.push_policy">robovat.policies.push_policy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.policies.html#module-robovat.policies.random_policy">robovat.policies.random_policy module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.reward_fns.html">robovat.reward_fns package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.reward_fns.html#module-robovat.reward_fns.grasp_reward">robovat.reward_fns.grasp_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.reward_fns.html#module-robovat.reward_fns.push_reward">robovat.reward_fns.push_reward module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.reward_fns.html#module-robovat.reward_fns.reward_fn">robovat.reward_fns.reward_fn module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.robots.html">robovat.robots package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.robots.franka_panda.html">robovat.robots.franka_panda package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.robots.sawyer.html">robovat.robots.sawyer package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.robots.html#module-robovat.robots.robot">robovat.robots.robot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.robots.html#module-robovat.robots.robot_command">robovat.robots.robot_command module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.simulation.html">robovat.simulation package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.camera.html">robovat.simulation.camera package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.physics.html">robovat.simulation.physics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.base">robovat.simulation.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.body">robovat.simulation.body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.constraint">robovat.simulation.constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.controllable_body">robovat.simulation.controllable_body module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.controllable_constraint">robovat.simulation.controllable_constraint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.entity">robovat.simulation.entity module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.joint">robovat.simulation.joint module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.link">robovat.simulation.link module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.simulation.html#module-robovat.simulation.simulator">robovat.simulation.simulator module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/robovat.utils.html">robovat.utils package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.utils.html#module-robovat.utils.logging">robovat.utils.logging module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.utils.html#module-robovat.utils.mesh_utils">robovat.utils.mesh_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.utils.html#robovat-utils-planning-utils-module">robovat.utils.planning_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.utils.html#module-robovat.utils.string_utils">robovat.utils.string_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.utils.html#module-robovat.utils.time_utils">robovat.utils.time_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/robovat.utils.html#module-robovat.utils.yaml_config">robovat.utils.yaml_config module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../modules/third_party.html">third_party package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../modules/third_party.html#module-third_party.transformations">third_party.transformations module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../modules/third_party.html#requirements">Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">RPL-robovat</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>robovat.envs.grasp.visualize</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for robovat.envs.grasp.visualize</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Visualization utilities for grasping.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="plot_grasp"><a class="viewcode-back" href="../../../../modules/robovat.envs.grasp.html#robovat.envs.grasp.visualize.plot_grasp">[docs]</a><span class="k">def</span> <span class="nf">plot_grasp</span><span class="p">(</span>
+        <span class="n">grasp</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
+        <span class="n">arrow_len</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">arrow_head_len</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">arrow_head_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">arrow_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">jaw_len</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">jaw_width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">grasp_center_size</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+        <span class="n">grasp_center_style</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
+        <span class="n">grasp_axis_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">grasp_axis_style</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+        <span class="n">show_center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">show_axis</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plots a 2D grasp with arrow and jaw.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        grasp: 2D grasp to plot.</span>
+<span class="sd">        color: Color of plotted grasp.</span>
+<span class="sd">        arrow_len: Length of arrow body.</span>
+<span class="sd">        arrow_head_len: Length of arrow head.</span>
+<span class="sd">        arrow_head_width: Width of arrow head.</span>
+<span class="sd">        arrow_width: Width of arrow body.</span>
+<span class="sd">        jaw_len: Length of jaw line.</span>
+<span class="sd">        jaw_width: Line width of jaw line.</span>
+<span class="sd">        grasp_center_size: Thickness of grasp center.</span>
+<span class="sd">        grasp_center_style: Style of center of grasp.</span>
+<span class="sd">        grasp_axis_width: Line width of grasp axis.</span>
+<span class="sd">        grasp_axis_style: Style of grasp axis line.</span>
+<span class="sd">        show_center: Whether or not to plot the grasp center.</span>
+<span class="sd">        show_axis: Whether or not to plot the grasp axis.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Plot grasp center</span>
+    <span class="c1"># if show_center:</span>
+    <span class="k">if</span> <span class="n">show_center</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">grasp</span><span class="o">.</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="n">grasp</span><span class="o">.</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
+                    <span class="n">linewidths</span><span class="o">=</span><span class="n">scale</span> <span class="o">*</span> <span class="n">grasp_center_size</span><span class="p">)</span>
+
+    <span class="c1"># Compute axis and jaw locations.</span>
+    <span class="n">axis</span> <span class="o">=</span> <span class="n">grasp</span><span class="o">.</span><span class="n">axis</span>
+    <span class="n">g1</span> <span class="o">=</span> <span class="n">grasp</span><span class="o">.</span><span class="n">center</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">grasp</span><span class="o">.</span><span class="n">width_pixel</span><span class="p">)</span> <span class="o">*</span> <span class="n">axis</span>
+    <span class="n">g2</span> <span class="o">=</span> <span class="n">grasp</span><span class="o">.</span><span class="n">center</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">grasp</span><span class="o">.</span><span class="n">width_pixel</span><span class="p">)</span> <span class="o">*</span> <span class="n">axis</span>
+
+    <span class="c1"># Start location of grasp jaw 1.</span>
+    <span class="n">g1p</span> <span class="o">=</span> <span class="n">g1</span> <span class="o">-</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">arrow_len</span> <span class="o">*</span> <span class="n">axis</span>
+    <span class="c1"># Start location of grasp jaw 2.</span>
+    <span class="n">g2p</span> <span class="o">=</span> <span class="n">g2</span> <span class="o">+</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">arrow_len</span> <span class="o">*</span> <span class="n">axis</span>
+
+    <span class="c1"># Plot grasp axis.</span>
+    <span class="k">if</span> <span class="n">show_axis</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">g1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">g2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">g1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">g2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+                 <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+                 <span class="n">linewidth</span><span class="o">=</span><span class="n">scale</span> <span class="o">*</span> <span class="n">grasp_axis_width</span><span class="p">,</span>
+                 <span class="n">linestyle</span><span class="o">=</span><span class="n">grasp_axis_style</span><span class="p">)</span>
+
+    <span class="c1"># Direction of jaw line.</span>
+    <span class="n">jaw_dir</span> <span class="o">=</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">jaw_len</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">axis</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">axis</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+
+    <span class="c1"># Length of arrow.</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">scale</span> <span class="o">*</span> <span class="p">(</span><span class="n">arrow_len</span> <span class="o">-</span> <span class="n">arrow_head_len</span><span class="p">)</span>
+
+    <span class="c1"># Plot jaw 1.</span>
+    <span class="n">jaw_line1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">g1</span> <span class="o">+</span> <span class="n">jaw_dir</span><span class="p">,</span> <span class="n">g1</span> <span class="o">-</span> <span class="n">jaw_dir</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">jaw_line1</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="n">jaw_line1</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+             <span class="n">linewidth</span><span class="o">=</span><span class="n">scale</span> <span class="o">*</span> <span class="n">jaw_width</span><span class="p">,</span>
+             <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">g1p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="n">g1p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+              <span class="n">alpha</span> <span class="o">*</span> <span class="n">axis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="n">alpha</span> <span class="o">*</span> <span class="n">axis</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+              <span class="n">width</span><span class="o">=</span><span class="n">scale</span> <span class="o">*</span> <span class="n">arrow_width</span><span class="p">,</span>
+              <span class="n">head_width</span><span class="o">=</span><span class="n">scale</span> <span class="o">*</span> <span class="n">arrow_head_width</span><span class="p">,</span>
+              <span class="n">head_length</span><span class="o">=</span><span class="n">scale</span> <span class="o">*</span> <span class="n">arrow_head_len</span><span class="p">,</span>
+              <span class="n">fc</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+              <span class="n">ec</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="c1"># Plot jaw 2.</span>
+    <span class="n">jaw_line2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">g2</span> <span class="o">+</span> <span class="n">jaw_dir</span><span class="p">,</span> <span class="n">g2</span> <span class="o">-</span> <span class="n">jaw_dir</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">jaw_line2</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="n">jaw_line2</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+             <span class="n">linewidth</span><span class="o">=</span><span class="n">scale</span> <span class="o">*</span> <span class="n">jaw_width</span><span class="p">,</span>
+             <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">g2p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="n">g2p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+              <span class="o">-</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">axis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="o">-</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">axis</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+              <span class="n">width</span><span class="o">=</span><span class="n">scale</span> <span class="o">*</span> <span class="n">arrow_width</span><span class="p">,</span>
+              <span class="n">head_width</span><span class="o">=</span><span class="n">scale</span> <span class="o">*</span> <span class="n">arrow_head_width</span><span class="p">,</span>
+              <span class="n">head_length</span><span class="o">=</span><span class="n">scale</span> <span class="o">*</span> <span class="n">arrow_head_len</span><span class="p">,</span>
+              <span class="n">fc</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+              <span class="n">ec</span><span class="o">=</span><span class="n">color</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="plot_grasp_on_image"><a class="viewcode-back" href="../../../../modules/robovat.envs.grasp.html#robovat.envs.grasp.visualize.plot_grasp_on_image">[docs]</a><span class="k">def</span> <span class="nf">plot_grasp_on_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">grasp</span><span class="p">,</span> <span class="n">grasp_quality</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot the final grasp overlaid on the input image.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        image: The whole image captured from the camera.</span>
+<span class="sd">        grasp: The chosen Grasp2D instance.</span>
+<span class="sd">        grasp_quality: The corresponding grasp quality.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray_r</span><span class="p">)</span>
+    <span class="n">plot_grasp</span><span class="p">(</span><span class="n">grasp</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">show_center</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_axis</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">grasp_quality</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Planned grasp on depth (Q=</span><span class="si">%f</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">grasp_quality</span><span class="p">))</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> </div>
+
+
+<div class="viewcode-block" id="plot_sampled_grasps"><a class="viewcode-back" href="../../../../modules/robovat.envs.grasp.html#robovat.envs.grasp.visualize.plot_sampled_grasps">[docs]</a><span class="k">def</span> <span class="nf">plot_sampled_grasps</span><span class="p">(</span><span class="n">grasp_images</span><span class="p">,</span>
+                        <span class="n">grasp_poses</span><span class="p">,</span>
+                        <span class="n">grasp_qualities</span><span class="p">,</span>
+                        <span class="n">num_sampled_grasps</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot sampled grasps.</span>
+
+<span class="sd">    The cropped images corresponding to each sampled grasp will be plot in a</span>
+<span class="sd">    square array.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        grasp_images: A list or array of grasp images.</span>
+<span class="sd">        grasp_poses: A list of array of grasp poses.</span>
+<span class="sd">        grasp_qualities: The predicted grasp qualities.</span>
+<span class="sd">        num_sampled_grasps: </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+    <span class="n">sorted_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">grasp_qualities</span><span class="o">.</span><span class="n">flatten</span><span class="p">())[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">num_sampled_grasps</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">num_sampled_grasps</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sorted_indices</span><span class="p">))):</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">sorted_indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">grasp_images</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
+                   <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray_r</span><span class="p">)</span>
+
+        <span class="c1"># Visualize purposeless grasps.</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;id: </span><span class="si">%d</span><span class="se">\n</span><span class="s1">depth: </span><span class="si">%.2f</span><span class="se">\n</span><span class="s1">quality: </span><span class="si">%.2f</span><span class="s1">&#39;</span>
+                  <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">grasp_poses</span><span class="p">[</span><span class="n">ind</span><span class="p">],</span> <span class="n">grasp_qualities</span><span class="p">[</span><span class="n">ind</span><span class="p">]))</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> </div>
+
+
+<div class="viewcode-block" id="plot_heatmap"><a class="viewcode-back" href="../../../../modules/robovat.envs.grasp.html#robovat.envs.grasp.visualize.plot_heatmap">[docs]</a><span class="k">def</span> <span class="nf">plot_heatmap</span><span class="p">(</span><span class="n">camera_image</span><span class="p">,</span>
+                 <span class="n">grasps</span><span class="p">,</span>
+                 <span class="n">grasp_qualities</span><span class="p">,</span>
+                 <span class="n">kernel_size</span><span class="o">=</span><span class="mi">11</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot the final grasp.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        camera_image: The whole image captured from the camera.</span>
+<span class="sd">        grasps: The chosen Grasp2D instance.</span>
+<span class="sd">        grasp_qualities: The predicted grasp qualities.</span>
+<span class="sd">        kernel_size: Size of the Gaussian kernel for computing the heatmap.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">camera_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray_r</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">image_shape</span> <span class="o">=</span> <span class="n">camera_image</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">heatmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">image_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">image_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">grasp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grasps</span><span class="p">):</span>
+        <span class="n">center</span> <span class="o">=</span> <span class="n">grasp</span><span class="o">.</span><span class="n">center</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">grasp_qualities</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">heatmap</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">+=</span> <span class="n">score</span>
+    
+    <span class="n">heatmap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">heatmap</span><span class="p">,</span> <span class="p">(</span><span class="n">kernel_size</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">heatmap</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">heatmap</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">heatmap</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> </div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Kuan Fang (original), Yifeng Zhu (modify)
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

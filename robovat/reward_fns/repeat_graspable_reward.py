@@ -53,6 +53,8 @@ class RepeatGraspReward(reward_fn.RewardFn):
             success: The success signal.
             terminate_after_grasp: The termination signal.
         """
+        termination = (self.env._num_steps >= self.env.config.MAX_ACTIONS_PER_EPS or
+                       len(self.graspables) <= self.env.config.SIM.GRASPABLE.NUM // 2)
 
         success = self.env.success
 
@@ -61,7 +63,7 @@ class RepeatGraspReward(reward_fn.RewardFn):
         logger.debug('Grasp Success: %r, Success Rate %.3f',
                      success, success_rate)
 
-        return success, self.terminate_after_grasp
+        return success, termination
 
     def _update_history(self, success):
         """Update the reward history.

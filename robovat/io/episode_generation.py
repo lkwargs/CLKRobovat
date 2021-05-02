@@ -4,8 +4,6 @@ Run and generate episodes.
 Copyright (c) 2018 Stanford University.
 Licensed under the MIT License (see LICENSE for details)
 Written by Kuan Fang
-
-Modified work Copyright 2021 Lekai Chen
 """
 
 from __future__ import absolute_import
@@ -19,34 +17,31 @@ import traceback
 from robovat.utils import time_utils
 from robovat.utils.logging import logger
 
-
 def generate_episode(env, policy, num_steps=None, debug=False):
     """Run and generate an episode.
-
     Args:
         env: The environment.
         policy: The policy.
         num_steps: Maximum number of steps in each episode. None for infinite.
         debug: True for visualize the policy for debugging, False otherwise.
-
     Returns:
         episode: The episode data as a dictionary of
             'hostname': The hostname of the computer.
             'timestamp': The system timestamp of the beginning of the episode.
             'policy_info': The policy information.
-            'transitions': A list of transitions. Each transition is a
-                dictionary of state, action, reward, and info.
+            'transitions': A list of transitions. Each transition is a dictionary of state, action, reward, and info.
     """
     t = 0
     transitions = []
 
     observation = env.reset()
 
-    while True:
+    while(1):
+
         action = policy.action(observation)
-
+        print('ACTION :', action)
+        
         new_observation, reward, done, info = env.step(action)
-
         transition = {
             'state': observation,
             'action': action,
@@ -56,11 +51,13 @@ def generate_episode(env, policy, num_steps=None, debug=False):
         transitions.append(transition)
         observation = new_observation
 
-        if done:
-            break
+        # if done:
+        #     print('[Episode done] current episode has done....')
+        #     break
 
         t += 1
         if (num_steps is not None) and (t >= num_steps):
+            print('[Episode done] current episode t: {} achieve maximum step'.format(t))
             break
 
     episode = {
@@ -91,8 +88,11 @@ def generate_episodes(env, policy, num_steps=None, num_episodes=None,
     episode_index = 0
     total_time = 0.0
 
-    while True:
+    while(1):
         try:
+            print('--' * 20)
+            print('[Episode index] ', episode_index)
+            print('--' * 20)
             tic = time.time()
 
             if debug:
@@ -115,8 +115,9 @@ def generate_episodes(env, policy, num_steps=None, num_episodes=None,
 
         except Exception as e:
             traceback.print_exc()
-
             if False:
                 exit()
             else:
                 logger.error('The episode is discarded due to: %s', type(e))
+
+

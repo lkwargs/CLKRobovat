@@ -37,7 +37,6 @@ class PushEnv(arm_env.ArmEnv):
                  config=None,
                  debug=True):
         """Initialize.
-
         Args:
             simulator: Instance of the simulator.
             config: Environment configuration.
