@@ -12,6 +12,7 @@ class Saver(object):
         os.mkdir(self.save_path)
         self.num_image_saved = defaultdict(lambda: -1)
 
+
     def save(self, image, action, obj_name):
         if self.num_image_saved[obj_name] == -1:
             os.mkdir(self.save_path + "/" + obj_name)

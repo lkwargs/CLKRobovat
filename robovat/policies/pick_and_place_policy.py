@@ -12,7 +12,7 @@ import numpy as np
 from robovat.policies.segement_mask_sampler import SegmentationGraspSampler
 from robovat.policies.image_grasp_sampler import AntipodalDepthImageGraspSampler
 from robovat.policies import policy
-from robovat.observations.obs_handler import ObservationHandler
+from tools.obs_handler import ObservationHandler
 
 from robovat.utils.yaml_config import YamlConfig
 from robovat.utils.grasp_2d import Grasp2D

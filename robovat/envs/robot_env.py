@@ -300,9 +300,8 @@ class RobotEnv(gym.Env):
         for reward_fn in self.reward_fns:
             reward_value, termination_value = reward_fn.get_reward()
             reward += reward_value
+            termination = termination or termination_value
 
-            if termination_value:
-                termination = True
 
         reward = float(reward)
 

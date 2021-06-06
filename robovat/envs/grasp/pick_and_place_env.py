@@ -6,15 +6,13 @@ from __future__ import division
 from __future__ import print_function
 
 import glob
-import random
 import os.path
 
 import gym
 import numpy as np
 
 from robovat.envs import arm_env
-from robovat.envs.saver import Saver
-from robovat.utils.grasp_2d import Grasp2D
+from tools.sample_saver import Saver
 from robovat.math import Pose
 from robovat.math import get_transform
 from robovat.observations import camera_obs
@@ -76,8 +74,6 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                         paths = [line.rstrip('\n') for line in f]
                 else:
                     paths = glob.glob(pattern)
-
-                print(pattern)
 
                 self.all_graspable_paths += paths
 

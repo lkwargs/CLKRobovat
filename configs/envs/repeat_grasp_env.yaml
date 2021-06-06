@@ -6,7 +6,7 @@ MAX_STEPS: null
 
 MAX_ACTIONS_PER_EPS: 10
 
-SAVE_SAMPLES: 0
+SAVE_SAMPLES: 1
 
 OBSERVATION:
   # Choose between `depth` and `point_cloud`.
