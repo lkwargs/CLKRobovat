@@ -21,7 +21,7 @@ class SawyerSim(sawyer.Sawyer):
 
     def __init__(self,
                  simulator,
-                 pose=[[0, 0, 0], [0, 0, 0]],
+                 pose=None,
                  joint_positions=None,
                  config=None):
         """Initialize.
@@ -30,10 +30,12 @@ class SawyerSim(sawyer.Sawyer):
             simulator: The simulated simulator for the robot.
             pose: The initial pose of the robot base.
             joint_positions: The list of initial joint positions.
-            config: The configuartion as a dictionary.
+            config: The configuration as a dictionary.
         """
         super(SawyerSim, self).__init__(config=config)
 
+        if pose is None:
+            pose = [[0, 0, 0], [0, 0, 0]]
         self._simulator = simulator
 
         self._arm_pose = Pose(pose)

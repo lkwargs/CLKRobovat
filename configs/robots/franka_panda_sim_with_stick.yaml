@@ -1,0 +1,4 @@
+!include configs/robots/franka_panda_sim.yaml
+
+
+ARM_URDF: 'robots/franka_panda/franka_panda_arm_with_stick.urdf'

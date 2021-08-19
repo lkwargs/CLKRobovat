@@ -4,12 +4,25 @@ DEBUG: 0
 
 MAX_STEPS: null
 
-MAX_ACTIONS_PER_EPS: 10
+RESET:
+  # Reset means set the environment to the initial state
+  MAX_ACTIONS_PER_EPS: 1
+  OBJ:
+    # Resample means choose new objects
+    RESAMPLE: 1
+    USE_RANDOM_SAMPLE: 0
+    RESAMPLE_N_EPISODES: 10
+  POS:
+    KEEP: 1
+    KEEP_NUM: 10
 
-SAVE_SAMPLES: 1
+SAVE:
+  SAVE_SAMPLES: 0
+  SAVE_PATH: '/home/josep/e/samples'
+  SAVER_TYPE: 'SingleObjSaver'
 
 OBSERVATION:
-  # Choose between `depth` and `point_cloud`.
+  # Choose between `depth` and `rgb`.
   TYPE: 'depth'
 
 ACTION:
@@ -17,7 +30,7 @@ ACTION:
   # TYPE: 'IMAGE'
   TYPE: '4DIM'
 
-  # The `CUBOID` defines a cuvoid region for the grasping center.
+  # The `CUBOID` defines a cuboid region for the grasping center.
   CUBOID:
     LOW: [0.30, -0.50, 0.02]
     HIGH: [0.90, 0.50, 0.12]
@@ -44,22 +57,17 @@ SIM:
 
   GRASPABLE:
     PATHS: [
-          '/home/josep/code/python/rlcode/robovat/models/urdfs/*/*.urdf',
+          '/home/josep/code/python/rlcode/robovat/models/urdfs/wooden_cup1/*.urdf',
     ]
     POSE:
-      # X: [-0.15, 0.15]
-      # Y: [-0.15, 0.15]
       X: [0, 0.15]
       Y: [-0.2, 0.2]
       Z: 0.2
       ROLL: [-3.14, 3.14]
       PITCH: [-1.57, 1.57]
       YAW: [-3.14, 3.14]
-    SCALE: [1, 1]
-#    SCALE: [0.4, 0.8]
-    USE_RANDOM_SAMPLE: 0
-    RESAMPLE_N_EPISODES: 1
-    NUM: 5
     REMOVE_AFTER_GRASP: 1
+    SCALE: [1, 1]
+    NUM: 1
 
   MAX_ACTION_STEPS: 4000

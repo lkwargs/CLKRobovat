@@ -1,0 +1,8 @@
+!include configs/robots/franka_panda.yaml
+
+# Default maximum joint velocity ratio, chosen from (0, 1].
+# Set it to 1.0 for data collection, 0.3 for demo.
+LIMB_MAX_VELOCITY_RATIO: 1.0
+
+# Path to the URDF file of the arm(without base, with gripper).
+ARM_URDF: 'robots/franka_panda/franka_panda_arm.urdf'

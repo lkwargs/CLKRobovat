@@ -16,5 +16,5 @@ try:
 except Exception:
     print('Unable to set the formatters for logging.')
 
-
+logging.getLogger('matplotlib.font_manager').disabled = True
 logger = logging.getLogger('root')

@@ -234,8 +234,7 @@ class RobotEnv(gym.Env):
         return self.get_observation()
 
     def step(self, action):
-        """Take a step.
-
+        """ Take a step.
         See parent class.
         """
         # if self._done:

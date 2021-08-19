@@ -12,7 +12,7 @@ import gym
 import numpy as np
 
 from robovat.envs import arm_env
-from tools.sample_saver import Saver
+from tools.sample_saver import Saver, SingleObjSaver
 from robovat.math import Pose
 from robovat.math import get_transform
 from robovat.observations import camera_obs
@@ -42,11 +42,21 @@ class RepeatGraspEnv(arm_env.ArmEnv):
         self._simulator = simulator
         self._config = config or self.default_config
 
-        if self.config.SAVE_SAMPLES:
-            self._saver = Saver()
-
+        if self.config.SAVE.SAVE_SAMPLES:
+            if self.config.SAVE.SAVER_TYPE == 'Saver':
+                self._saver = Saver(self.config.SAVE.SAVE_PATH)
+            elif self.config.SAVE.SAVER_TYPE == 'SingleObjSaver':
+                self._saver = SingleObjSaver(
+                    save_path=self.config.SAVE.SAVE_PATH,
+                    poses_per_obj=self.config.RESET.OBJ.RESAMPLE_N_EPISODES,
+                    grasps_per_pose=self.config.RESET.POS.KEEP_NUM
+                )
+            
         self._debug = debug
         self.success = 0
+        self.sc_cnt = 0
+        self.obj_pos = []
+        self.obj_scl = []
 
         # Camera.
         self.camera = self._create_camera(
@@ -135,7 +145,6 @@ class RepeatGraspEnv(arm_env.ArmEnv):
             self.simulator.wait_until_stable(self.graspables[idx])
             success = self.simulator.check_contact(
                 self.simulator.bodies[sawyer.SawyerSim.ARM_NAME], self.graspables[idx])
-            print(str(idx) + ": " + str(success))
             return success
         else:
             raise NotImplementedError
@@ -145,6 +154,7 @@ class RepeatGraspEnv(arm_env.ArmEnv):
         for i in range(len(self.graspables)):
             if self.check_graspable_contact(i):
                 self.success = 1
+                self.sc_cnt += 1
                 return i
         return -1
 
@@ -196,22 +206,41 @@ class RepeatGraspEnv(arm_env.ArmEnv):
         else:
             raise ValueError
 
+    def _resample_objects(self):
+        if self.config.RESET.OBJ.USE_RANDOM_SAMPLE:
+            self.graspable_paths = np.random.choice(
+                self.all_graspable_paths, self.config.SIM.GRASPABLE.NUM)
+        else:
+            self.graspable_index = ((self.graspable_index + 1) %
+                                    len(self.all_graspable_paths))
+            self.graspable_paths = (
+                self.all_graspable_paths[self.graspable_index:self.graspable_index +
+                                                              self.config.SIM.GRASPABLE.NUM])
+
+    def _resample_object_positions(self):
+        self.obj_pos = []
+        for i in range(self.config.SIM.GRASPABLE.NUM):
+            pose = Pose.uniform(x=self.config.SIM.GRASPABLE.POSE.X,
+                                y=self.config.SIM.GRASPABLE.POSE.Y,
+                                z=self.config.SIM.GRASPABLE.POSE.Z,
+                                roll=self.config.SIM.GRASPABLE.POSE.ROLL,
+                                pitch=self.config.SIM.GRASPABLE.POSE.PITCH,
+                                yaw=self.config.SIM.GRASPABLE.POSE.YAW)
+            pose = get_transform(source=self.table_pose).transform(pose)
+            self.obj_pos.append(pose)
+
+    def _resample_object_scales(self):
+        self.obj_scl = np.random.uniform(*self.config.SIM.GRASPABLE.SCALE)
+
     def _add_graspable(self, idx):
-        pose = Pose.uniform(x=self.config.SIM.GRASPABLE.POSE.X,
-                            y=self.config.SIM.GRASPABLE.POSE.Y,
-                            z=self.config.SIM.GRASPABLE.POSE.Z,
-                            roll=self.config.SIM.GRASPABLE.POSE.ROLL,
-                            pitch=self.config.SIM.GRASPABLE.POSE.PITCH,
-                            yaw=self.config.SIM.GRASPABLE.POSE.YAW)
-        pose = get_transform(source=self.table_pose).transform(pose)
-        scale = np.random.uniform(*self.config.SIM.GRASPABLE.SCALE)
         logger.info('Loaded the graspable object from %s with scale %.2f...',
-                    self.graspable_paths[idx], scale)
+                    self.graspable_paths[idx], self.obj_scl)
         self.graspable_names.append(GRASPABLE_NAME + str(idx))
         self.graspables.append(self.simulator.add_body(
-            self.graspable_paths[idx], pose, scale=scale, name=self.graspable_names[idx]))
+            self.graspable_paths[idx], self.obj_pos[idx], scale=self.obj_scl, name=self.graspable_names[idx]))
         logger.debug('Waiting for graspable objects to be stable...')
         self.simulator.wait_until_stable(self.graspables[idx])
+        # self.obj_pos[idx] = self.graspables[idx].pose
 
     def _remove_graspable(self, idx):
         self.simulator.remove_body(self.graspable_names[idx])
@@ -232,27 +261,46 @@ class RepeatGraspEnv(arm_env.ArmEnv):
         """
         super(RepeatGraspEnv, self)._reset_scene()
 
-        # Reload graspable object.
-        if self.config.SIM.GRASPABLE.RESAMPLE_N_EPISODES:
-            if (self.num_episodes %
-                    self.config.SIM.GRASPABLE.RESAMPLE_N_EPISODES == 0):
-                self.graspable_paths = []
+        if self.num_episodes == 0:
+            self._resample_objects()
+            self._resample_object_positions()
+            self._resample_object_scales()
+            self._reset_objects()
+            self._reset_this_camera()
+            return
 
-        if not self.graspable_paths:
-            if self.config.SIM.GRASPABLE.USE_RANDOM_SAMPLE:
-                self.graspable_paths = np.random.choice(
-                    self.all_graspable_paths, self.config.SIM.GRASPABLE.NUM)
-            else:
-                self.graspable_index = ((self.graspable_index + 1) %
-                                        len(self.all_graspable_paths))
-                self.graspable_paths = (
-                    self.all_graspable_paths[self.graspable_index:self.graspable_index + self.config.SIM.GRASPABLE.NUM])
+        if self.config.RESET.POS.KEEP:
+            if self.sc_cnt == 0 or self.sc_cnt % self.config.RESET.POS.KEEP_NUM != 0:
+                self._reset_objects()
+            elif self.config.RESET.OBJ.RESAMPLE:
+                if (self.sc_cnt / self.config.RESET.POS.KEEP_NUM) % self.config.RESET.OBJ.RESAMPLE_N_EPISODES == 0:
+                    self._resample_objects()
+                self._resample_object_positions()
+                self._resample_object_scales()
+                self._reset_objects()
 
+        # Reload graspable object everytime.
+        elif self.config.RESET.OBJ.RESAMPLE:
+            if self.num_episodes % self.config.RESET.OBJ.RESAMPLE_N_EPISODES == 0:
+                self._resample_objects()
+            self._resample_object_positions()
+            self._resample_object_scales()
+            self._reset_objects()
+
+        self._reset_this_camera()
+
+    def _reset_robot(self):
+        """Reset the robot in simulation or the real world.
+        """
+        super(RepeatGraspEnv, self)._reset_robot()
+
+    def _reset_objects(self):
         self.graspables = []
         self.graspable_names = []
         for i in range(self.config.SIM.GRASPABLE.NUM):
             self._add_graspable(i)
 
+    def _reset_this_camera(self):
         # Reset camera.
         self._reset_camera(
             self.camera,
@@ -263,20 +311,19 @@ class RepeatGraspEnv(arm_env.ArmEnv):
             translation_noise=self.config.KINECT2.DEPTH.TRANSLATION_NOISE,
             rotation_noise=self.config.KINECT2.DEPTH.ROTATION_NOISE)
 
-    def _reset_robot(self):
-        """Reset the robot in simulation or the real world.
-        """
-        super(RepeatGraspEnv, self)._reset_robot()
-        self.robot.reset(self.config.ARM.OFFSTAGE_POSITIONS)
-
     def _execute_action(self, action):
         """Execute the grasp action.
 
         Args:
             action: A 4-DoF grasp defined in the image space or the 3D space.
         """
+
         if self.config.ACTION.TYPE == '4DIM':
             _grasp, _place = action
+            _pixel = [_grasp.center[0], _grasp.center[1], _grasp.depth, _grasp.angle]
+            from robovat.envs.grasp.visualize import plot_grasp_on_image
+            plot_grasp_on_image(self._obs_data['rgb'], _grasp)
+            print(_pixel)
             _grasp = _grasp.as_4dof()
         else:
             raise ValueError(
@@ -286,7 +333,6 @@ class RepeatGraspEnv(arm_env.ArmEnv):
         start = Pose(
             [[x, y, z + self.config.ARM.FINGER_TIP_OFFSET], [0, np.pi, angle]]
         )
-        print([x, y, z, angle])
         
         x, y, z, angle = _place
         place_pose = Pose(
@@ -357,11 +403,12 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                             lateral_friction=1)
                 
                 elif phase == 'putdown':
-                    grasped = self.calculate_reward()
+                    grasped_idx = self.calculate_reward()
+                    grasped = self.graspable_paths[grasped_idx]
                     if self.success:
                         if self.config.SIM.GRASPABLE.REMOVE_AFTER_GRASP:
                             if grasped != -1:
-                                self._remove_graspable(grasped)
+                                self._remove_graspable(grasped_idx)
                         else:
                             self.robot.move_to_gripper_pose(place_pose, straight_line=True)
 
@@ -375,11 +422,18 @@ class RepeatGraspEnv(arm_env.ArmEnv):
                                     spinning_friction=0.001)
                                 self.table.set_dynamics(
                                     lateral_friction=100)
-
-                        if self.config.SAVE_SAMPLES:
-                            obj = self.all_graspable_paths[self.graspable_index].split('/')[-1]
+                        if self.config.SAVE.SAVE_SAMPLES:
+                            obj = grasped.split('/')[-1]
                             obj_name = obj.split(".")[0]
-                            self._saver.save(self._obs_data, action, obj_name)
+                            if self.config.SAVE.SAVER_TYPE == 'Saver':
+                                self._saver.save(self._obs_data, action, obj_name)
+                            elif self.config.SAVE.SAVER_TYPE == 'SingleObjSaver':
+                                self._saver.save(
+                                    image=self._obs_data,
+                                    action={'pixel': _pixel, 'xyz': _grasp},
+                                    obj_name=obj_name
+                                )
+                            
 
                 elif phase == 'release':
                     self.robot.grip(0)

@@ -53,8 +53,8 @@ class RepeatGraspReward(reward_fn.RewardFn):
             success: The success signal.
             terminate_after_grasp: The termination signal.
         """
-        termination = (self.env._num_steps >= self.env.config.MAX_ACTIONS_PER_EPS or
-                       len(self.env.graspables) <= self.env.config.SIM.GRASPABLE.NUM // 2)
+        termination = (self.env._num_steps >= self.env.config.RESET.MAX_ACTIONS_PER_EPS) or \
+                      (len(self.env.graspables) <= self.env.config.SIM.GRASPABLE.NUM // 2)
 
         success = self.env.success
 

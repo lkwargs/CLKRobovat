@@ -51,9 +51,9 @@ def generate_episode(env, policy, num_steps=None, debug=False):
         transitions.append(transition)
         observation = new_observation
 
-        # if done:
-        #     print('[Episode done] current episode has done....')
-        #     break
+        if done:
+            print('[Episode done] current episode has done....')
+            break
 
         t += 1
         if (num_steps is not None) and (t >= num_steps):

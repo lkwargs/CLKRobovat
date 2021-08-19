@@ -109,6 +109,7 @@ class ArmEnv(robot_env.RobotEnv):
 
     def _reset_robot(self):
         """Reset the robot in simulation or the real world."""
+
         self.robot = eval(self.robot_type).factory(
             simulator=self.simulator,
             config=self.config.SIM.ARM.CONFIG)

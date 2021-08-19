@@ -12,16 +12,14 @@ class SegmentationGraspSampler(object):
     def __init__(self, gripper_width):
         self.gripper_width = gripper_width
 
-
     def sample(self, image, depth, camera, num_samples):
-
         if not isinstance(camera, Camera):
             intrinsics = camera
             camera = Camera()
             camera.set_calibration(intrinsics, np.zeros((3,)), np.zeros((3,)))
 
-        image = np.squeeze(image, -1)
-        depth = np.squeeze(depth, -1)
+        image = np.squeeze(image, -1)  # 424 512
+        depth = np.squeeze(depth, -1)  # 424 512
 
         objs = np.unique(image)
         obj_exists = np.delete(objs, np.where(objs == 1))
@@ -33,7 +31,7 @@ class SegmentationGraspSampler(object):
         valid_idx = np.random.choice(valid_points[0].shape[0], num_samples)
         center_samples = np.c_[valid_points[1][valid_idx], valid_points[0][valid_idx]]
 
-        depth_samples = np.array([depth[c[0]][c[1]] for c in center_samples]) + 0.1
+        depth_samples = np.array([depth[c[1]][c[0]] for c in center_samples]) + 0.1
         angle_samples = (np.random.random(num_samples) * 2 - 1) * np.pi
 
         width_samples = np.array([0.05] * num_samples)

@@ -18,7 +18,7 @@ class Sawyer(robot.Robot):
     def __init__(self, config=None):
         """Initialize.
 
-        config: The configuartion as a dictionary.
+        config: The configuration as a dictionary.
         """
         self.config = config or self.default_config
         if isinstance(self.config, str):
